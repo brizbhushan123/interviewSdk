@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkProctor Demo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="thinkproc.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        /* ===== Base Styles ===== */
+        :root {
+        --primary: #4361ee;
+        --secondary: #3f37c9;
+        --accent: #4895ef;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --success: #4cc9f0;
+        --border-radius: 12px;
+        --shadow: 0 10px 20px rgba(0,0,0,0.1);
+        --transition: all 0.3s ease;
+        }
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        min-height: 100vh;
+        padding: 2rem;
+        }
+
+        /* ===== Typography ===== */
+        h1, h2, h3 {
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        }
+
+        h1 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        }
+
+        p {
+        margin-bottom: 0rem;
+        }
+
+        /* ===== Components ===== */
+        .card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        transition: var(--transition);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+
+        .btn {
+        display: inline-block;
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        }
+
+        .btn{
+        transform: translateY(-2px);
+        }
+
+        .btn:active {
+        transform: scale(0.98);
+        }
+
+        .form-section-title{
+            font-size: 1rem;
+            margin-bottom: .65rem;
+            font-weight: 600;
+        }
+
+        .button-group{
+            display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+        }
+
+        /* ===== Layout Utilities ===== */
+        .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        }
+
+        .text-center {
+        text-align: center;
+        }
+
+        .mt-2 {
+        margin-top: 2rem;
+        }
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s linear;
+        }
+
+        .loader-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .loader {
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+     
+
+        .loader-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 1.3em;
+            font-weight: 400;
+        }
+        #displayEncryptedToken{
+            border-radius: 6px;
+            padding: 5px;
+            display: block;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+        animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes spin {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+        /* ===== Media Queries ===== */
+        @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+        
+        .card {
+            padding: 1.5rem;
+        }
+        
+        .flex-center {
+            flex-direction: column;
+        }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 card" id="formCard">
+                <h1>Thinkexam - ThinkProctor Demo</h1>
+                <div class="alert alert-warning" role="alert">
+                    <h5 class="alert-heading">Security Warning:</h5>
+                    <p>Encrypting sensitive data like <b>'sdk_token'</b> purely on the client-side (in JavaScript) is generally NOT secure for production environments. The encryption key would be exposed. For robust security, <b>`sdk_token`</b> generation and encryption should primarily occur on a secure backend server.</p>
+                </div>
+                <form id="dataForm" action="target.html" method="POST" onsubmit="encryptAndSubmit(event)">
+                    <div class="row">
+                        <div class="col-md-4 form-col">
+                    
+
+                            <div class="form-section-title">API Credentials</div>
+                            <div class="form-group">
+                                <label for="api_key">API Key:</label>
+                                <input type="text" id="api_key" name="api_key" value="ca5a0873-63da-4983-ae20-e0651f7aa20b"
+                                    class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api_secret">API Secret:</label>
+                                <input type="text" id="api_secret" name="api_secret" value="hDQQkhcl454ZV1kYB3hbPFeVcMPVRj/wxJNqEPp7pfQ="
+                                    class="form-control" required>
+                            </div>
+
+                            <div class="form-section-title">User Information</div>
+                            <div class="form-group">
+                                <label for="unique_user_id">Unique User ID:</label>
+                                <input type="text" id="unique_user_id" name="unique_user_id" value="8468" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_name">User Name:</label>
+                                <input type="text" id="user_name" name="user_name" value="BRIZBHUSHAN" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 form-col">
+                            <div class="form-section-title">Group Details</div>
+                            <div class="form-group">
+                                <label for="group_code">Group Code:</label>
+                                <input type="text" id="group_code" name="group_code" value="JULY_2025" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="group_name">Group Name:</label>
+                                <input type="text" id="group_name" name="group_name" value="ENTRANCE_EXAM" class="form-control">
+                            </div>
+                            <div class="form-section-title">Template Details</div>
+
+                            <div class="form-group">
+                                <label for="template_code">Template Code:</label>
+                                <input type="text" id="template_code" name="template_code" value="TEMP002" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="language">Language:</label>
+                                <select id="language" name="language_code" class="form-control">
+                                    <option value="EN" selected>English</option>
+                                    <option disabled value="ES">Spanish</option>
+                                    <option value="FR">French</option>
+                                    <option disabled value="DE">German</option>
+                                    <option value="HI">Hindi</option>
+                                    <option disabled value="ZH">Mandarin Chinese</option>
+                                    <option value="AR">Arabic</option>
+                                    <option disabled value="PT">Portuguese</option>
+                                    <option disabled value="RU">Russian</option>
+                                    <option value="JA">Japanese</option>
+                                    <option disabled value="IT">Italian</option>
+                                    <option disabled value="KO">Korean</option>
+                                    <option disabled value="NL">Dutch</option>
+                                    <option disabled value="SV">Swedish</option>
+                                    <option disabled value="TR">Turkish</option>
+                                    <option disabled value="PL">Polish</option>
+                                    <option disabled value="VI">Vietnamese</option>
+                                    <option disabled value="TH">Thai</option>
+                                    <option disabled value="MS">Malay</option>
+                                    <option disabled value="SW">Swahili</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 form-col">
+                            <div class="form-section-title">Time Zone</div>
+                             <div class="form-group">
+                                <label for="time_zone">Time-Zone:</label>
+                                <select id="time_zone" name="time_zone" class="form-control">
+                                    <option value="UTC+0">(UTC+0)</option>
+                                    <option value="UTC+1">(UTC+1)</option>
+                                    <option value="UTC+2">(UTC+2)</option>
+                                    <option value="UTC+3">(UTC+3)</option>
+                                    <option value="UTC+3:30">(UTC+3:30)</option>
+                                    <option value="UTC+4">(UTC+4)</option>
+                                    <option value="UTC+4:30">(UTC+4:30)</option>
+                                    <option value="UTC+5">(UTC+5)</option>
+                                    <option value="UTC+5:30">(UTC+5:30)</option>
+                                    <option value="UTC+5:45">(UTC+5:45)</option>
+                                    <option value="UTC+6">(UTC+6)</option>
+                                    <option value="UTC+6:30">(UTC+6:30)</option>
+                                    <option value="UTC+7">(UTC+7)</option>
+                                    <option value="UTC+8">(UTC+8)</option>
+                                    <option value="UTC+8:45">(UTC+8:45)</option>
+                                    <option value="UTC+9">(UTC+9)</option>
+                                    <option value="UTC+9:30">(UTC+9:30)</option>
+                                    <option value="UTC+10">(UTC+10)</option>
+                                    <option value="UTC+10:30">(UTC+10:30)</option>
+                                    <option value="UTC+11">(UTC+11)</option>
+                                    <option value="UTC+12">(UTC+12)</option>
+                                    <option value="UTC+12:45">(UTC+12:45)</option>
+                                    <option value="UTC+13">(UTC+13)</option>
+                                    <option value="UTC+14">(UTC+14)</option>
+                                    <option value="UTC-1">(UTC-1)</option>
+                                    <option value="UTC-2">(UTC-2)</option>
+                                    <option value="UTC-3">(UTC-3)</option>
+                                    <option value="UTC-3:30">(UTC-3:30)</option>
+                                    <option value="UTC-4">(UTC-4)</option>
+                                    <option value="UTC-5">(UTC-5)</option>
+                                    <option value="UTC-6">(UTC-6)</option>
+                                    <option value="UTC-7">(UTC-7)</option>
+                                    <option value="UTC-8">(UTC-8)</option>
+                                    <option value="UTC-9">(UTC-9)</option>
+                                    <option value="UTC-9:30">(UTC-9:30)</option>
+                                    <option value="UTC-10">(UTC-10)</option>
+                                    <option value="UTC-11">(UTC-11)</option>
+                                </select>
+                            </div>
+                            <div class="form-section-title">Registration Assets</div>
+                            <div class="form-group">
+                                <label for="registration_id_url">Registration ID URL:</label>
+                                <input type="url" id="registration_id_url" name="registration_id_url"
+                                    value="https://gw-te6-uat.s3.ap-south-1.amazonaws.com/studentIdProofImage/535/6396381/85877726/1/6396381_1749810663.233.png"
+                                    class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registration_photo_url">Registration Photo URL:</label>
+                                <input type="url" id="registration_photo_url" name="registration_photo_url"
+                                    value="https://gw-te6-uat.s3.ap-south-1.amazonaws.com/studentFaceRecognitionImage/535/6396381/85877726/1/6396381_1749809397.659.png"
+                                    class="form-control">
+                            </div>
+
+                            
+                            <div class="encrypted-token-display">
+                                <div class="form-section-title">Encrypted SDK Token (on submission):</div>
+                                <span id="displayEncryptedToken"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="submitButton">Generate Token & Start</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearSessionData()">Clear Re-Attempt</button>
+                    </div> 
+
+                </form>
+            </div>
+            <div class="col-12 card mt-3" >
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="form-section-title">Test Status</div>  
+                        <p class="" id="testStatus">Not started</p> 
+                    </div>
+                </div>
+                <div class="row"  id="testControlsCard" style="display: none;">
+                    <div class="col-md-12">
+                        <div class="form-section-title">Test Controls</div>
+                        <p>Use the buttons below to control the test session:</p>  
+                    </div>
+                    <div class="col-md-12 button-group">
+                        <button type="submit"  class="btn btn-success" onclick="startExam()" id="startbtn" disabled >Start Exam</button>
+                        <button type="button" class="btn btn-danger" onclick="pauseTest()" id="pause" disabled>Pause</button>
+                        <button type="button" class="btn btn-success" onclick="playTest()" id="play" disabled>Play</button>
+                        <button type="button" class="btn btn-primary" onclick="completeTest()" id="complete" disabled>Complete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader"></div>
+        <div class="loader-text">Loading... Please wait.</div>
+    </div>
+
+    <script>
+        const loaderOverlay = document.getElementById('loaderOverlay');
+        const submitButton = document.getElementById('submitButton');
+
+        function clearSessionData() {
+            localStorage.removeItem("sessionToken");
+            // localStorage.removeItem("tokenString");  
+            // Optionally clear form fields or reload to reflect empty state
+ 
+            alert("Session data cleared!");
+        }
+        // Ensure the DOM is fully loaded before trying to access elements
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Set the ENCRYPTION_KEY after the DOM is loaded and element is available
+            const ENCRYPTION_KEY = document.getElementById('api_secret').value;
+
+
+            // Initialize form fields from localStorage if data exists
+            if (localStorage.getItem("sessionToken") && localStorage.getItem("tokenString")) {
+                try {
+                    var tokenPayload = JSON.parse(localStorage.getItem("tokenString"));
+                    document.getElementById('api_key').value = tokenPayload.api_key || '';
+                    document.getElementById('api_secret').value = tokenPayload.api_secret || '';
+                    document.getElementById('unique_user_id').value = tokenPayload.uuid || '';
+                    document.getElementById('group_code').value = tokenPayload.group_code || '';
+                } catch (e) {
+                    console.error("Error parsing tokenString from localStorage:", e);
+                    clearSessionData(); // Clear potentially corrupted data
+                }
+            }
+            if (localStorage.getItem("language") != '' && localStorage.getItem("language") != null) {
+                document.getElementById('language').value = localStorage.getItem("language");
+            }
+            if (localStorage.getItem("time_zone") != '' && localStorage.getItem("time_zone") != null) {
+                document.getElementById('time_zone').value = localStorage.getItem("time_zone");
+            }
+            if (localStorage.getItem("myTest")) {
+                try {
+                    var myTest = JSON.parse(localStorage.getItem("myTest"));
+                    document.getElementById('api_key').value = myTest.api_key || '';                   
+                    document.getElementById('unique_user_id').value = myTest.unique_user_id || '';
+                    document.getElementById('user_name').value = myTest.user_name || '';        
+                    document.getElementById('group_code').value = myTest.group_code || '';
+                    document.getElementById('group_name').value = myTest.group_name || '';
+                    document.getElementById('template_code').value = myTest.template_code || '';
+                    document.getElementById('registration_id_url').value = myTest.registration_id_url || '';
+                    document.getElementById('registration_photo_url').value = myTest.registration_photo_url || '';
+                } catch (e) {
+                    console.error("Error parsing myTest from localStorage:", e);
+                    
+                }
+            }
+
+
+        });
+        function showLoader() {
+            loaderOverlay.classList.add('active');
+            submitButton.disabled = true; // Disable button to prevent multiple clicks
+        }
+
+        function hideLoader() {
+            loaderOverlay.classList.remove('active');
+            submitButton.disabled = false; // Re-enable button
+        }
+
+        function base64url(source) {
+            let encodedSource = CryptoJS.enc.Base64.stringify(source);
+            encodedSource = encodedSource.replace(/=+$/, '');
+            encodedSource = encodedSource.replace(/\+/g, '-');
+            encodedSource = encodedSource.replace(/\//g, '_');
+            return encodedSource;
+        }
+
+        function jwtSign(payload, secretOrPrivateKey) {
+            const header = { 'alg': 'HS256', 'typ': 'JWT' };
+            const stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+            const encodedHeader = base64url(stringifiedHeader);
+            const stringifiedPayload = CryptoJS.enc.Utf8.parse(JSON.stringify(payload));
+            const encodedPayload = base64url(stringifiedPayload);
+            const encodedSignature = base64url(CryptoJS.HmacSHA256(encodedHeader + "." + encodedPayload, secretOrPrivateKey));
+
+            return encodedHeader + "." + encodedPayload + "." + encodedSignature;
+        }
+
+        function getSessionToken() {
+            var tokenPayload = {
+                api_key: document.getElementById('api_key').value,
+                api_secret: document.getElementById('api_secret').value,
+                uuid: document.getElementById('unique_user_id').value,
+                group_code: document.getElementById('group_code').value,
+            };
+            const tokenString = JSON.stringify(tokenPayload);
+            // Only return stored sessionToken if the current form data matches the stored tokenPayload
+            if (tokenString !== localStorage.getItem("tokenString")) {
+                return null;
+            }
+            return localStorage.getItem("sessionToken");
+        }
+
+
+
+        async function encryptAndSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission immediately
+
+            showLoader(); // Show the loader
+
+            try {
+                const currentEncryptionKey = document.getElementById('api_secret').value; // Get the current API Secret
+                var tokenPayload = {
+                    api_key: document.getElementById('api_key').value,
+                    api_secret: document.getElementById('api_secret').value,
+                    uuid: document.getElementById('unique_user_id').value,
+                    group_code: document.getElementById('group_code').value,
+                };
+                const tokenString = JSON.stringify(tokenPayload);
+                localStorage.setItem('tokenString', tokenString);
+                localStorage.setItem('language', document.getElementById('language').value);
+                localStorage.setItem('time_zone', document.getElementById('time_zone').value);
+
+                // Use the current API Secret for encryption
+                const encryptedSdkToken = jwtSign(tokenPayload, currentEncryptionKey);
+
+                document.getElementById('displayEncryptedToken').textContent = encryptedSdkToken;
+
+                var myTest = {
+                    api_key: document.getElementById('api_key').value,
+                    sdk_token: encryptedSdkToken, // Use the dynamically encrypted token
+                    // sdk_token: 'nx7B2UhO9Td/AMRdxyQBCZfGFvxrEGg96fJC6TwvRJch0EWg8esZ6R/m+n/zEWiFb4I96F5hefI87qWwjFGuu9V4kWKKUaPQ3j6sDEDpI88l7/nK4SZshnNQZIdXwjWVLu2JR22Nvt0v6KylcgbARA==', // Hardcoded SDK token (removed as per dynamic encryption)
+                    unique_user_id: document.getElementById('unique_user_id').value,
+                    user_name: document.getElementById('user_name').value,
+                    group_code: document.getElementById('group_code').value,
+                    group_name: document.getElementById('group_name').value,
+                    template_code: document.getElementById('template_code').value,
+                    language: document.getElementById('language').value,
+                    time_zone: document.getElementById('time_zone').value,
+                    registration_id_url: document.getElementById('registration_id_url').value,
+                    registration_photo_url: document.getElementById('registration_photo_url').value,
+                    session_token: getSessionToken()
+                }
+
+                // Await the ThinkProctor.init and ThinkProctor.launch calls
+                const session = await ThinkProctor.init(myTest);
+                localStorage.setItem('sessionToken', session.sessionToken); // Store session token in localStorage for later use
+                localStorage.setItem('myTest', JSON.stringify(myTest));
+                // Store all data in localStorage
+                console.log("Session Token:", session.sessionToken);
+                ThinkProctor.checkCompatibility().then(() => {
+                    document.getElementById('testStatus').textContent = "In Lobby";
+                    document.getElementById('formCard').style.display = 'none';
+                    document.getElementById('testControlsCard').style.display = 'block';
+                    document.getElementById('startbtn').disabled = false;
+                    document.getElementById('pause').style.display = 'none';
+                    document.getElementById('play').style.display = 'none';
+                    document.getElementById('complete').style.display = 'none';
+                });
+
+            } catch (error) {
+                console.error("Operation failed:", error);
+                alert("An error occurred during submission. Please check console for details.");
+            } finally {
+                hideLoader(); // Ensure loader is hidden and button re-enabled
+            }
+        }
+
+        // Handle ThinkProctor close event
+        ThinkProctor.on("close-application", function (parameter) {
+            document.getElementById('testStatus').textContent = "Application Closed";
+            document.getElementById('testControlsCard').style.display = 'none'; // Hide test controls card
+            document.getElementById('formCard').style.display = 'block';
+            console.log("ThinkProctor application closed:", parameter);
+            window.location.reload();
+        });
+
+        ThinkProctor.on("suspend-exam", function (suspendTime) {
+            console.log("Your exam has been suspended for " + suspendTime + " minutes due to policy violations.");
+            document.getElementById('testStatus').textContent = "Test Suspended for " + suspendTime + " minutes";
+        });
+
+        ThinkProctor.on("suspend-resume-exam", function () {
+            console.log("Your exam has been resumed after suspension.");
+            document.getElementById('testStatus').textContent = "Test Resumed after Suspension";
+        });
+
+        ThinkProctor.on("terminate-exam", function () {
+            console.log("Your exam has been terminated due to multiple policy violations.");
+            document.getElementById('testStatus').textContent = "Test Terminated";
+        });
+
+        ThinkProctor.on("play-exam", function () {
+            console.log("Your exam has been resumed.");
+            document.getElementById('testStatus').textContent = "Test Resumed";
+        });
+
+        ThinkProctor.on("paused-exam", function () {
+            console.log("Your exam has been paused.");
+            document.getElementById('testStatus').textContent = "Test Paused";
+        });
+
+        function startExam() { 
+            ThinkProctor.launch();
+            document.getElementById('testControlsCard').style.display = 'block'; // Show test controls card
+            document.getElementById('formCard').style.display = 'none'; // Hide form card
+            document.getElementById('testStatus').textContent = "Test Started";
+            document.getElementById('startbtn').disabled = true; // Disable startbtn button after start
+            document.getElementById('startbtn').classList.remove('btn-success');
+            document.getElementById('startbtn').classList.add('btn-secondary');
+            document.getElementById('complete').disabled = false; // Enable complete button after start
+            document.getElementById('play').disabled = true; // Enable play button after start
+            document.getElementById('pause').disabled = false; // Disable pause button after start
+            document.getElementById('play').classList.remove('btn-secondary');
+            document.getElementById('play').classList.add('btn-success');
+            document.getElementById('pause').classList.remove('btn-danger');
+            document.getElementById('pause').classList.add('btn-secondary');  
+            document.getElementById('complete').classList.add('btn-success');  
+            document.getElementById('pause').style.display = 'block';
+            document.getElementById('play').style.display = 'block';
+            document.getElementById('complete').style.display = 'block';
+            document.getElementById('pause').style.backgroundColor = '#28a745';
+        }
+
+        function pauseTest() {
+            ThinkProctor.pause();
+            document.getElementById('testStatus').textContent = "Test Paused";
+            document.getElementById('play').disabled = false; // Enable play button after pause
+            document.getElementById('pause').disabled = true; // Disable pause button after pause   
+            document.getElementById('play').classList.remove('btn-secondary');
+            document.getElementById('play').classList.add('btn-success');
+            document.getElementById('pause').classList.remove('btn-danger');
+            document.getElementById('pause').classList.add('btn-secondary');    
+        }
+        function playTest() {
+            ThinkProctor.play();
+            document.getElementById('testStatus').textContent = "Test Resumed";
+            document.getElementById('play').disabled = true; // Disable play button after play
+            document.getElementById('pause').disabled = false; // Enable pause button after play    
+            document.getElementById('play').classList.remove('btn-success');
+            document.getElementById('play').classList.add('btn-secondary');
+            document.getElementById('pause').classList.remove('btn-secondary');
+            document.getElementById('pause').classList.add('btn-danger'); 
+        }
+        function completeTest() {
+            showLoader(); 
+            ThinkProctor.complete().then(()=>{
+                document.getElementById('testControlsCard').style.display = 'none'; // Hide test controls card
+                document.getElementById('formCard').style.display = 'block'; // Show form card
+                document.getElementById('testStatus').textContent = "Test Completed";
+                document.getElementById('complete').disabled = true; // Disable complete button after completion
+                document.getElementById('play').disabled = true; // Disable play button after completion
+                document.getElementById('pause').disabled = false; // Enable pause button after play    
+                document.getElementById('play').classList.remove('btn-success');
+                document.getElementById('play').classList.add('btn-secondary');
+                document.getElementById('pause').classList.remove('btn-secondary');
+                document.getElementById('pause').classList.add('btn-danger');
+
+                window.location.reload(); // Reload the page to reset the form
+            });
+            
+
+        }
+    </script>
+
+</body>
+
+</html>

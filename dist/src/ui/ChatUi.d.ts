@@ -1,0 +1,32 @@
+declare class ChatUi {
+    callTimerInterval: any;
+    callStartTime: number;
+    userName: string;
+    firstChatLoadDone: boolean;
+    lastTempMsgId: string | null;
+    isChatOpen: boolean;
+    messageRecived(user: string, message: Record<string, any>): void;
+    shownMessages: Record<string, any>;
+    setChatUI(): void;
+    showMessages(): void;
+    escapeHtml(text: string): string;
+    sendMessage(message: string, chatContainer: HTMLElement, inputEl: HTMLInputElement): void;
+    scrollToBottom(id: string): void;
+    audioTrackAdded(audioStream: MediaStream, user: string): void;
+    startCallTimer(): void;
+    stopCallTimer(): void;
+    removeAudioTrackAdded(user: string): void;
+    toggleChat(): void;
+    initCloseButton(): void;
+    sendInterviewMessage(message: string, chatContainer: HTMLElement, inputEl: HTMLInputElement): void;
+    showInterviewMessages(forceReload?: boolean): void;
+    scrollToBottomForce(containerId: string): void;
+    setInterviewChatUI(): void;
+    chatButton(): void;
+    closeChat(): void;
+    initChatEvents(): void;
+    showLoaderwithText(id: string): void;
+    hideLoaderwithText(): void;
+}
+export declare const chatUi: ChatUi;
+export {};

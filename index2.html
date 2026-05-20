@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Client (HTTPS)</title>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+    h1, h2 { color: #0056b3; }
+    input[type="text"], button, textarea { padding: 8px; margin: 5px 0; border-radius: 4px; border: 1px solid #ddd; }
+    button { background-color: #007bff; color: white; cursor: pointer; border: none; }
+    button:hover { background-color: #0056b3; }
+    ul { list-style: none; padding: 0; max-height: 300px; overflow-y: auto; border: 1px solid #eee; background-color: white; margin-top: 10px; }
+    li { padding: 8px 10px; border-bottom: 1px solid #eee; }
+    li:last-child { border-bottom: none; }
+    .system { color: gray; font-style: italic; }
+    .status { color: #28a745; font-weight: bold; }
+    .received { color: #dc3545; }
+    .sent { color: #17a2b8; }
+    .error { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Socket.IO Client (HTTPS) - Specific Events</h1>
+  <input type="text" id="userIdInput" placeholder="Your User ID (e.g., user123)">
+  <button id="goOnlineButton">Go Online</button>
+
+  <hr>
+
+  <h2>Send Message</h2>
+  <input type="text" id="receiverIdInput" placeholder="Receiver User ID">
+  <input type="text" id="messageInput" placeholder="Type a message">
+  <button id="sendButton">Send</button>
+
+  <hr>
+
+  <h2>Messages</h2>
+  <ul id="messages"></ul>
+
+  <hr>
+
+  <h2>Check Specific Online Users</h2>
+  <textarea id="userIdsToCheck" placeholder="Enter user IDs, comma-separated (e.g., user1,user2,user3)"></textarea><br>
+  <button id="checkOnlineUsersButton">Check Status</button>
+  <ul id="onlineUsersStatusList"></ul>
+
+  <script>
+    // DOM Element References
+    const userIdInput = document.getElementById('userIdInput');
+    const goOnlineButton = document.getElementById('goOnlineButton');
+    const receiverIdInput = document.getElementById('receiverIdInput');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    const messages = document.getElementById('messages');
+    const userIdsToCheckInput = document.getElementById('userIdsToCheck');
+    const checkOnlineUsersButton = document.getElementById('checkOnlineUsersButton');
+    const onlineUsersStatusList = document.getElementById('onlineUsersStatusList');
+
+    let socket;
+    let myUserId = ''; // Stores the user's ID once entered
+
+    // --- Event Listeners ---
+
+    goOnlineButton.addEventListener('click', () => {
+      myUserId = userIdInput.value.trim();
+      if (myUserId) {
+        if (socket && socket.connected) {
+          // If already connected and just changing user ID, disconnect first
+          socket.disconnect();
+          addMessage('Disconnected old socket for new user ID.', 'system');
+        }
+        socket = io('https://localhost:3443',{
+                auth: {
+                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7InNlc3Npb25JZCI6NzgsInNlc3NJbnN0YW5jZUlkIjo3NX0sImNsaWVudElkIjoyMDAxLCJyb2xlIjoiY2FuZGlkYXRlIiwiaWF0IjoxNzQ4MzQwODk4fQ.6Pw6-eTS7dwsKehznjnZMPcGsmVNMLqXaEghDNIMwDA" // <--- Pass the token here
+                }
+            }
+        ); // Ensure this matches your server's HTTPS port
+        setupSocketListeners(socket); // Set up all event listeners for the new socket
+
+        // The 'user_online' emit is now handled within the 'connect' listener
+        addMessage(`Attempting to connect as ${myUserId}...`, 'system');
+      } else {
+        alert('Please enter a User ID.');
+      }
+    });
+
+    sendButton.addEventListener('click', () => {
+      if (!socket || !socket.connected) {
+        alert('Please go online first!');
+        return;
+      }
+      const receiverId = receiverIdInput.value.trim();
+      const message = messageInput.value.trim();
+      if (receiverId && message) {
+        // Emit 'send_message' event with specific payload
+        socket.emit('send_message', { receiverId, message });
+        addMessage(`[You to ${receiverId}]: ${message}`, 'sent');
+        messageInput.value = ''; // Clear message input after sending
+      } else {
+        alert('Please enter both receiver ID and message.');
+      }
+    });
+
+    checkOnlineUsersButton.addEventListener('click', () => {
+      if (!socket || !socket.connected) {
+        addMessage('Not connected to server to get online users status.', 'error');
+        return;
+      }
+
+      const userIdsString = userIdsToCheckInput.value.trim();
+      if (userIdsString) {
+        const userIds = userIdsString.split(',').map(id => id.trim()).filter(id => id.length > 0);
+        if (userIds.length > 0) {
+          socket.emit('get_online_users_status', { userIds: userIds });
+          addMessage(`Requesting status for: ${userIds.join(', ')}`, 'system');
+        } else {
+          addMessage('No valid user IDs entered for status check.', 'error');
+        }
+      } else {
+        addMessage('Please enter user IDs for status check.', 'error');
+      }
+    });
+
+    // --- Socket.IO Event Listener Setup ---
+
+    function setupSocketListeners(socket) {
+      // Basic Connection Events
+      socket.on('connect', () => {
+        console.log('Connected to server! Socket ID:', socket.id);
+        addMessage('Connected to server.', 'system');
+        // On initial connect, or any connect, try to go online
+        if (myUserId) { // Only try to go online if we have a userId set
+            socket.emit('user_online', { userId: myUserId });
+            addMessage(`Emitting user_online for ${myUserId}...`, 'system');
+        }
+      });
+
+      socket.on('disconnect', (reason) => {
+        console.log('Disconnected from server. Reason:', reason);
+        addMessage(`Disconnected from server. Reason: ${reason}`, 'system');
+      });
+
+      // Reconnection Events (Crucial for maintaining online status across server restarts/network drops)
+      socket.on('reconnect', (attemptNumber) => {
+        console.log(`Reconnected to server after ${attemptNumber} attempts.`);
+        addMessage(`Reconnected to server. Attempt: ${attemptNumber}`, 'system');
+        // Re-emit user_online to re-establish status and userId on the server socket
+        if (myUserId) {
+          socket.emit('user_online', { userId: myUserId });
+          addMessage(`Re-establishing online status for ${myUserId}...`, 'system');
+        }
+      });
+
+      socket.on('reconnect_attempt', (attemptNumber) => {
+        console.log(`Reconnection attempt #${attemptNumber}`);
+        addMessage(`Reconnection attempt #${attemptNumber}...`, 'system');
+      });
+
+      socket.on('reconnect_error', (error) => {
+        console.error('Reconnection error:', error);
+        addMessage(`Reconnection error: ${error.message}`, 'error');
+      });
+
+      socket.on('reconnect_failed', () => {
+        console.error('Reconnection failed permanently.');
+        addMessage('Reconnection failed permanently. Please refresh or try again.', 'error');
+      });
+
+      // --- SERVER-TO-CLIENT SPECIFIC EVENT HANDLERS ---
+
+      socket.on('user_status_change', (payload) => {
+        console.log('User status change:', payload);
+        addMessage(`User ${payload.userId} is now ${payload.status}.`, 'status');
+        // If you want to auto-refresh the online status for the currently displayed users,
+        // you'd re-emit 'get_online_users_status' here with the current list you're interested in.
+        // For simplicity, we'll leave it manual for now.
+      });
+
+      socket.on('online_users_status', (payload) => {
+        console.log('Online users status received:', payload);
+        onlineUsersStatusList.innerHTML = ''; // Clear existing list
+        if (Object.keys(payload).length > 0) {
+          for (const userId in payload) {
+            const li = document.createElement('li');
+            li.textContent = `${userId}: ${payload[userId] ? 'Online' : 'Offline'}`;
+            li.style.color = payload[userId] ? '#28a745' : '#6c757d'; // Green for online, gray for offline
+            onlineUsersStatusList.appendChild(li);
+          }
+        } else {
+          const li = document.createElement('li');
+          li.textContent = 'No status found for the requested users.';
+          onlineUsersStatusList.appendChild(li);
+        }
+      });
+
+      socket.on('receive_message', (payload) => {
+        console.log('Received message:', payload);
+        addMessage(`[${payload.senderId}]: ${payload.message}`, 'received');
+        // Optional: Send read receipt back to the sender
+        socket.emit('message_read', { senderId: payload.senderId });
+      });
+
+      socket.on('message_delivered', (payload) => {
+        console.log('Message delivered to:', payload.receiverId);
+        addMessage(`Message delivered to ${payload.receiverId}.`, 'system');
+      });
+
+      socket.on('message_read', (payload) => {
+        console.log('Message read by:', payload.readerId);
+        addMessage(`Message read by ${payload.readerId}.`, 'system');
+      });
+
+      socket.on('error', (payload) => {
+        console.error('Socket error:', payload);
+        addMessage(`Error: ${payload.message} ${payload.code ? `(Code: ${payload.code})` : ''}`, 'error');
+      });
+
+      // Heartbeat for keeping connection/status alive
+      // This helps prevent idle connections from being dropped by some proxies/firewalls.
+      setInterval(() => {
+        if (socket && socket.connected && myUserId) {
+          socket.emit('heartbeat', { userId: myUserId });
+        }
+      }, 30000); // Every 30 seconds (adjust as needed)
+    }
+
+    // --- Utility Function ---
+
+    function addMessage(text, type) {
+      const li = document.createElement('li');
+      li.textContent = text;
+      li.className = type;
+      messages.appendChild(li);
+      // Auto-scroll to the bottom of the messages list
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+</body>
+</html>

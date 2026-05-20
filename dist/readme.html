@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThinkProctor SDK Documentation</title>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: #f9fafc;
+      color: #333;
+      display: flex;
+    }
+
+    nav {
+      width: 270px;
+      background: #1b1c2e;
+      color: #fff;
+      height: 100vh;
+      position: fixed;
+      overflow-y: auto;
+      padding: 25px 20px;
+      box-shadow: 2px 0 6px rgba(0,0,0,0.2);
+    }
+
+    nav h2 {
+      font-size: 1.4em;
+      color: #00bcd4;
+      margin-bottom: 15px;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 0.95em;
+      margin: 10px 0;
+      padding: 6px 0;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    main {
+      margin-left: 290px;
+      padding: 40px;
+      max-width: 900px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #222;
+      margin-top: 40px;
+      border-bottom: 2px solid #00bcd4;
+      padding-bottom: 6px;
+      font-size: 1.4em;
+    }
+
+    h2 i {
+      color: #00bcd4;
+      margin-right: 6px;
+    }
+
+    p, ul, table {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    code, pre {
+      background: #f4f4f4;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: "Consolas", monospace;
+    }
+
+    pre {
+      padding: 10px;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    .note {
+      background: #fff3cd;
+      border-left: 5px solid #ffeb3b;
+      padding: 10px;
+      margin: 20px 0;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #777;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+
+    a {
+      color: #0077cc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h2><i class="fa-solid fa-video"></i> ThinkProctor SDK</h2>
+    <a href="#installation"><i class="fa-solid fa-download"></i> Installation</a>
+    <a href="#initialization"><i class="fa-solid fa-rocket"></i> Initialization & Auth</a>
+    <a href="#parameters"><i class="fa-solid fa-list"></i> Parameters</a>
+    <a href="#sdk-token"><i class="fa-solid fa-key"></i> Creating sdk_token</a>
+    <a href="#error-handling"><i class="fa-solid fa-triangle-exclamation"></i> Error Handling</a>
+    <a href="#tracking-events"><i class="fa-solid fa-chart-line"></i> Tracking Events</a>
+    <a href="#verification"><i class="fa-solid fa-user-shield"></i> Check & Verification</a>
+    <a href="#launch"><i class="fa-solid fa-play"></i> Launch</a>
+    <a href="#complete"><i class="fa-solid fa-flag-checkered"></i> Complete / End</a>
+    <a href="#example"><i class="fa-solid fa-flask"></i> Example Usage</a>
+  </nav>
+
+  <main>
+    <h1><i class="fa-solid fa-book"></i> ThinkProctor SDK Documentation</h1>
+
+    <section id="installation">
+      <h2><i class="fa-solid fa-download"></i> Installation</h2>
+      <p>Include the SDK using a script tag:</p>
+      <pre><code>&lt;script src="https://thinkx-suite-qa.thinkexam.com/ThinkProctor/thinkproc.umd.min.js"&gt;&lt;/script&gt;</code></pre>
+    </section>
+
+    <section id="initialization">
+      <h2><i class="fa-solid fa-rocket"></i> Initialization & Authentication</h2>
+      <p><code>ThinkProctor.init()</code> initializes and starts a proctoring session, establishing a connection with the ThinkProctor service, authenticating the user, and setting up the environment.</p>
+
+      <pre><code>ThinkProctor.init({
+  apiKey: "YOUR_API_KEY",
+  sdk_token: "asdc21ac2312dasdc31",
+  unique_user_id: "myuser123",
+  user_name: "my user",
+  group_code: "mygroup123",
+  group_name: "my group 123",
+  template_code: "think_1723213123",
+  language: "en",
+  registration_id_url: "",
+  registration_photo_url: "",
+  session_token: "sce3sdc2ecs3qad3"
+}).then(function(session_token){
+   console.log("Session Started", session_token);
+}).catch(function(error){
+   console.log("Initialization Error", error);
+});</code></pre>
+    </section>
+
+    <section id="parameters">
+      <h2><i class="fa-solid fa-list"></i> Parameters (options object)</h2>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Required?</th><th>Description</th><th>Example</th></tr>
+        <tr><td>apiKey</td><td>String</td><td>Yes</td><td>Your API key from ThinkProctor dashboard.</td><td>"YOUR_API_KEY"</td></tr>
+        <tr><td>sdk_token</td><td>String</td><td>Yes</td><td>JWT created using your API secret.</td><td>"eyJhbGciOi..."</td></tr>
+        <tr><td>unique_user_id</td><td>String</td><td>Yes</td><td>Unique user ID (email or numeric ID).</td><td>"myuser123"</td></tr>
+        <tr><td>user_name</td><td>String</td><td>Yes</td><td>User’s name for display.</td><td>"my user"</td></tr>
+        <tr><td>group_code</td><td>String</td><td>No</td><td>Code for grouping users.</td><td>"mygroup123"</td></tr>
+        <tr><td>group_name</td><td>String</td><td>No</td><td>Readable name of the group.</td><td>"my group 123"</td></tr>
+        <tr><td>template_code</td><td>String</td><td>Yes</td><td>Defines the proctoring template.</td><td>"think_1723213123"</td></tr>
+        <tr><td>language</td><td>String</td><td>No</td><td>Language of SDK UI (default: en).</td><td>"en"</td></tr>
+        <tr><td>registration_id_url</td><td>String</td><td>No</td><td>URL of user’s registered ID.</td><td>""</td></tr>
+        <tr><td>registration_photo_url</td><td>String</td><td>No</td><td>URL of user’s registered photo.</td><td>""</td></tr>
+        <tr><td>session_token</td><td>String</td><td>Yes</td><td>Server-generated session authentication token.</td><td>"sce3sdc2ecs3qad3"</td></tr>
+      </table>
+    </section>
+
+    <section id="sdk-token">
+      <h2><i class="fa-solid fa-key"></i> Creating the sdk_token</h2>
+      <p>The <code>sdk_token</code> is a JWT generated on your server and signed using your ThinkProctor API secret. It should include <code>api_key</code>, <code>uuid</code>, and <code>group_code</code> as payload.</p>
+
+      <pre><code>var tokenPayload = {
+  api_key: "YOUR_API_KEY",
+  uuid: "myuser123",
+  group_code: "mygroup123"
+};</code></pre>
+    </section>
+
+    <section id="error-handling">
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> Error Handling</h2>
+      <ul>
+        <li>Invalid <code>apiKey</code> or <code>sdk_token</code></li>
+        <li>Missing required parameters</li>
+        <li>Network connectivity issues</li>
+        <li>Invalid <code>template_code</code></li>
+      </ul>
+    </section>
+
+    <section id="tracking-events">
+      <h2><i class="fa-solid fa-chart-line"></i> Tracking Events</h2>
+      <p>Track custom events using the SDK.</p>
+      <pre><code>ThinkProctor.trackEvent("event_name", { data: "value" });</code></pre>
+    </section>
+
+    <section id="verification">
+      <h2><i class="fa-solid fa-user-shield"></i> Check & Verification</h2>
+      <p>After initialization, run system and user verification using <code>ThinkProctor.checkCompatibility()</code>. It returns a Promise that resolves once verification completes.</p>
+      <pre><code>ThinkProctor.checkCompatibility().then(()=>{
+   ThinkProctor.launch();
+});</code></pre>
+    </section>
+
+    <section id="launch">
+      <h2><i class="fa-solid fa-play"></i> Launch</h2>
+      <p>Start the proctoring session after system verification.</p>
+      <pre><code>ThinkProctor.launch();</code></pre>
+    </section>
+
+    <section id="complete">
+      <h2><i class="fa-solid fa-flag-checkered"></i> Conclude / Complete / End Session</h2>
+      <p>Call <code>ThinkProctor.complete()</code> to end the session and stop all running processes.</p>
+      <div class="note">
+        <strong>Note:</strong> If the browser closes before calling this function, the session remains marked as incomplete.
+      </div>
+      <pre><code>ThinkProctor.complete();</code></pre>
+    </section>
+
+    <section id="example">
+      <h2><i class="fa-solid fa-flask"></i> Example Usage</h2>
+      <pre><code>&lt;script src="https://cdn.example.com/thinkproc.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+ThinkProctor.init({
+  apiKey: "YOUR_API_KEY",
+  sdk_token: "asdc21ac2312dasdc31",
+  unique_user_id: "myuser123",
+  user_name: "my user",
+  group_code: "mygroup123",
+  group_name: "my group 123",
+  template_code: "think_1723213123",
+  language: "en",
+  session_token: "sce3sdc2ecs3qad3"
+}).then(async function(session_token){
+  await ThinkProctor.checkCompatibility();
+  ThinkProctor.launch();
+}).catch(function(error){
+  console.log("Some Error", error);
+});
+
+// End session later
+ThinkProctor.complete();
+&lt;/script&gt;</code></pre>
+
+      <p>If you face any issues, contact <a href="mailto:support@example.com">support@example.com</a> or visit our <a href="https://developer.example.com" target="_blank">Developer Portal</a>.</p>
+    </section>
+
+    <footer>
+      © 2025 ThinkProctor SDK | Developer Documentation
+    </footer>
+  </main>
+</body>
+</html>

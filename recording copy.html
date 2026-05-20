@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Streaming</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 50px; background-color: #f0f2f5; color: #333; }
+        #videoElement { border: 2px solid #3498db; background-color: #000; margin-bottom: 20px; }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button.start { background-color: #28a745; color: white; }
+        button.stop { background-color: #dc3545; color: white; }
+        button.start:hover { background-color: #218838; }
+        button.stop:hover { background-color: #c82333; }
+        #status { margin-top: 20px; font-size: 1.1em; font-weight: bold; }
+        #sessionIdInput { padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 200px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Webcam Live Stream to Server</h1>
+
+    <input type="text" id="sessionIdInput" placeholder="Enter Session ID" value="my-test-session-1">
+    <video id="videoElement" autoplay muted></video>
+    <div>
+        <button id="startButton" class="start">Start Streaming</button>
+        <button id="stopButton" class="stop" disabled>Stop Streaming</button>
+    </div>
+    <div id="status">Status: Not Connected</div>
+
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const statusDiv = document.getElementById('status');
+        const sessionIdInput = document.getElementById('sessionIdInput');
+
+        let mediaRecorder;
+        let ws;
+        let stream;
+        let intervalId;
+
+        const connectWebSocket = () => {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            // Adjust the port based on whether you're using HTTP (8080) or HTTPS (8443)
+            const port = protocol === 'wss:' ? '8443' : '8080';
+            const sessionId = sessionIdInput.value.trim();
+
+            if (!sessionId) {
+                alert("Please enter a Session ID.");
+                return null;
+            }
+
+            // Replace 'localhost' with your server's IP or domain if not running locally
+            ws = new WebSocket(`${protocol}//localhost:${port}`);
+
+            ws.onopen = () => {
+                statusDiv.textContent = 'Status: Connected to WebSocket. Sending Session ID...';
+                // Send the session ID as the very first message
+                ws.send(sessionId);
+                console.log(`WebSocket opened. Sent session ID: ${sessionId}`);
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                startCapture();
+            };
+
+            ws.onmessage = (event) => {
+                // Server might send messages back, e.g., for acknowledgements or errors
+                console.log('Message from server:', event.data);
+            };
+
+            ws.onclose = (event) => {
+                statusDiv.textContent = `Status: Disconnected (Code: ${event.code}, Reason: ${event.reason || 'No reason'})`;
+                console.log('WebSocket closed:', event);
+                stopStreaming(); // Ensure everything is stopped on disconnect
+            };
+
+            ws.onerror = (error) => {
+                statusDiv.textContent = 'Status: WebSocket Error!';
+                console.error('WebSocket Error:', error);
+                stopStreaming();
+            };
+            return ws;
+        };
+
+        const startCapture = async () => {
+            try {
+                // Request access to webcam and microphone
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                videoElement.srcObject = stream;
+                statusDiv.textContent = 'Status: Capturing video...';
+
+                // Use MediaRecorder to get video data
+                // You can specify MIME types: 'video/webm;codecs=vp8', 'video/webm;codecs=h264', 'video/mp4' (if supported)
+                // 'video/webm' is widely supported by browsers.
+                const options = { mimeType: 'video/webm;codecs=vp8' }; // Recommended for broad browser support
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    console.warn(`${options.mimeType} is not supported, trying another.`);
+                    options.mimeType = 'video/webm'; // Fallback
+                    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                        console.error('No supported MIME type for MediaRecorder found.');
+                        statusDiv.textContent = 'Status: Error! No supported video codec.';
+                        return;
+                    }
+                }
+
+                mediaRecorder = new MediaRecorder(stream, options);
+
+                // This event fires when data is available from the media recorder
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0 && ws && ws.readyState === WebSocket.OPEN) {
+                        ws.send(event.data); // Send the video chunk over WebSocket
+                    }
+                };
+
+                // Start recording, collecting data in chunks every 100ms
+                mediaRecorder.start(100); // Collect 100ms chunks
+                statusDiv.textContent = 'Status: Streaming video...';
+                console.log('MediaRecorder started.');
+
+            } catch (err) {
+                console.error('Error accessing media devices or starting stream:', err);
+                statusDiv.textContent = `Status: Error! ${err.message}`;
+                startButton.disabled = false;
+                stopButton.disabled = true;
+            }
+        };
+
+        const stopStreaming = () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                console.log('MediaRecorder stopped.');
+            }
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop()); // Stop all tracks (video/audio)
+                console.log('Media stream tracks stopped.');
+            }
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.close();
+            }
+            videoElement.srcObject = null;
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            statusDiv.textContent = 'Status: Streaming stopped.';
+        };
+
+        startButton.addEventListener('click', connectWebSocket);
+        stopButton.addEventListener('click', stopStreaming);
+
+        // Initial state
+        stopButton.disabled = true;
+        statusDiv.textContent = 'Status: Ready. Enter Session ID and click Start.';
+    </script>
+</body>
+</html>

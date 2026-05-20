@@ -1,0 +1,6345 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global Reset */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: 0.3s all ease-in-out;
+}
+
+:root {
+  /* Color Variables */
+  --thinkproc-background-color: #ffffff;
+  --thinkproc-text-white: #ffffff;
+  --thinkproc-text-color: #000000;
+  --thinkproc-black: #000000;
+  --thinkproc-border-color: #DEE6EA;
+  --thinkproc-primary-color: #2F4DDB;
+  --thinkproc-primary-hover-color: #102AA7;
+  --thinkproc-box-shadow: 0px 8px 8px -4px #0A0D120A;
+  --thinkproc-main-box-shadow: 0px 20px 24px -4px #0A0D121A, 0px 8px 8px -4px #0A0D120A;
+  --thinkproc-drag-box-shadow: 0px 15.09px 18.1px -3.02px #0A0D121A, 0px 6.03px 6.03px -3.02px #0A0D120A;
+  --thinkproc-chat-box-shadow: 0px 0px 14px 0px #00000026;
+  --thinkproc-circle-color: #B1B3C1;
+  --thinkproc-gray-bg: #F9F9F9;
+  --thinkproc-cicle-bg: #C4C9CF;
+  --thinkproc-secondary-text-color: #5F6777;
+  --thinkproc-error-bg: #CC4441;
+  --thinkproc-error-bg-light: #CC444126;
+  --thinkproc-success-text: #4C946A;
+  --thinkproc-option-bg: #eef1ff;
+  --thinkproc-popup-overlay-color: #00000094;
+  --thinkproc-informationBox-bg-color: #ECEDFE;
+  --thinkproc-warning-bg: #DB97141F;
+  --thinkproc-warning-border-color: #DB9714;
+  --thinkproc-light-green-border: #4C946A26;
+  --thinkproc-green-bg: #4C946A;
+  --thinkproc-warningInfo: #E8A13A;
+  --thinkproc-btn-d: #C4C9CF;
+  --thinkproc-room-threeSixty-start: #FFC048;
+  --thinkproc-room-threeSixty-complete: #4C946A;
+  --thinkproc-call-bg: #202124;
+  --thinkproc-outgoing-message-bg: #F0F3F5;
+  --thinkproc-alert-error-bg: #F8D7DA;
+  --thinkproc-alert-error-color: #721C24;
+  --thinkproc-alert-error-border-color: #f5c6cb;
+  --thinkproc-alert-success-bg: #d4edda;
+  --thinkproc-alert-success-color: #155724;
+  --thinkproc-alert-success-border-color: #c3e6cb;
+  --thinkproc-success-bg-light: #97ebba;
+
+
+  /* Typography */
+  --thinkproc-font-family: "Public Sans";
+
+  /* Font sizes */
+  --thinkproc-font-size-10: 0.625rem;
+  --thinkproc-font-size-11: 0.6875rem;
+  --thinkproc-font-size-12: 0.75rem;
+  --thinkproc-font-size-13: 0.8125rem;
+  --thinkproc-font-size-14: 0.875rem;
+  --thinkproc-font-size-15: 0.9375rem;
+  --thinkproc-font-size-16: 1rem;
+  --thinkproc-font-size-17: 1.0625rem;
+  --thinkproc-font-size-18: 1.125rem;
+  --thinkproc-font-size-19: 1.1875rem;
+  --thinkproc-font-size-20: 1.25rem;
+}
+
+/* Base responsive settings */
+html {
+  font-size: 16px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.mt-20 {
+  margin-top: 1.25rem;
+}
+
+.mb-4rem {
+  margin-bottom: 2rem !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-specebetween {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+img {
+  vertical-align: unset;
+}
+
+.w40 {
+  width: 40rem;
+}
+
+.w100 {
+  width: 100%;
+}
+
+body {
+  font-family: var(--thinkproc-font-family);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+}
+
+/* Popup Wrapper */
+.thinkproc-popup-wrapper {
+  position: relative;
+}
+
+.thinkproc_compatibility_wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  color: var(--thinkproc-text-color);
+  padding: 1rem;
+  font-family: var(--thinkproc-font-family);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+}
+
+.thinkproc_compatibility_wrapper * {
+  line-height: unset;
+}
+
+.thinkproc_compatibility_wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--thinkproc-background-color);
+  z-index: -1;
+}
+
+/* Popup Container */
+.thinkproc-popup {
+  background: var(--thinkproc-background-color);
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.75rem;
+  max-width: 53.125rem;
+  width: 100%;
+  box-shadow: var(--thinkproc-main-box-shadow);
+  overflow: hidden;
+}
+
+/* Popup Header */
+.thinkproc-popup-header,
+.thinkproc-popup-header-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--thinkproc-border-color);
+  width: 100%;
+}
+
+.thinkproc-popup-header-right {
+  display: none;
+  width: 60px;
+}
+
+.thinkproc-progress-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-progress-circle .thinkproc-percent {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.thinkproc-progress-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.thinkproc-progress-circle svg circle {
+  fill: none;
+  stroke: var(--thinkproc-light-green-border);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.thinkproc-progress-circle svg circle:last-of-type {
+  stroke: var(--thinkproc-green-bg);
+  stroke-dasharray: 169.65px;
+  stroke-dashoffset: calc(169.65px - (169.65px * var(--thinkproc-percent)) / 100);
+}
+
+.thinkproc-progress-circle .thinkproc-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thinkproc-progress-circle .thinkproc-number h3 {
+  font-size: unset;
+  margin: 0px;
+  display: flex;
+  align-items: flex-end;
+  column-gap: 0.0625rem;
+  line-height: 1;
+}
+
+.thinkproc-progress-circle .thinkproc-number h3 span:first-child {
+  font-weight: 600;
+  font-size: var(--thinkproc-font-size-18);
+  margin-bottom: 0px;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc-progress-circle .thinkproc-number h3 span {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  color: var(--thinkproc-secondary-text-color);
+  line-height: .8;
+}
+
+.thinkproc-popup-header {
+  column-gap: 10px;
+}
+
+.suspendPopup .thinkproc-progress-circle .thinkproc-percent {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.suspendPopup .thinkproc-progress-circle svg circle {
+  fill: none;
+  stroke: var(--thinkproc-border-color);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.suspendPopup .thinkproc-progress-circle svg circle:last-of-type {
+  stroke: var(--thinkproc-primary-color);
+  stroke-dasharray: 232.36px;
+  /* 2π*37 */
+  stroke-dashoffset: calc(232.36px - (232.36px * var(--thinkproc_suspend_count)) / 100);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* Compatibility Step Item */
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step {
+  flex-grow: 1;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: var(--thinkproc-font-size-14);
+  border-right: 1px solid var(--thinkproc-border-color);
+}
+
+/* Remove border for last step */
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:last-child {
+  border-right: none;
+}
+
+/* Active Step Styling */
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.active) {
+  background-color: var(--thinkproc-gray-bg);
+}
+
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.active) span {
+  position: relative;
+  font-weight: 700;
+  padding-left: 1.1rem;
+}
+
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.active) span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--thinkproc-circle-color);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.completed) span {
+  padding-left: 1.3rem;
+  position: relative;
+}
+
+.thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.completed) span::before {
+  content: '';
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xOC4xNjY3IDEwQzE4LjE2NjcgMTQuNTEwMyAxNC41MTAzIDE4LjE2NjcgMTAgMTguMTY2N0M1LjQ4OTY3IDE4LjE2NjcgMS44MzMzMyAxNC41MTAzIDEuODMzMzMgMTBDMS44MzMzMyA1LjQ4OTY3IDUuNDg5NjcgMS44MzMzMyAxMCAxLjgzMzMzQzE0LjUxMDMgMS44MzMzMyAxOC4xNjY3IDUuNDg5NjcgMTguMTY2NyAxMFoiIGZpbGw9IiNFREYxRjciIHN0cm9rZT0iI0U0RTZFQiIgc3Ryb2tlLXdpZHRoPSIxLjE2NjY3Ii8+CjxwYXRoIGQ9Ik0xMS42NzQ2IDcuODQ1MzNWMTkuNDgxN0g5LjIxNDRWMTAuMTgwNkg5LjE0NjIyTDYuNDgxNDUgMTEuODUxVjkuNjY5MTlMOS4zNjIxMyA3Ljg0NTMzSDExLjY3NDZaIiBmaWxsPSIjMUUyMjI4Ii8+CjxwYXRoIGQ9Ik05Ljk5OTYzIDE4Ljc1QzguNTE5ODcgMTguNzQ5OSA3LjA2NDMgMTguMzc0NiA1Ljc2OTAzIDE3LjY1OTFDNC40NzM3NiAxNi45NDM2IDMuMzgxMTIgMTUuOTExMiAyLjU5MzI3IDE0LjY1ODZDMS44MDU0MiAxMy40MDYgMS4zNDgxMiAxMS45NzQxIDEuMjY0MTEgMTAuNDk2N0MxLjE4MDExIDkuMDE5MzUgMS40NzIxNSA3LjU0NDggMi4xMTI5NCA2LjIxMDk4QzIuNzUzNzIgNC44NzcxNSAzLjcyMjMxIDMuNzI3NjIgNC45MjgxMiAyLjg2OTg5QzYuMTMzOTMgMi4wMTIxNSA3LjUzNzU4IDEuNDc0MjQgOS4wMDc4IDEuMzA2NDRDMTAuNDc4IDEuMTM4NjQgMTEuOTY2OCAxLjM0NjQ1IDEzLjMzNDggMS45MTA0MkMxNC43MDI5IDIuNDc0NCAxNS45MDU2IDMuMzc2MTEgMTYuODMwNSA0LjUzMTI1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIuMzMzMzMiLz4KPHBhdGggZD0iTTE4LjE2NjcgMTBDMTguMTY2NyAxNC41MTAzIDE0LjUxMDMgMTguMTY2NyAxMCAxOC4xNjY3QzUuNDg5NjcgMTguMTY2NyAxLjgzMzMzIDE0LjUxMDMgMS44MzMzMyAxMEMxLjgzMzMzIDUuNDg5NjcgNS40ODk2NyAxLjgzMzMzIDEwIDEuODMzMzNDMTQuNTEwMyAxLjgzMzMzIDE4LjE2NjcgNS40ODk2NyAxOC4xNjY3IDEwWiIgZmlsbD0iI0VERjFGNyIgc3Ryb2tlPSIjRTRFNkVCIiBzdHJva2Utd2lkdGg9IjEuMTY2NjciLz4KPHBhdGggZD0iTTEwIDIwQzE1LjUyMjggMjAgMjAgMTUuNTIyOCAyMCAxMEMyMCA0LjQ3NzE1IDE1LjUyMjggMCAxMCAwQzQuNDc3MTUgMCAwIDQuNDc3MTUgMCAxMEMwIDE1LjUyMjggNC40NzcxNSAyMCAxMCAyMFoiIGZpbGw9IiMyMDg2NDUiLz4KPHBhdGggZD0iTTE0LjU0MjggNy41TDguNDAyMTUgMTIuOTE4MUw1Ljg3NDAyIDEwLjAyODEiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==");
+  width: 1rem;
+  height: 1rem;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+
+.thinkproc-popup-body {
+  min-height: 32.5rem;
+  max-height: 32.5rem;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+.thinkproc-external-popup-description.thinkproc-external-popup-description-align p {
+  margin-bottom: 0.5rem;
+}
+
+.thinkproc-external-popup-description.thinkproc-external-popup-description-align ul {
+  margin-bottom: 0.5rem;
+}
+
+.thinkproc-external-popup-description.thinkproc-external-popup-description-align ul li:not(:last-child) {
+  margin-bottom: 0.2rem;
+}
+
+.thinkproc-candidate-video-rightdiv {
+  width: 280px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.thinkproc-candidate-video-rightdiv>.thinkproc-candidate-video-interview {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+.thinkproc-candidate-video-rightdiv .videoContainer .thinkproc-candidate-video-interview {
+  margin-bottom: 12px;
+}
+
+.thinkproc-candidate-video-rightdiv .videoContainer .thinkproc-candidate-video-interview:last-child {
+  margin-bottom: 0px;
+}
+
+
+@media (min-width: 1366px) {
+  .thinkproc-popup-body {
+    min-height: 32.5rem;
+    max-height: 34.5rem;
+  }
+}
+
+.thinkproc-popup-body>div:not(.thinkproc_body_system) {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.thinkproc_body_system {
+  padding: 2rem 1.875rem 2rem;
+  width: 100%;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header {
+  margin-bottom: 3rem;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header h1 {
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-16);
+  margin-bottom: 1.75rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 0.9375rem;
+  position: relative;
+  z-index: 0;
+  min-width: 10rem;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li::before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: calc(100% - 3.125rem);
+  background-color: var(--thinkproc-border-color);
+  left: calc(50% + 1.5625rem);
+  top: 0.9375rem;
+  z-index: -1;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li:last-child:before {
+  display: none;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li .thinkproc-sys-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--thinkproc-cicle-bg);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 700;
+  color: var(--thinkproc-text-white);
+  padding: 0.625rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li span {
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li.completed .thinkproc-sys-circle {
+  font-size: 0px;
+  background-color: var(--thinkproc-black);
+  position: relative;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li.completed .thinkproc-sys-circle::before {
+  content: '';
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTcgMTMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNS4yNjc5IDJMNS40NDI5NSAxMC42NjlMMS4zOTc5NSA2LjA0NSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=);
+  width: 1rem;
+  height: 0.75rem;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li.active .thinkproc-sys-circle {
+  background-color: var(--thinkproc-black);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li:is(.active, .completed) span {
+  color: var(--thinkproc-text-color);
+}
+
+.thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li:is(.active) span {
+  font-weight: 600;
+}
+
+/* .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li.completed::before{
+  background-color: var(--thinkproc-black);
+} */
+
+/* System Check */
+.thinkproc-systemCheck-body {}
+
+.thinkproc-systemCheck-body>div {
+  max-width: 50rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thinkproc-step-image-box {
+  width: 6.5rem;
+  height: 6.5rem;
+  margin: 0 auto;
+  margin-bottom: 2.25rem;
+}
+
+.thinkproc-step-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc-error-wrap {
+  background-color: var(--thinkproc-error-bg);
+  padding: 0.625rem 1rem;
+  display: inline-flex;
+  align-items: flex-start;
+  column-gap: 0.5rem;
+  color: var(--thinkproc-text-white);
+  font-weight: 600;
+  border-radius: 0.375rem;
+  margin: 0 auto;
+  text-align: left;
+  max-width: calc(100% - 160px);
+}
+
+.thinkproc-error-wrap .thinkproc-error-icon {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  top: 2px;
+}
+
+.thinkproc-error-wrap .thinkproc-error-icon img {
+  width: 16px;
+}
+
+.thinkproc-error-wrap.warning {
+  background-color: var(--thinkproc-warningInfo);
+  font-weight: 400;
+}
+
+.thinkproc-inner-wrap {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1.875rem;
+}
+
+.thinkproc-inner-wrap>div {
+  position: relative;
+  z-index: 0;
+}
+
+.thinkproc-inner-wrap>div::after {
+  content: '';
+  position: absolute;
+  background-color: var(--thinkproc-border-color);
+  width: 1.5px;
+  height: calc(100% + 1.25rem);
+  right: -0.75rem;
+  top: -0.5rem;
+  z-index: -1;
+}
+
+.thinkproc-inner-wrap>div:last-child::after {
+  display: none;
+}
+
+.thinkproc-inner-wrap .thinkproc_innerText {
+  color: var(--thinkproc-secondary-text-color);
+  margin-bottom: 0.75rem;
+}
+
+.thinkproc-inner-wrap .thinkproc_innerText_data {
+  color: var(--thinkproc-success-text);
+  font-size: var(--thinkproc-font-size-17);
+  font-weight: 700;
+}
+
+.thinkproc-webcam-wrap {
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.375rem;
+  width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+.thinkproc-webcam-wrap .thinkproc-webcam-wrap-top {
+  padding: 0.625rem 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--thinkproc-gray-bg);
+  column-gap: 0.5rem;
+  font-weight: 500;
+  border-radius: 0.375rem 0.375rem 0 0;
+  line-height: 1;
+}
+
+.thinkproc-webcam-wrap .thinkproc-webcam-wrap-top .thinkproc-error-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: relative;
+  top: -2px;
+}
+
+.thinkproc-webcam-wrap .thinkproc-webcam-wrap-top .thinkproc-error-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.thinkproc-webcam-wrap .thinkproc-webcam-wrap-body {
+  padding: 0.625rem 1rem;
+}
+
+/* Custom Select */
+.thinkproc-custom-select-default {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.thinkproc-custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.thinkproc-custom-select-wrapper select {
+  display: none;
+}
+
+.thinkproc-custom-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.thinkproc-custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1.625rem 0.5rem 0.875rem;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400 !important;
+  color: var(--thinkproc-text-color);
+  background: var(--thinkproc-background-color);
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.thinkproc-custom-select-trigger::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.3125rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: url('images/arrowDown.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.thinkproc-custom-select.thinkproc-opened .thinkproc-custom-select-trigger::after {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.thinkproc-custom-options {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  width: 100%;
+  background: var(--thinkproc-background-color);
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.375rem;
+  box-shadow: 0px 0px 0.375rem 0px rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.625rem);
+  transition: all 0.3s ease;
+  max-height: 12.5rem;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.thinkproc-custom-select.thinkproc-opened .thinkproc-custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.thinkproc-custom-option {
+  padding: 0.5rem 0.75rem;
+  font-size: var(--thinkproc-font-size-13);
+  font-weight: 400 !important;
+  color: var(--thinkproc-text-color);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  border-radius: 0.375rem;
+}
+
+.thinkproc-custom-option:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+.thinkproc-custom-option:hover,
+.thinkproc-custom-option.thinkproc-selection {
+  background: var(--thinkproc-option-bg);
+}
+
+.thinkproc-custom-option.thinkproc-selection {
+  font-weight: 500 !important;
+}
+
+.thinkpro-btn {
+  background-color: var(--thinkproc-primary-color);
+  color: var(--thinkproc-text-white);
+  border-radius: 0.2rem;
+  padding: 0.69rem 1rem;
+  border: 1px solid var(--thinkproc-primary-color);
+  font-size: var(--thinkproc-font-size-14);
+  cursor: pointer;
+  min-width: 5.5rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.thinkpro-btn.thinkproc-disable,
+button:disabled {
+  opacity: .8;
+  background-color: var(--thinkproc-btn-d);
+  pointer-events: none;
+  border-color: var(--thinkproc-btn-d);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkpro-btn.outline {
+  background-color: var(--thinkproc-background-color);
+  color: var(--thinkproc-primary-color);
+}
+
+.thinkpro-btn:hover,
+.thinkpro-btn.outline:hover {
+  background-color: var(--thinkproc-primary-hover-color);
+  border: 1px solid var(--thinkproc-primary-hover-color);
+}
+
+.thinkpro-btn.outline:hover {
+  color: var(--thinkproc-text-white);
+}
+
+.thinkpro-btn:focus {
+  outline: none !important;
+}
+
+.thinkproc-d-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.thinkproc-mb-40 {
+  margin-bottom: 2.5rem !important;
+}
+
+.thinkpro-audio-gif {
+  width: 10rem;
+  margin: 0 auto;
+  margin-bottom: 0.625rem;
+  position: relative;
+  height: 2.5rem;
+  display: inline-block;
+}
+
+.thinkpro-audio-gif::before {
+  content: '';
+  background-image: url('images/audio_gifFile.gif');
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  display: inline-block;
+  background-repeat: repeat;
+  background-position: center;
+  top: 0;
+  left: 0;
+}
+
+
+/* Photo & ID Verification */
+.thinkproc_body_id {
+  padding: 1.2rem 1.5rem;
+}
+
+.thinkproc_body_photo {
+  padding: 1.2rem 1.5rem;
+}
+
+.thinkproc-photo-id-wrap {
+  display: flex;
+  align-items: stretch;
+  column-gap: 1rem;
+  flex-direction: row-reverse;
+  height: calc(100% - 52px);
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piLeft {
+  width: 13.4375rem;
+  border-radius: 0.5rem;
+  /* overflow-y: auto;
+  height: 359px; */
+}
+
+
+/* #thinkX_popup_customCam_instruition {
+    height: 100%;
+    overflow: auto;
+    max-height: 320px;
+} */
+
+
+.thinkproc-photo-id-wrap>div.thinkproc-piLeft .thinkproc-inst-header {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-text-color);
+  margin-bottom: 0.75rem;
+}
+
+.thinkproc-inst-list {
+  height: calc(100% - 36px);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.thinkproc-inst-list ul {
+  list-style: decimal;
+  padding-left: 1.1rem;
+}
+
+.thinkproc-inst-list ul li,
+.thinkproc-inst-list p {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+  color: var(--thinkproc-text-color);
+  line-height: 1rem;
+}
+
+.thinkproc-inst-list ul li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piRight {
+  width: calc(100% - 13.4375rem);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  column-gap: 1rem;
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.thinkX_loading_withText {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.thinkX_loading_withText span {
+  color: var(--thinkproc-text-white);
+  font-size: var(--thinkproc-font-size-14);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .thinkproc-video-wrap .thinkX_loading_withText {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  bottom: unset;
+}
+
+.thinkproc_id_photo .thinkproc-wrap-header {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thinkproc_id_photo .thinkproc-wrap-header .think-wrap-header-main {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-text-color);
+  margin-bottom: 0.3125rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.thinkproc_id_photo .thinkproc-wrap-header .think-wrap-header-sub {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.attempWrap {
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.375rem;
+  background-color: var(--thinkproc-gray-bg);
+  padding: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  column-gap: 0.1rem;
+  color: var(--thinkproc-black);
+}
+
+.attempWrap span:first-child {
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-14);
+}
+
+.attempWrap span {
+  font-size: var(--thinkproc-font-size-12);
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top .thinkproc-video-wrap {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--thinkproc-border-color);
+  background: var(--thinkproc-gray-bg);
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top .thinkproc-video-wrap.id_wrap {
+  position: relative;
+  z-index: 0;
+}
+
+.thinkproc-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.thinkproc_roomSacnPerWrap {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.thinkproc_percentageBox {
+  width: 102px;
+  height: 102px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.thinkproc_percentageBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .4);
+  z-index: -1;
+  filter: blur(5px);
+}
+
+.thinkproc_percentageCircle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--thinkproc-background-color);
+}
+
+.thinkproc_percentageCircle span {
+  position: absolute;
+  width: 2px;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.thinkproc_percentageCircle .thinkproc_start {
+  background: var(--thinkproc-background-color);
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.thinkproc_percentageCircle .thinkproc_end {
+  background: var(--thinkproc-background-color);
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.thinkproc_percentageText {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-background-color);
+  line-height: 1;
+}
+
+/* .thinkproc_body_id .thinkproc-video-wrap{
+  padding: 42px 65px;
+} */
+/* Overlay (border ring) */
+.thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top .thinkproc-video-wrap.id_wrap::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background-image: url('images/Subtract.png');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: none;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.thinkproc-popup-overlay,
+.thinkproc-external-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--thinkproc-popup-overlay-color);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.thinkproc-external-popup-overlay {
+  z-index: 999999;
+  font-family: var(--thinkproc-font-family);
+}
+
+.thinkproc-popup-innerbody,
+.thinkproc-external-popup-innerbody {
+  width: 31.25rem;
+  border-radius: 0.75rem;
+  background: var(--thinkproc-background-color);
+  height: auto;
+  padding: 2.125rem;
+}
+
+.thinkproc-external-popup-innerbody {
+  width: 25rem;
+  padding: 1.5rem;
+}
+
+.thinkproc-popup-box,
+.thinkproc-external-popup-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+}
+
+.thinkproc-external-popup-box {
+  align-items: initial;
+  row-gap: 1.5rem;
+}
+
+.thinkproc-popup-danger-img-div {
+  text-align: center;
+}
+
+.thinkproc-popup-danger-img-div img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.thinkproc-external-popup-hdng-div {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.thinkproc-external-popup-hdng-div .icon {
+  width: 1.0625rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-external-popup-hdng-div .icon img {
+  width: 100%;
+}
+
+.thinkproc-external-popup-hdng-div>span {
+  width: calc(100% - 1.0625rem);
+}
+
+.thinkproc-popup-hdng-div>span,
+.thinkproc-external-popup-hdng-div>span {
+  color: var(--thinkproc-text-color);
+  font-size: var(--thinkproc-font-size-18);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.thinkproc-popup-description,
+.thinkproc-external-popup-description {
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 500;
+  text-align: center;
+  height: 32.375rem;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+:is(.thinkX_deskPopup,
+  #thinkX_network_popup,
+  #thinkX_screenShareErrorPopup,
+  #thinkX_micPopup,
+  #thinkX_cameraPopup) .thinkproc-external-popup-description {
+  height: unset;
+  overflow: hidden;
+}
+
+.thinkproc-external-popup-description {
+  text-align: left;
+}
+
+.thinkproc-external-popup-description :is(p, ul) {
+  margin-bottom: 1.25rem;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+}
+
+.thinkproc-external-popup-description p.thinkproc-popup-main-msg {
+  font-weight: 600;
+  margin-bottom: 0;
+  font-size: var(--thinkproc-font-size-15);
+}
+
+.thinkproc-external-popup-description p:last-child {
+  margin-bottom: 0px;
+}
+
+.thinkproc-external-popup-description p,
+.thinkproc-external-popup-description ul li {
+  line-height: 1.6;
+}
+
+.thinkproc-external-popup-description ul {
+  padding-left: 0.625rem;
+}
+
+.thinkproc-external-popup-description ul li {
+  position: relative;
+  padding-left: 0.9375rem;
+}
+
+.thinkproc-external-popup-description ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: var(--thinkproc-black);
+  border-radius: 50%;
+  opacity: .8;
+}
+
+.thinkproc-external-popup-description ul li:not(:last-child) {
+  margin-bottom: 0.875rem;
+}
+
+.thinkproc-external-popup-description .thinkproc-inst-list ul li {
+  padding-left: 0;
+}
+
+.thinkproc-external-popup-description .thinkproc-inst-list ul li::before {
+  display: none;
+}
+
+.thinkproc-popup-btn-div,
+.thinkproc-external-popup-btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+}
+
+.thinkproc-external-popup-btn-div {
+  justify-content: end;
+}
+
+.id-card-message {
+  color: var(--thinkproc-error-bg);
+}
+
+.thinkproc-image-msg {
+  background: var(--thinkproc-informationBox-bg-color);
+  border-radius: 0.375rem;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  column-gap: 0.5rem;
+}
+
+.thinkproc-image-button {
+  width: 100%;
+  margin: 1.25rem 0 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: end;
+  column-gap: 0.75rem;
+}
+
+.thinkpro-image-nextbtn {
+  padding: 0.625rem 1.75rem;
+}
+
+.thinkpro-image-retry {
+  background: transparent;
+  color: var(--thinkproc-primary-color);
+  padding: 0.5rem 1.25rem;
+}
+
+.thinkpro-image-retry:hover {
+  background: var(--thinkproc-primary-color);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top .thinkproc-video-wrap.id_wrap.id_capture::after {
+  display: none;
+}
+
+/* Compare */
+.thinkproc_body_compare {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.thinkproc_body_compare.h100 {
+  justify-content: center;
+}
+
+.thinkproc_body_compare .compareWrap {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.thinkproc_body_compare .compareWrap>div:first-child {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.thinkproc_body_compare .imageContainer {
+  display: flex;
+  align-items: stretch;
+  column-gap: 2rem;
+  margin-bottom: 1.25rem;
+  justify-content: center;
+}
+
+.thinkproc_body_compare .imageContainer>div {
+  flex-basis: 30%;
+}
+
+.thinkproc_body_compare .imageContainer>div .icHeader {
+  font-size: var(--thinkproc-font-size-12);
+  color: var(--thinkproc-secondary-text-color);
+  margin-bottom: 0.375rem;
+  text-align: left;
+}
+
+.thinkproc_body_compare .imageContainer>div .icBox {
+  width: 100%;
+  height: 9.375rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--thinkproc-border-color);
+  background-color: var(--thinkproc-gray-bg);
+}
+
+.thinkproc_body_compare .imageContainer>div .icBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .icBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .icBox img {
+  object-fit: contain;
+  height: calc(100% - 20px);
+}
+
+.thinkproc_body_compare .imageList .imageContainer {
+  column-gap: 1rem;
+  margin-bottom: 0;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div.thinkx_success .icBox {
+  border: 1px solid var(--thinkproc-success-text);
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div.thinkx_error .icBox {
+  border: 1px solid var(--thinkproc-error-bg);
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .verifyStatus {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .verifyStatus .icon {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  top: -1;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .verifyStatus .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: unset;
+}
+
+.thinkproc_body_compare .imageList .imageContainer>div .verifyStatus span {
+  width: calc(100% - 1rem);
+  line-height: 1;
+}
+
+.thinkproc_body_compare .verifyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.25rem;
+  width: 30.5rem;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.thinkproc_body_compare .thinkproc_loaderWrap {
+  width: 4.25rem;
+  height: 4.25rem;
+}
+
+.thinkproc_body_compare .thinkproc_loaderWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_body_compare .thinkproc_loaderWrap .thinkproc_loader {
+  width: 100%;
+  height: 100%;
+  border: 0.375rem solid var(--thinkproc-border-color);
+  border-radius: 50%;
+  animation: spin 5s linear infinite;
+  position: relative;
+}
+
+.thinkproc_body_compare .loaderWrap .loader:before,
+.thinkproc_body_compare .loaderWrap .loader:after {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border-top: 0.375rem solid var(--thinkproc-border-color);
+  border-right: 0.375rem solid var(--thinkproc-border-color);
+  position: absolute;
+  top: 0.3125rem;
+  left: -0.25rem;
+  box-shadow: 0.375rem -0.375rem 0 0.375rem #fff;
+}
+
+.thinkproc_body_compare .loaderWrap .loader:after {
+  top: 2.9375rem;
+  left: 3rem;
+  border: none;
+  border-bottom: 0.375rem solid var(--thinkproc-border-color);
+  border-left: 0.375rem solid var(--thinkproc-border-color);
+  box-shadow: -0.375rem 0.375rem 0 0.375rem #fff;
+}
+
+.varificationMsgWrap {
+  text-align: center;
+  font-size: var(--thinkproc-font-size-18);
+  font-weight: 600;
+  width: 100%;
+}
+
+.varificationMsgWrap span {
+  display: block;
+  word-break: break-word;
+}
+
+.thinkX_rejectReason {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: var(--thinkproc-font-size-13);
+}
+
+#revokeWrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.revokeWrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1.25rem;
+  font-size: var(--thinkproc-font-size-18);
+  font-weight: 600;
+  width: 21.875rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.revokeWrap .iconWrap {
+  width: 6.25rem;
+  height: 6.25rem;
+}
+
+.loading_gifdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-candidate-video-rightdiv .loading_gifdiv {
+  width: 100%;
+  height: 100%;
+}
+
+.thinkproc-candidate-video-rightdiv .loading_gifdiv span {
+  color: #000;
+}
+
+.thinkproc_loader {
+  border: 0.1875rem solid lightgrey;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  border-top: 0.1875rem solid var(--thinkproc-primary-color);
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circles {
+  position: relative;
+}
+
+.circles>div {
+  animation: growAndFade 3s infinite ease-out;
+  background-color: dodgerblue;
+  border-radius: 50%;
+  height: 4.6875rem;
+  opacity: 0;
+  position: absolute;
+  width: 4.6875rem;
+}
+
+.circles .circle1 {
+  animation-delay: 1s;
+}
+
+.circles .circle2 {
+  animation-delay: 2s;
+}
+
+.circles .circle3 {
+  animation-delay: 3s;
+}
+
+@keyframes growAndFade {
+  0% {
+    opacity: 0.25;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.thinkproc-warrning-wrap {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: var(--thinkproc-warning-bg);
+  border: 1px solid var(--thinkproc-warning-border-color);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.thinkproc-warrning-wrap .thinkproc-error-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.thinkproc-warrning-wrap span {
+  width: 100%;
+  font-weight: 500;
+}
+
+.thinkproc_body_room {
+  padding: 1.5rem;
+}
+
+.thinkproc_body_room.h100 {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.thinkproc_body_room .thinkproc-instruction-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  row-gap: 1rem;
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkproc-inst-header {
+  border-bottom: 1px solid var(--thinkproc-border-color);
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkproc-inst-header .thinkproc-inst-title {
+  font-weight: 600;
+  font-size: var(--thinkproc-font-size-14);
+  color: var(--thinkproc-black);
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkproc-inst-header .thinkproc-inst-subtitle {
+  font-weight: 400;
+  font-size: var(--thinkproc-font-size-12);
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkpro-inst-list {}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkpro-inst-list p {
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 400;
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkpro-inst-list p span {
+  font-weight: 700;
+}
+
+.thinkproc_body_room .thinkproc-instruction-start .thinkpro-inst-list p:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+.thinkproc_body_room .thinkproc-inst-bottom,
+.thinkproc-inst-bottom {
+  padding-top: .8rem;
+  width: 100%;
+}
+
+.thinkproc_body_room>div {
+  height: 100%;
+}
+
+.thinkproc-containerQR {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.75rem;
+  padding-top: 1.8rem;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap {
+  text-align: center;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap .thinkproc-qrCode {
+  width: 10rem;
+  height: 10rem;
+  border: 0.05rem solid var(--thinkproc-border-color);
+  padding: 0.5rem;
+  background-color: var(--thinkproc-gray-bg);
+  margin: 0 auto;
+  margin-bottom: 0.75rem;
+  border-radius: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap .thinkproc-qrCode .loading_gifdiv {
+  margin-bottom: 0px !important;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap .thinkproc-qrCode img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap .thinkproc-qr-text {
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.thinkproc-containerQR .thinkproc-qrwrap .thinkproc-qr-subtext {
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+}
+
+.thinkproc-containerQR .thinkproc-divider {
+  color: var(--thinkproc-secondary-text-color);
+  font-size: var(--thinkproc-font-size-14);
+  position: relative;
+  font-weight: 400;
+  text-align: center;
+  width: 90%;
+  margin: 1.4rem auto;
+  z-index: 0;
+  background: transparent;
+}
+
+.thinkproc-containerQR .thinkproc-divider span {
+  background-color: var(--thinkproc-background-color);
+  padding: 0 0.5rem;
+}
+
+.thinkproc-containerQR .thinkproc-divider::before {
+  content: '';
+  width: 100%;
+  background-color: var(--thinkproc-border-color);
+  height: 0.063rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.thinkproc-containerQR .selectWrap {
+  width: 21.25rem;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.thinkproc-containerQR .selectWrap label {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 500;
+  margin-bottom: 0.375rem;
+  display: block;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap .thinkproc-custom-select-wrap {
+  width: calc(100% - 2.5rem);
+  flex-grow: 1;
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap .thinkproc-custom-select-wrap .thinkproc-custom-select-wrapper {
+  margin-bottom: 0px;
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap .retryIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.525rem 0 0.525rem 0.525rem;
+  cursor: pointer;
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap .retryIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+.thinkproc-containerQR .selectWrap>div.thinkproc_SelectWrap .retryIcon img.iconRotate {
+  animation: infinite rotate360 0.6s ease-in-out;
+}
+
+.thinkproc_body_room .thinkproc-roomScan {
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkpro_roomFullHeight .thinkproc-roomScanBody {
+  height: 100%;
+  padding-top: 0px;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkpro_roomFullHeight :is(.thinkproc-room-scan-data, #thinkX_roomfail) {
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkpro_roomFullHeight .thinkproc-room-scan-data .verifyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.25rem;
+  width: 26.5rem;
+  margin: 0 auto;
+  line-height: 1.2;
+  justify-content: center;
+  height: 100%;
+  margin-bottom: 0px !important;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.063rem solid var(--thinkproc-border-color);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadLeft {}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadLeft .thinkproc-roomTitle {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadLeft .thinkproc-roomSubTitle {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+  color: var(--thinkproc-secondary-text-color);
+  line-height: 1.5;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 1.25rem;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-attemp {
+  width: max-content;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.938rem;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span {
+  background-color: var(--thinkproc-cicle-bg);
+  width: 1.25rem;
+  height: 0.375rem;
+  border-radius: 3.75rem;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_inprogress {
+  background-color: var(--thinkproc-cicle-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_inprogress.threeSixtyStart {
+  background-color: var(--thinkproc-room-threeSixty-start);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_inprogress.complete {
+  background-color: var(--thinkproc-room-threeSixty-complete);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_inprogress.ufmRoom {
+  background-color: var(--thinkproc-error-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_completed {
+  background-color: var(--thinkproc-cicle-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_completed.threeSixtyStart {
+  background-color: var(--thinkproc-room-threeSixty-start);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_completed.complete {
+  background-color: var(--thinkproc-room-threeSixty-complete);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_completed.ufmRoom {
+  background-color: var(--thinkproc-error-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_deskScan {
+  background-color: var(--thinkproc-cicle-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_deskScan.threeSixtyStart {
+  background-color: var(--thinkproc-room-threeSixty-start);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_deskScan.complete {
+  background-color: var(--thinkproc-room-threeSixty-complete);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepTop span.thinkproc_deskScan.ufmRoom {
+  background-color: var(--thinkproc-error-bg);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanHeader .thinkproc-roomHeadRight .thinkproc-roomRight-step .thinkproc-roomStepBottom {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+  color: var(--thinkproc-secondary-text-color);
+  text-align: right;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody {
+  height: calc(100% - 3.661rem);
+  padding-top: 1.188rem;
+  position: relative;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkproc-roomScanFail .thinkproc-roomScanBody {
+  height: 100%;
+  padding-top: 0;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .thinkproc-room-scan-data {
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkproc-roomScanFail .thinkproc-roomScanBody .thinkproc-room-scan-data .thinkproc-roomUFMBtn {
+  justify-content: center;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkproc-roomScanFail .thinkproc-roomScanBody .thinkproc-ufm-wrap {
+  height: calc(100% - 11.2rem);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .thinkproc-room-scan-data .verifyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.25rem;
+  width: 26.5rem;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .thinkproc-video-wrap {
+  width: 100%;
+  height: 100%;
+  border: 0.063rem solid var(--thinkproc-border-color);
+  border-radius: 0.5rem;
+  background-color: var(--thinkproc-black);
+  position: relative;
+  z-index: 0;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .thinkproc-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--thinkproc-black);
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .video-overlay-message {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.438rem;
+  width: 95%;
+  text-align: center;
+  z-index: 1;
+}
+
+.thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody .video-overlay-message span {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--thinkproc-text-white);
+  font-size: var(--thinkproc-font-size-18);
+  font-weight: 400;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.825rem;
+}
+
+.thinkproc-video-wrap .addCameraWrap {
+  position: absolute;
+  right: 8.15px;
+  top: 8px;
+  z-index: 1;
+}
+
+.thinkproc-video-wrap .addCameraWrap .addIconWrap {
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 4px;
+}
+
+.thinkproc-video-wrap .addCameraWrap .addIconWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_body_room .thinkproc-roomScanBody .thinkproc-ufm-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 1rem;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.thinkproc_body_room .thinkproc-roomScan.thinkproc-roomScanFail .thinkproc-ufm-wrap .thinkproc-roomUFMList {
+  /* max-height: calc(100% - 10rem); */
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .thinkpro-issueFound {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  margin-bottom: .5rem;
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background: var(--thinkproc-background-color);
+  padding-bottom: 0.1rem;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .thinkpro-issueFound .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .thinkpro-issueFound .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .thinkpro-issueFound span {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer {
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1366px) {
+  .thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer {
+    max-height: 21.375rem;
+  }
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div {
+  flex-basis: 23.8%;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div .thinkpro-issue-image-wrap {
+  border: 0.063rem solid var(--thinkproc-border-color);
+  background-color: var(--thinkproc-gray-bg);
+  width: 100%;
+  height: 8.063rem;
+  overflow: hidden;
+  border-radius: .5rem;
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div .thinkpro-issue-image-wrap img {
+  width: 100%;
+  height: calc(100% - 0.75rem);
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div .thinkproc-room-issue-name {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  color: var(--thinkproc-black);
+  text-transform: capitalize;
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: calc(100% - 1.188rem);
+  z-index: 0;
+}
+
+/* .thinkproc-roomScanBody .thinkproc-roomSuccess::before{
+  content: '';
+  background-color: var(--thinkproc-black);
+  opacity: .4;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: -1;
+} */
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div .thinkproc-rsIcon {
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  background-color: var(--thinkproc-background-color);
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div .thinkproc-rsIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div span {
+  margin-bottom: 0.75rem;
+  color: var(--thinkproc-text-white);
+  font-size: var(--thinkproc-font-size-20);
+  font-weight: 600;
+  text-align: center;
+}
+
+.thinkproc_side_camera_view .thinkproc-roomSuccess>div span {
+  color: var(--thinkproc-black);
+  text-align: center;
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div span.thinkproc-rsNext {
+  padding: 0.5rem 0.75rem;
+  color: var(--thinkproc-text-white);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 500;
+  position: relative;
+  margin-bottom: 0;
+  z-index: 0;
+}
+
+.thinkproc-roomScanBody .thinkproc-roomSuccess>div span.thinkproc-rsNext::before {
+  content: '';
+  background-color: var(--thinkproc-black);
+  opacity: .8;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 1.438rem;
+  z-index: -1;
+}
+
+.thinkproc_body_room :is(.thinkproc_roomDeskCompare, .compareWrap) {
+  height: 100%;
+}
+
+.thinkproc_body_room .thinkproc_roomDeskCompare .compareWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.thinkproc_body_room .thinkproc_roomDeskCompare .compareWrap.h100 {
+  justify-content: center;
+}
+
+.thinkproc_body_room .thinkproc_roomDeskCompare .compareWrap .verifyWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.25rem;
+  width: 26.5rem;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.thinkproc_body_room .thinkproc_roomDeskCompare .ufmContainer {
+  max-height: 12.8rem;
+}
+
+@media (min-width: 1366px) {
+  .thinkproc_body_room .thinkproc_roomDeskCompare .ufmContainer {
+    max-height: 13.375rem;
+  }
+}
+
+/* Popup */
+#thinkX_cameraPopup,
+#thinkX_micPopup {
+  z-index: 9999999;
+}
+
+.thinkproc-external-popup-overlay.w600 .thinkproc-external-popup-innerbody {
+  width: 37.5rem;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-custom-select-wrapper {
+  margin-bottom: 0px;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select {
+  margin-top: 1.25rem;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .thinkproc-external-popup-subhdng-div {
+  margin-bottom: 0.875rem;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .thinkproc-external-popup-subhdng-div span {
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 600;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .selectWrap {
+  display: flex;
+  align-items: stretch;
+  column-gap: 0.625rem;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .selectWrap .thinkproc-custom-select-wrap {
+  width: calc(100% - 2.5rem);
+}
+
+.isThinkLoading .thinkproc-custom-select-wrapper {
+  position: relative;
+  height: 100%;
+  border-radius: 0.3rem;
+  background: linear-gradient(to right,
+      #e6e6e6 5%,
+      #cccccc 25%,
+      #e6e6e6 35%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -1000px 0;
+  }
+
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+.isThinkLoading .thinkproc-custom-select-wrapper .thinkproc-custom-select {
+  display: none;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .selectWrap .retryIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.525rem 0 0.525rem 0.525rem;
+  cursor: pointer;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .selectWrap .retryIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-select .selectWrap .retryIcon img.iconRotate {
+  animation: infinite rotate360 0.6s ease-in-out;
+}
+
+.thinkproc-external-popup-overlay.smallPopup .thinkproc-external-popup-innerbody {
+  padding: 2.5rem;
+}
+
+.thinkproc-external-popup-overlay.smallPopup .innerPopupWrap .iconBig {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  padding: 1.3125rem 1.4375rem;
+  margin-bottom: 2rem;
+}
+
+.thinkproc-external-popup-overlay.smallPopup .innerPopupWrap .loading_gifWrap .loader {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-innerbody {
+  width: 26.688rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinkproc-external-popup-subhdng-div {
+  color: var(--thinkproc-text-color);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 500;
+  margin-bottom: .3rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description p {
+  color: var(--thinkproc-secondary-text-color);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList {
+  margin-top: 1.2rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div {}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div label {
+  margin-bottom: 0;
+  display: block;
+  border: 0.063rem solid var(--thinkproc-border-color);
+  border-radius: 0.25rem;
+  padding: 0.65rem 0.625rem 0.65rem 2.125rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div label::after {
+  content: '';
+  position: absolute;
+  top: 0.71rem;
+  left: 0.625rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 0.063rem solid var(--thinkproc-cicle-bg);
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div label span {
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 400;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div input {
+  display: none;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div input:checked+label {
+  border-color: var(--thinkproc-primary-color);
+  background-color: var(--thinkproc-informationBox-bg-color);
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div input:checked+label::after {
+  border-color: var(--thinkproc-primary-color);
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .thinlproc-desk-issueList>div input:checked+label::before {
+  content: '';
+  position: absolute;
+  top: 0.95rem;
+  left: 0.875rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--thinkproc-primary-color);
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .deskIssueDesc {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.375rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .deskIssueDesc textarea {
+  width: 100%;
+  color: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-16);
+  padding: 0.4rem 0.5rem;
+  border: 0.06rem solid var(--thinkproc-border-color);
+  border-radius: 0.4rem;
+  height: 6.25rem;
+  resize: none;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .deskIssueDesc .thinkproc_textCountWrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.thinkproc-external-popup-overlay.thinkX_deskPopup .thinkproc-external-popup-description .deskIssueDesc .thinkproc_textCountWrap span {
+  color: var(--thinkproc-secondary-text-color);
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.thinkproc-webcam-wrap.thinkproc-disable {
+  pointer-events: none;
+}
+
+.thinkproc-webcam-wrap.thinkproc-disable .thinkproc-custom-select-wrapper .thinkproc-custom-select-trigger {
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.thinkproc-webcam-wrap.thinkproc-disable .thinkproc-custom-select-wrapper .thinkproc-custom-select-trigger::after {
+  filter: contrast(0);
+}
+
+.thinkproc-webcam-wrap.thinkproc-disable .thinkpro-btn {
+  opacity: .8;
+  background-color: var(--thinkproc-btn-d);
+  border-color: var(--thinkproc-btn-d);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup {}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody {
+  padding: 2.75rem 2.75rem 1.5rem 2.75rem;
+  width: 31.25rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1.4rem;
+  height: unset;
+  overflow: unset;
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description .think_popupIconWrap {}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description .think_popupIconWrap .icon {
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description .think_popupIconWrap .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description .think_popupIconWrap span {
+  font-size: var(--thinkproc-font-size-20);
+  font-weight: 700;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-description p {
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 500;
+  color: var(--thinkproc-black);
+  line-height: 1.625rem;
+}
+
+.thinkproc-external-popup-overlay.thinkX_Popup .thinkproc-external-popup-innerbody .thinkproc-external-popup-btn-div {
+  justify-content: center;
+}
+
+.thinkproc-external-popup-overlay.w800 .thinkproc-external-popup-innerbody {
+  width: 50rem;
+}
+
+.thinkproc-external-popup-overlay.largePopup .thinkproc-external-popup-innerbody {
+  padding: 0px;
+}
+
+.thinkproc-external-popup-overlay.largePopup .thinkproc-external-popup-box {
+  row-gap: unset;
+}
+
+.thinkproc-external-popup-overlay.largePopup .thinkproc-external-popup-hdng-div {
+  background: var(--thinkproc-gray-bg);
+  padding: 1.25rem;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--thinkproc-black);
+  border-radius: 0.75rem 0.75rem 0 0;
+  border-bottom: 0.0625rem solid var(--thinkproc-border-color);
+}
+
+.thinkproc-external-popup-overlay.largePopup .thinkproc-external-popup-hdng-div span {
+  width: 100%;
+}
+
+.thinkproc-external-popup-overlay.largePopup .thinkproc-external-popup-description {
+  padding: 1.25rem;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-external-popup-description .thinkproc-inst-list {
+  height: calc(100% - 26px);
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view {
+  height: 100%;
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_top {
+  margin-bottom: 0.75rem;
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_top .thinkproc_side_camera_view_title {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 600;
+  color: var(--thinkproc-black);
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_top .thinkproc_side_camera_view_subtitle {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 400;
+  color: var(--thinkproc-secondary-text-color);
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_bottom {
+  position: relative;
+  min-height: 26.25rem;
+  height: calc(100% - 54px);
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_bottom video {
+  border-radius: 0.5rem;
+  object-fit: contain;
+  background-color: var(--thinkproc-call-bg);
+  width: 100%;
+  height: 100%;
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_bottom .thinkproc_side_camera_view_message {
+  position: absolute;
+  left: 50%;
+  width: 95%;
+  transform: translateX(-50%);
+  bottom: 0.5rem;
+  text-align: center;
+}
+
+.thinkproc-external-popup-overlay.sideCameraPopup .thinkproc-external-popup-description .thinkproc_side_camera_view .thinkproc_side_camera_view_bottom .thinkproc_side_camera_view_message span {
+  background: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 500;
+  color: var(--thinkproc-text-white);
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.thinkproc-external-popup-overlay .thinkproc-video-wrap {
+  height: 420px;
+}
+
+.thinkpro_draggableBox {
+  background-color: var(--thinkproc-black);
+  border: 0.4rem solid var(--thinkproc-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  transition: top 0.3s ease;
+  box-shadow: var(--thinkproc-drag-box-shadow);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.thinkpro_draggableBox video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.thinkproc_chatIcon {
+  position: absolute;
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background: var(--thinkproc-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--thinkproc-drag-box-shadow);
+  cursor: pointer;
+  padding: .3rem;
+  right: 0;
+  bottom: 0;
+}
+
+.thinkproc_chatIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_chat {
+  position: fixed;
+  right: 20px;
+  bottom: 0;
+  z-index: 999999;
+  background-color: var(--thinkproc-background-color);
+  box-shadow: var(--thinkproc-chat-box-shadow);
+  width: 100%;
+  max-width: 20.5rem;
+  border-radius: 0.5rem;
+}
+
+.thinkprocChatMainBody {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Chat Header */
+.thinkproc_chat_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--thinkproc-background-color);
+  border-bottom: 0.0625rem solid var(--thinkproc-border-color);
+  color: var(--thinkproc-black);
+  padding: 0.5rem 0.625rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.thinkproc_chat_header_left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.thinkproc_chat_proctor_img {
+  position: relative;
+}
+
+.thinkproc_chat_proctor_img .thinkproc_chat_head_imgWrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--thinkproc-border-color);
+}
+
+.thinkproc_chat_proctor_img img {
+  width: 100%;
+  height: 100%;
+  object-position: center top;
+  object-fit: cover;
+}
+
+.thinkproc_chat_proc_active {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--thinkproc-green-bg);
+  border-radius: 50%;
+  padding: .2rem;
+}
+
+.thinkproc_chat_proc_name {
+  font-weight: 600;
+  font-size: var(--thinkproc-font-size-14);
+  color: var(--thinkproc-black);
+  width: calc(100% - 28px);
+}
+
+.thinkproc_chat_header_right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.thinkproc_chat_header_right a {
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  opacity: 0.8;
+}
+
+.thinkproc_chat_header_right a.thinkpro_minimize_chat::after {
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  content: ' ';
+  height: 2px;
+  width: 80%;
+  background-color: var(--thinkproc-black);
+}
+
+.thinkproc_chat_header_right a.thinkpro_close_chat::before,
+.thinkproc_chat_header_right a.thinkpro_close_chat::after {
+  position: absolute;
+  left: 50%;
+  content: ' ';
+  height: 100%;
+  width: 2px;
+  background-color: var(--thinkproc-black);
+}
+
+.thinkproc_chat_header_right a.thinkpro_close_chat::before {
+  transform: rotate(45deg);
+}
+
+.thinkproc_chat_header_right a.thinkpro_close_chat::after {
+  transform: rotate(-45deg);
+}
+
+.thinkproc_chat_header_right a:hover {
+  opacity: 1;
+}
+
+/* Call Notification */
+.thinkproc_chat_proc_call {
+  background-color: var(--thinkproc-call-bg);
+  color: var(--thinkproc-text-white);
+  padding: 0.5rem 0.625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_left {
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right {}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5rem;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  padding: 0.50rem;
+  border: none;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn button.thinkproc_endCall {
+  background: var(--thinkproc-error-bg);
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn button.thinkproc_startCall {
+  background: var(--thinkproc-green-bg);
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right .thinkproc_call_action_btn button.thinkproc_endCall img {
+  transform: rotate(135deg);
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right div.thinkproc_call_timer {
+  background-color: var(--thinkproc-green-bg);
+  padding: 0.406rem 1.063rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  color: var(--thinkproc-text-white);
+  column-gap: 0.25rem;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right div.thinkproc_call_timer span {
+  line-height: 1;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right div.thinkproc_call_timer .thinkproc_call_icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  position: relative;
+  top: -1px;
+}
+
+.thinkproc_chat_proc_call .thinkproc_chatpc_right div.thinkproc_call_timer .thinkproc_call_icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Chat Body / History */
+.thinkproc_chat_body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--thinkproc-background-color);
+}
+
+/* Custom Scrollbar for Webkit browsers */
+.thinkproc_chat_body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thinkproc_chat_body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.thinkproc_chat_body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.thinkproc_chat_body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.thinkproc_chat_histroy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding-top: 0.5rem;
+  padding: 0.75rem;
+}
+
+/* Message Bubble Base */
+.thinkproc_chat_message-bubble {}
+
+.thinkproc-message-wrap {
+  max-width: 80%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.thinkproc_chat_message-incoming .thinkproc-message-wrap {
+  align-items: flex-start;
+  margin-right: auto;
+}
+
+.thinkproc_chat_message-outgoing .thinkproc-message-wrap {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+/* Incoming Message */
+.thinkproc_chat_message-incoming .thinkproc_chat_message_top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.thinkproc_chat_histroy .thinkproc_chat_message_top .thinkproc_chat_proctor_img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--thinkproc-border-color);
+}
+
+.thinkproc_chat_histroy .thinkproc_chat_message_top .thinkproc_chat_proctor_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_chat_message-incoming .thinkproc_chat_message_bottom {
+  background-color: var(--thinkproc-primary-color);
+  color: var(--thinkproc-text-white);
+  align-self: flex-start;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+.thinkproc_chat_message-incoming .thinkproc_chat_message_bottom .thinkproc_chat_message_text {
+  display: block;
+}
+
+/* Outgoing Message */
+.thinkproc_chat_message-outgoing .thinkproc_chat_message_top {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-bottom: 0.25rem;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: right;
+}
+
+.thinkproc_chat_message-outgoing .thinkproc_chat_message_bottom {
+  background-color: var(--thinkproc-outgoing-message-bg);
+  color: var(--thinkproc-black);
+  align-self: flex-end;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  max-width: 100%;
+}
+
+.thinkproc_chat_message-outgoing .thinkproc_chat_message_bottom .thinkproc_chat_message_text {
+  display: block;
+}
+
+.thinkproc_chat_message-bubble .thinkproc_chat_time-stamp {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+.thinkproc_chat_message-incoming .thinkproc_chat_time-stamp {
+  color: var(--thinkproc-text-white);
+  text-align: right;
+  display: block;
+  opacity: .6;
+}
+
+.thinkproc_chat_message-outgoing .thinkproc_chat_time-stamp {
+  color: var(--thinkproc-black);
+  text-align: right;
+  display: block;
+  opacity: .6;
+}
+
+
+/* Chat Footer (Message Input) */
+.thinkproc_chat_footer {
+  padding: 0.5rem 0.625rem;
+  background-color: var(--thinkproc-background-color);
+}
+
+.thinkproc_chat_footer .thinkproc_message_input_wrap {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 1px solid var(--thinkproc-border-color);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.thinkproc_chat_footer input[type="text"] {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  padding: 0px;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.thinkproc_chat_footer input[type="text"]:focus {
+  outline: none;
+}
+
+.thinkproc_chat_footer button {
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.thinkproc_chat_footer button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.thinkproc_retakeImage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+}
+
+.thinkproc_retakeImage::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--thinkproc-black);
+  opacity: .6;
+  z-index: -1;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap {
+  background-color: var(--thinkproc-background-color);
+  border-radius: 0.5rem !important;
+  padding: 0.625rem;
+  box-shadow: var(--thinkproc-box-shadow);
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 0;
+  width: 100% !important;
+  max-width: 23.125rem;
+  height: unset !important;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_top {
+  position: relative;
+  height: 13.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_top video {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  background-color: var(--thinkproc-call-bg);
+  width: 100%;
+  height: 100%;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_top .thinkproc_retake_msg {
+  position: absolute;
+  left: 50%;
+  width: 95%;
+  transform: translateX(-50%);
+  bottom: 0.5rem;
+  text-align: center;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_top .thinkproc_retake_msg span {
+  background: var(--thinkproc-black);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 500;
+  color: var(--thinkproc-text-white);
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.75rem;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_bottom .thinkproc-progress-circle .thinkproc-percent {
+  width: 42px;
+  height: 42px;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_bottom .thinkproc-progress-circle svg circle {
+  stroke-width: 4px;
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_bottom .thinkproc-progress-circle svg circle:last-of-type {
+  stroke-dashoffset: calc(169.65px - (169.65px * var(--thinkproc_retake_percent)) / 100);
+}
+
+.thinkproc_retakeImage .thinkproc_retakeWrap .thinkproc_retake_bottom .thinkproc-progress-circle .thinkproc-number {
+  font-size: var(--thinkproc-font-size-12);
+  font-weight: 600;
+}
+
+.thinkproc_chat_message-bubble.pending {
+  opacity: 0.6;
+  filter: blur(1px);
+  transition: all 0.3s ease;
+}
+
+.thinkproc_chat_message-bubble.sent {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.thinkproc_chat_message-bubble.failed {
+  opacity: 0.7;
+  border-left: 4px solid red;
+}
+
+#thinkpro_MobileViewBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.thinkpro_MobileViewBox {
+  width: 100%;
+  height: 100%;
+  background: var(--thinkproc-black);
+}
+
+.thinkpro_MobileViewBox video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Custom Checkbox */
+.think-custom-checkbox {}
+
+.think-custom-checkbox input {
+  display: none;
+}
+
+.think-custom-checkbox label {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 500;
+  color: var(--thinkproc-black);
+  line-height: 1;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.think-custom-checkbox label::before {
+  content: '';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid var(--thinkproc-circle-color);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+.think-custom-checkbox input:checked+label::before {
+  background: var(--thinkproc-primary-color);
+  border: 1px solid var(--thinkproc-primary-color);
+}
+
+.think-custom-checkbox input:checked+label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 5px;
+  height: 10.5px;
+  border: solid var(--thinkproc-background-color);
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
+/* Responsive */
+@media only screen and (max-width: 1200px) {
+  .thinkproc-video-block {
+    width: 90% !important;
+    height: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .thinkproc_compatibility_wrapper {
+    display: block;
+    width: 100%;
+    padding: 0;
+    align-items: unset;
+  }
+
+  .thinkproc-popup-wrapper::before {
+    display: none;
+  }
+
+  .thinkproc-popup {
+    border: none;
+    border-radius: 0;
+    max-width: 100%;
+    box-shadow: unset;
+    height: 100%;
+  }
+
+  .thinkproc-popup.thinkproc-hide-header .thinkproc-popup-header {
+    display: none;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left>div:not(.active) {
+    display: none;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left {
+    width: calc(100% - 60px);
+    border: none
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-right {
+    display: block;
+  }
+
+  .thinkproc-popup-header {
+    background-color: var(--thinkproc-gray-bg);
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.active) {
+    background-color: unset;
+    border: none;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step {
+    text-align: left;
+    padding: 0px;
+    border: none;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step span {
+    display: inline-block;
+    color: var(--thinkproc-secondary-text-color);
+    font-weight: 400 !important;
+    padding-left: 0px !important;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step>span:first-child {
+    font-size: var(--thinkproc-font-size-20);
+    font-weight: 600 !important;
+    margin-bottom: 0px;
+    color: var(--thinkproc-text-color);
+    width: 100%;
+  }
+
+  .thinkproc-popup-header .thinkproc-popup-header-left .thinkproc-compatibility-step:is(.active) span::before {
+    display: none;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list {
+    flex-wrap: wrap;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    min-width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0px;
+    min-height: 5rem;
+    padding-bottom: 20px;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li:last-child {
+    min-height: unset;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li::before {
+    width: 2px;
+    height: calc(100% - 40px);
+    left: 15px;
+    top: 35px;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li .thinkproc-sys-circle {
+    margin-bottom: 0px;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>span {
+    position: relative;
+    top: 5px;
+    font-size: var(--thinkproc-font-size-16);
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>div:last-child {
+    padding-left: 50px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>div:is(.thinkproc-webcam-check, .thinkproc-microphone-check) {
+    text-align: left;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>div.thinkproc-webcam-check #thinkX_cameraChecked {
+    text-align: center;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>div.thinkproc-microphone-check :is(.audioImage, .audioStatic, .speakerAvailable, .speakerAvailable-Error, .speakerCheck, .speakerStatic, .speakerCheck-error) {
+    text-align: center;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header ul.thinkproc-step-list li>div .thinkproc-error-wrap {
+    max-width: 100%;
+    margin: unset;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header h1 {
+    text-align: left;
+  }
+
+  .thinkproc-popup-body {
+    min-height: calc(100vh - 81px);
+    max-height: calc(100vh - 81px);
+  }
+
+  .thinkproc-popup.thinkproc-hide-header .thinkproc-popup-body {
+    min-height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  .thinkproc-webcam-wrap {
+    margin: unset;
+  }
+
+  .thinkproc-photo-id-wrap {
+    flex-direction: column-reverse;
+    column-gap: unset;
+    row-gap: 1rem;
+    height: unset;
+  }
+
+  .thinkproc-photo-id-wrap>div {
+    width: 100% !important;
+  }
+
+  .thinkproc-image-button,
+  .thinkproc_body_compare .buttonWrap,
+  .thinkproc_body_room .thinkproc-inst-bottom {
+    position: sticky;
+    bottom: 0;
+    background: var(--thinkproc-background-color);
+    padding: 15px 0px 15px;
+    border-top: 0.0623rem solid var(--thinkproc-border-color);
+  }
+
+  .thinkproc_body_compare .imageList .imageContainer {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 1.5rem;
+  }
+
+  .w40 {
+    width: 100%;
+  }
+
+  .thinkproc_body_system .thinkproc-systemCheck-header {
+    margin-bottom: 0px;
+  }
+
+  .thinkproc-photo-id-wrap>div.thinkproc-piRight .thinkproc-piRight-top .thinkproc-video-wrap {
+    height: 100%;
+  }
+
+  .verifyWrap,
+  .revokeWrap {
+    width: 100% !important;
+  }
+
+  .thinkproc_body_compare .imageList .imageContainer>div {
+    flex-basis: 48%;
+  }
+
+  .thinkproc-containerQR {
+    justify-content: space-between;
+  }
+
+  .thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div {
+    flex-basis: 23.7%;
+  }
+
+  .thinkproc_id_photo .thinkproc-wrap-header .think-wrap-header-main {
+    font-size: var(--thinkproc-font-size-16);
+  }
+
+  .thinkproc_id_photo .thinkproc-wrap-header .think-wrap-header-sub,
+  .thinkproc-inst-list ul li {
+    font-size: var(--thinkproc-font-size-14);
+  }
+
+  .thinkproc_body_compare .compareWrap>div:first-child {
+    justify-content: flex-start;
+  }
+
+  .thinkproc_body_compare.h100 .compareWrap>div:first-child {
+    justify-content: center;
+  }
+
+  .thinkproc_body_compare .imageList .imageContainer>div .icBox {
+    height: 15rem;
+  }
+
+  /* .thinkproc-inst-list{
+    max-height: 200px;
+    overflow: auto;
+  } */
+  .thinkproc-inst-list img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* .thinkproc-step-body.thinkproc_body_photo.thinkproc_id_photo,
+  .thinkproc_body_room .thinkproc-instruction-start,
+  .thinkproc-containerQR,
+  .thinkproc-step-body.thinkproc_body_id.thinkproc_id_photo
+  {justify-content: initial;}
+  .thinkproc-image-button, .thinkproc_body_compare .buttonWrap, .thinkproc_body_room .thinkproc-inst-bottom{
+    border: none;
+    position: initial;
+  } */
+
+}
+
+@media only screen and (max-width: 767px) {
+  .thinkproc_body_compare .imageList .imageContainer {
+    column-gap: 0.5rem;
+  }
+
+  .thinkproc_body_compare .imageContainer>div {
+    flex-basis: 80%;
+  }
+
+  .thinkproc_body_compare .imageContainer>div .icBox {
+    height: 15rem;
+  }
+
+  .thinkproc_body_compare .imageList .imageContainer>div .icBox {
+    height: 8rem;
+  }
+
+  .thinkproc_body_system {
+    padding: 1.75rem 1.875rem 1.375rem;
+  }
+
+  .thinkproc-containerQR .selectWrap {
+    width: 100%;
+  }
+
+  .thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div {
+    flex-basis: 48.4%;
+  }
+
+  .thinkproc_body_compare .thinkproc_loaderWrap {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .varificationMsgWrap {
+    font-size: var(--thinkproc-font-size-16);
+  }
+
+  .thinkproc-roomScanBody .thinkproc-roomSuccess>div span {
+    font-size: var(--thinkproc-font-size-15);
+  }
+
+  .thinkproc_body_room {
+    padding: 1rem;
+  }
+
+  .thinkproc_body_room .thinkproc-roomScan .thinkproc-roomScanBody {
+    height: calc(100% - 4.875rem);
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .thinkproc_body_room .thinkproc-ufm-wrap .thinkproc-roomUFMList .ufmContainer>div {
+    flex-basis: 48%;
+  }
+
+  #thinkX-additionalCamName {
+    text-align: center;
+  }
+
+}
+
+.thinkproc-thinkinterview-lobby {
+  background-color: #FFFFFF;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.thinkproc-main-header {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 28px 12px 28px;
+  width: 100%;
+  height: 58px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.thinkproc-logo-container {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  width: 100%;
+}
+
+.thinkproc-logo {
+  height: 24px;
+}
+
+.thinkproc-divider {
+  width: 1px;
+  height: 20px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+.thinkproc-main-header .thinkproc-title {
+  font-family: Public Sans;
+  font-weight: 700;
+  color: #000000;
+  font-size: 15px;
+  margin-top: 5px;
+  height: 28px;
+}
+
+
+.thinkproc-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* height: 70%; */
+  /* margin: 49px auto; */
+
+  height: calc(100% - 58px);
+  align-items: center;
+  justify-content: center;
+}
+
+.thinkproc-video-block {
+  position: relative;
+  background: #18192b;
+  /* border: 3px solid #1893e6; */
+  border-radius: 11px;
+  width: 900px;
+  height: 506px;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.thinkproc-video-block img,
+#thinkInterview_candidateVideo {
+  width: 100%;
+  height: auto;
+}
+
+
+.thinkproc-name-tag {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  background: #0000004D;
+  color: #fff;
+  padding: 9px 15px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+  line-height: 1;
+}
+
+
+.thinkproc-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.thinkproc-control-btn {
+  background: #222;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.thinkproc-control-btn:focus {
+  outline: none;
+}
+
+.thinkproc-join-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thinkproc-join-btn {
+  font-family: Public Sans;
+  background: #2F4DDB !important;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  /* padding: 14px 0; */
+  padding: 10px 16px 10px 16px;
+  border-radius: 4px;
+  width: 380px;
+  height: 46px;
+  cursor: pointer;
+  font-weight: 600;
+  /* margin-bottom: 12px; */
+
+}
+
+.thinkproc-join-btn-waiting {
+  font-family: Public Sans;
+  background: #fff !important;
+  color: #2F4DDB;
+  border: 1px solid #2F4DDB;
+  font-size: 16px;
+  /* padding: 14px 0; */
+  padding: 10px 16px 10px 16px;
+  border-radius: 4px;
+  width: 380px;
+  /* height: 46px; */
+  cursor: pointer;
+  font-weight: 600;
+  /* margin-bottom: 12px; */
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+
+}
+
+.thinkproc-join-btn-waiting .thinkX_loading_withText {
+  position: unset;
+  transform: unset;
+  flex-direction: unset;
+  row-gap: unset;
+}
+
+.thinkproc-join-btn-waiting .thinkX_loading_withText .thinkproc_loader {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.thinkproc-join-btn:focus {
+  outline: none;
+}
+
+.thinkproc-consent {
+  font-size: 16px;
+  color: #000000;
+  margin-top: 21px;
+  text-align: center;
+}
+
+.thinkproc-consent a {
+  color: #2F4DDB;
+  /* text-decoration: underline; */
+  margin: 0 2px;
+}
+
+/* Responsive */
+/* @media (max-width: 700px) {
+      .thinkproc-container, .thinkproc-video-block {
+        max-width: 98vw;
+        height: 48vw;
+        min-height: 200px;
+      }
+    } */
+
+
+/* Popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.25s ease-in-out;
+  backdrop-filter: blur(2px);
+}
+
+.popup-box {
+  background: #fff;
+  border-radius: 12px;
+  /* padding: 30px 28px 25px; */
+  padding: 24px;
+  /* height: 419px; */
+  width: 450px;
+  /* max-width: 90%; */
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); */
+  animation: scaleIn 0.3s ease-out;
+  text-align: center;
+}
+
+.popup-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.popup-header h3 {
+  font-family: Public Sans;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  /* line-height: 1.5; */
+  line-height: 24px;
+  margin: 0;
+}
+
+.popup-icon {
+  font-size: 22px;
+  color: #2f4ddb;
+  margin-top: 2px;
+  flex-shrink: 0;
+  /* width: 18px;
+  height: 16px; */
+}
+
+.popup-box p {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  text-align: left;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.popup-img img {
+  width: 172px;
+  height: 112px;
+  /* max-width: 100%; */
+  /* margin: 22px auto 18px; */
+  margin: 24px auto 32px;
+  display: block;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: right;
+  margin-top: 48px;
+}
+
+.proceed-btn {
+  font-family: Public Sans;
+  background-color: #2f4ddb;
+  color: #fff;
+  border: none;
+  padding: 9px 36px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  /* transition: background 0.2s ease-in-out, transform 0.1s ease-in-out; */
+}
+
+.proceed-btn:hover {
+  background-color: #1e39b9;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Disable page scroll when popup is open */
+body.popup-open {
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-height: 500px) {
+  .popup-box {
+    margin: 20px;
+    align-self: flex-start;
+  }
+}
+
+
+
+/* ========== INTERVIEW PAGE STYLES ========== */
+.thinkproc-interview-lobby {
+  /* display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #fff;
+  font-family: "Poppins", sans-serif; */
+
+  background-color: #FFFFFF;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.thinkproc-candidate-designation {
+  font-family: Public Sans;
+  font-weight: 700;
+  color: #000000;
+  font-size: 15px;
+  margin-top: 5px;
+  height: 28px;
+  padding-right: 28px;
+
+  width: 100%;
+  text-align: right;
+}
+
+.thinkproc-main-card {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 58px);
+  overflow: hidden;
+}
+
+/* Video Section */
+.thinkproc-interview-container {
+  margin-top: 20px;
+  /* height: calc(100% - 84px); */
+  height: calc(100% - 126px);
+  /* flex-grow: 1; */
+}
+
+.thinkproc-interview-video-section {
+  display: flex;
+  /* justify-content: center; */
+  align-items: start;
+  flex: 1;
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 20px;
+  gap: 5px;
+  height: 100%;
+}
+
+.thinkproc-interview-video-section-inner {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  /* margin-right: 20px; */
+  width: calc(100% - 280px);
+  height: 100%;
+}
+
+.thinkproc-interviewer-video {
+  position: relative;
+  /* width: 1108px; */
+  /* width: 1475px; */
+  width: 60%;
+  /* height: 680px; */
+  border-radius: 10px; 
+  overflow: hidden;
+  background: #000;
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  /* height: 79vh; */
+  /* height: calc(100vh - 190px); */
+  height: 100%;
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+#thinkproc-additional-cam-section.thinkproc-interviewer-video {
+  width: 40%;
+}
+
+#thinkproc-additional-cam-section {
+  border-left: 1px solid #343d4d;
+}
+
+.thinkproc-interviewer-video img {
+  width: 100%;
+}
+
+
+.thinkproc-interview-video-label {
+  /* position: absolute;
+  bottom: 5px;
+  left: 10px;
+  color: #fff;
+  font-size: 14px; */
+
+  position: absolute;
+  /* top: 14px; */
+  bottom: 10px;
+  /* left: 16px; */
+  left: 10px;
+  background: #0000004D;
+  color: #fff;
+  padding: 9px 15px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+  line-height: 1;
+}
+
+.thinkproc-interview-lobby-recording {
+  font-family: Public Sans;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+}
+
+.thinkproc-interview-lobby-timer {
+  font-family: Public Sans;
+  position: relative;
+  /* bottom: 10px;
+  left: 10px; */
+  /* background: #0000004D; */
+  background: #0000000D;
+  /* color: #fff; */
+  color: #000000;
+  /* padding: 9px 15px; */
+  border-radius: 18px;
+  /* font-size: 14px; */
+  font-size: 16px;
+  font-weight: 400;
+  z-index: 2;
+  line-height: 1;
+  width: 67px;
+  height: 31px;
+  text-align: center;
+  padding-top: 7px;
+}
+
+/* Candidate window */
+.thinkproc-candidate-video {
+  /* position: absolute; */
+  /* top: 20px; */
+  top: 0px;
+  /* right: 20px; */
+  /* width: 200px;
+  height: 120px; */
+  border-radius: 8px;
+  /* overflow: hidden; */
+  /* border: 3px solid #fff; */
+  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); */
+
+  /* width: 320px; */
+  /* height: 180px; */
+  /* width: 280px; */
+  width: 100%;
+  height: 20vh;
+}
+
+.thinkproc-candidate-video-interview {
+  position: relative;
+}
+
+.thinkproc-candidate-video img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  border-radius: 8px;
+}
+
+.thinkproc-candidate-label {
+  font-family: Public Sans;
+  font-weight: 600;
+  font-size: 14px;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: #0000004D;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 83px;
+}
+
+/* Footer Controls */
+.thinkproc-video-control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  position: relative;
+}
+
+.thinkproc-recording {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.thinkproc-rec-dot {
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+}
+
+.thinkproc-video-controls {
+  display: flex;  
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.thinkproc-chat-controls {
+  display: flex;
+  /* align-items: center; */
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.thinkproc-chat-controls span {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: 12px;
+  color: #000000;
+}
+
+.thinkproc-video-control-btn {
+  display: grid;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 8px;
+  place-items: center;
+  /* font-size: 14px;
+  color: #444;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s; */
+}
+
+/* .thinkproc-video-control-btn:hover {
+  background: #f1f3f4;
+} */
+
+/* .end-call {
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10px 14px;
+} */
+
+.thinkproc-video-control-btn:focus {
+  outline: none;
+}
+
+.thinkproc-video-control-btn span {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: var(--thinkproc-font-size-12);
+  color: #000000;
+
+  /* padding-top: 10px; */
+}
+
+/* ========== ANIMATIONS & RESPONSIVENESS ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  /* .thinkproc-interviewer-video {
+    width: 90%;
+    height: 60%;
+  }
+
+  .thinkproc-candidate-video {
+    width: 140px;
+    height: 90px;
+    right: 20px;
+  }
+
+  .thinkproc-video-control-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  } */
+
+  /* .interview-title {
+    font-size: 14px;
+    text-align: center;
+  } */
+}
+
+
+
+
+.thinkproc-chat-popup {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  /* left: 0; */
+  width: 277px;
+  height: 460px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #DEE6EA;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Public Sans;
+  z-index: 2000;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Header */
+.thinkproc-chat-header {
+  background: #FFFFFF;
+  padding: 10px 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 52px;
+}
+
+.thinkproc-chat-header span {
+  font-family: Public Sans;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+}
+
+.thinkproc-chat-header button {
+  outline: none;
+  /* vertical-align: middle !important; */
+}
+
+.thinkproc-chat-popup-close-btn {
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+  transition: 0.2s;
+}
+
+/* .thinkproc-chat-popup-close-btn:hover {
+  color: #000;
+} */
+
+/* Body */
+.thinkproc-chat-body {
+  flex: 1;
+  /* padding: 12px; */
+  padding: 20px 16px 0px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 108px);
+  /* gap: 10px; */
+
+  /* flex-direction: column-reverse; */
+}
+
+.thinkproc-chat-body .chat-msg-wrapper:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.thinkproc-chat-message {
+  display: flex;
+  flex-direction: column;
+}
+
+.thinkproc-message-sender {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: 12px;
+  /* margin-bottom: 2px; */
+  /* margin-bottom: 8px; */
+  margin: 0px;
+  color: #848484;
+}
+
+.thinkproc-message-sender.you {
+  text-align: right;
+  /* margin-top: 24px; */
+}
+
+.thinkproc-message-text {
+  font-family: Public Sans;
+  /* background: #f0f0f0; */
+  color: #000000;
+  font-size: 14px;
+  /* padding: 8px 12px; */
+  margin-bottom: 24px;
+  border-radius: 10px;
+  max-width: 100%;
+  align-self: flex-start;
+  word-wrap: break-word;
+}
+
+.thinkproc-message-text:last-child {
+  margin: 0;
+}
+
+.thinkproc-message-text.you {
+  background: #d1e8ff;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.thinkproc-message-noDataFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: calc(100% - 92px); */
+  height: 100%;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.thinkproc-message-noDataFound span {
+  font-weight: var(--thinkproc-font-weight-400);
+  font-size: var(--thinkproc-font-size-14);
+  color: rgba(95, 103, 119, 1);
+}
+
+.thinkproc-message-noDataFound img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Footer */
+.thinkproc-chat-footer {
+  display: flex;
+  align-items: center;
+  /* border-top: 1px solid #E3E8EB; */
+  background: #FFFFFF;
+  padding: 12px 16px;
+  position: relative;
+  /* padding: 2px 16px 16px 16px; */
+}
+
+/* Input box */
+.thinkproc-chat-footer input {
+  flex: 1;
+  /* border: 1px solid #E3E8EB; */
+  border-radius: 4px;
+  background: #FFFFFF;
+  padding: 10px 42px 10px 14px;
+  font-family: Public Sans;
+  font-size: 14px;
+  /* color: #000000; */
+  border: 1px solid #C4C9CF;
+  /* outline: none; */
+  transition: border-color 0.2s ease;
+  height: 40px;
+  width: 100%;
+}
+
+.thinkproc-chat-footer input::placeholder {
+  color: #667085;
+}
+
+.thinkproc-chat-footer input:focus {
+  /* border-color: #007BFF;
+  background: #FFFFFF; */
+
+  outline: none;
+}
+
+/* Send button */
+.thinkproc-chat-footer button {
+  position: absolute;
+  right: 28px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.thinkproc_interviewerVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* border-radius: 8px; */
+  background-color: black;
+}
+
+.thinkproc-candidate-video.thinkproc-candidate-video-interview .thinkproc_interviewerVideo {
+  border-radius: 8px;
+}
+
+/* .thinkproc-chat-footer button img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+} */
+
+/* .thinkproc-chat-footer button:hover img {
+  opacity: 1;
+} */
+
+/* Chat pop-up */
+
+
+/* Scrollbar Styling */
+/* .thinkproc-chat-body::-webkit-scrollbar {
+  width: 6px;
+}
+.thinkproc-chat-body::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+} */
+
+/* ✅ Responsive Design */
+/* @media (max-width: 600px) {
+  .thinkproc-chat-popup {
+    width: 90%;
+    height: 70%;
+    right: 5%;
+    bottom: 10px;
+    max-height: none;
+  }
+
+  .thinkproc-chat-header {
+    font-size: 16px;
+  }
+
+  .thinkproc-chat-body {
+    padding: 10px;
+  }
+
+  .thinkproc-chat-footer input {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .thinkproc-chat-popup {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+  }
+} */
+
+
+/* Screen Sharing Popup CSS  */
+#thinkX_screenShareErrorNewPopup .thinkproc-external-popup-innerbody {
+  width: 31.25rem;
+}
+
+.thinkproc-external-popup-hdng-div {
+  vertical-align: baseline;
+}
+
+.thinkproc-external-popup-hdng-div .icon {
+  display: flex;
+}
+
+#thinkX_screenSharePopup .thinkproc-external-popup-box {
+  row-gap: 1rem;
+}
+
+#thinkX_screenShareError {
+  margin: 0;
+}
+
+.thinkproc-external-popup-descrip {
+  color: var(--thinkproc-text-color);
+  font-size: var(--thinkproc-font-size-16);
+  font-weight: 600;
+}
+
+.thinkproc-external-popup-sub-descrip {
+  color: var(--thinkproc-secondary-text-color);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+}
+
+.thinkproc-external-popup-innerbodydiv,
+.thinkproc-external-popup-innerbody-section {
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 24px; */
+  row-gap: 16px;
+}
+
+.thinkproc-external-popup-innerbody-section {
+  row-gap: 4px;
+}
+
+.thinkproc-external-popup-sharing-imgdiv {
+  text-align: center;
+}
+
+.thinkproc-external-popup-sub-descrip2 ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.thinkproc-external-popup-sub-descrip2 ul li {
+  color: var(--thinkproc-text-color);
+  font-size: var(--thinkproc-font-size-14);
+  font-weight: 400;
+  list-style-type: disc;
+}
+
+#thinkX_screenShareError {
+  color: var(--thinkproc-error-bg);
+  margin: 0;
+}
+
+/* ID Varification Popup Css */
+.thinkproc-id-varification-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Popup box */
+.thinkproc-id-varification-popup-box {
+  background: #fff;
+  border-radius: 12px;
+  /* width: 958px; */
+  width: 80%;
+  max-width: 900px;
+  /* padding: 30px 40px; */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  font-family: Public Sans;
+  text-align: left;
+}
+
+.thinkproc-id-varification-popup-subtext {
+  /* width: 958px; */
+  width: 100%;
+  /* height: 83px; */
+  font-family: Public Sans;
+}
+
+.thinkproc-id-varification-popup-subtext h2 {
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  padding: 24px 24px 12px 24px;
+  margin-bottom: 0px;
+}
+
+.thinkproc-id-varification-popup-subtext p {
+  font-weight: 400;
+  font-size: 14px;
+  color: #5F6777;
+  margin-bottom: 0px;
+  padding: 0px 24px 7px 24px;
+  border-bottom: 1px solid #DEE6EA;
+}
+
+
+/* Grid for images */
+.thinkproc-id-verification-grid {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  /* gap: 22px 32px; */
+  /* margin-bottom: 25px; */
+  padding-right: 10px;
+}
+
+.thinkproc-id-verification-gridWrrper {
+  height: 317px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 16px 16px 16px 24px;
+  gap: 24px;
+}
+
+/* Scrollbar Styling */
+.thinkproc-id-verification-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thinkproc-id-verification-grid::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+.thinkproc-id-verification-section {
+  /* padding: 16px 24px 0px 24px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.thinkproc-id-varification-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.thinkproc-id-varification-title h4 {
+  font-family: Public Sans;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.thinkproc-id-varification-ai-match {
+  border: 1px solid #4FA171;
+  color: #4FA171;
+  padding: 0px 10px;
+  font-family: Public Sans;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f6fffa;
+}
+
+.thinkproc-id-varification-ai-match .thinkproc-green-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #4FA171;
+  border-radius: 50%;
+}
+
+.thinkproc-id-varification-ai-match-orange {
+  border: 1px solid #cc4441;
+  color: #cc4441;
+  padding: 0px 10px;
+  font-family: Public Sans;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f6fffa;
+}
+
+.thinkproc-id-varification-ai-match-orange .thinkproc-orange-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #cc4441;
+  border-radius: 50%;
+}
+
+.thinkproc-id-verification-section h4 {
+  font-size: 15px;
+  color: #333;
+  /* margin-bottom: 10px; */
+  margin-bottom: 0px;
+}
+
+.thinkproc-id-verification-image-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+}
+
+.thinkproc-id-verification-image-container img {
+  width: 100%;
+  height: 247px;
+  object-fit: cover;
+  display: block;
+}
+
+.thinkproc-id-verification-match-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #fff;
+}
+
+
+/* Buttons */
+.thinkproc-id-verification-popup-actions {
+  text-align: right;
+  margin-top: 10px;
+  padding: 16px 24px 16px;
+  position: relative;
+}
+
+.thinkproc-id-verification-popup-actions button {
+  font-size: 14px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.thinkproc-id-verification-popup-actions {
+
+  .thinkproc-allow-note-box {
+    position: absolute;
+    right: 20px;
+    bottom: 69px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 320px;
+    padding: 20px 16px;
+    box-shadow: 0 20px 24px -4px #0a0d121a;
+    height: auto;
+    border: 1px solid #E7E9EC;
+    flex-direction: column;
+    display: flex;
+
+    .thinkproc-allow-note-question {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+
+    .thinkproc-note-textarea {
+      min-height: 100px;
+      resize: none;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #C4C9CF;
+      border-radius: 4px;
+      font-family: inherit;
+      font-weight: 400;
+    }
+  }
+
+  .btn-allow-confirm {
+    align-self: flex-end;
+    background: #2F4DDB;
+    color: #fff;
+    padding: 6px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .thinkproc-btn-allow-confirm {
+    background: #CC4441;
+    color: #fff;
+  }
+
+  .thinkproc-note-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+}
+
+.thinkproc-id-verification-popup-actions {
+
+  .thinkproc-allow-note-box {
+    position: absolute;
+    right: 20px;
+    bottom: 69px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 320px;
+    padding: 20px 16px;
+    box-shadow: 0 20px 24px -4px #0a0d121a;
+    height: auto;
+    border: 1px solid #E7E9EC;
+    flex-direction: column;
+    display: flex;
+
+
+
+    .thinkproc-allow-note-question {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+
+    .thinkprocRejectHeder {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 10px;
+      margin-bottom: 20px;
+
+      .thinkproc-allow-note-question {
+        margin-bottom: 0;
+      }
+
+      .thinkproc-note-close {
+        position: unset;
+        padding: 0;
+      }
+    }
+
+    .thinkproc-note-textarea {
+      min-height: 100px;
+      resize: none;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #C4C9CF;
+      border-radius: 4px;
+      font-family: inherit;
+      font-weight: 400;
+    }
+  }
+
+  .btn-allow-confirm {
+    align-self: flex-end;
+    background: #2F4DDB;
+    color: #fff;
+    padding: 6px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .thinkproc-btn-allow-confirm {
+    background: #CC4441;
+    color: #fff;
+  }
+}
+
+.thinkproc-reject-btn {
+  background: #CC4441;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.thinkproc-allow-btn {
+  background: #2F4DDB;
+  color: #fff;
+}
+
+.thinkproc-allow-note-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: block;
+
+  .thinkproc-allow-note-box {
+    position: absolute;
+    right: 20px;
+    bottom: 120px;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 320px;
+    padding: 20px 16px;
+    box-shadow: 0 20px 24px -4px #0a0d121a;
+    height: auto;
+    border: 1px solid #E7E9EC;
+    flex-direction: column;
+    display: flex;
+
+    .thinkproc-allow-note-question {
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+
+    .thinkproc-note-textarea {
+      min-height: 100px;
+      resize: none;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #C4C9CF;
+      border-radius: 4px;
+      font-family: inherit;
+      font-weight: 400;
+    }
+  }
+
+  .btn-allow-confirm {
+    align-self: flex-end;
+    background: #2F4DDB;
+    color: #fff;
+    padding: 6px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scrollbar Styling */
+.thinkproc-id-verification-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thinkproc-id-verification-grid::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+
+/* Candidate Criteria Popup CSS */
+.thinkproc-candidate-criteria-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Popup Box */
+.thinkproc-candidate-criteria-popup-box {
+  background: #fff;
+  border-radius: 12px;
+  /* padding: 32px 40px; */
+  width: 650px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  text-align: left;
+
+  width: 712px;
+  height: auto;
+}
+
+.thinkproc-candidate-criteria-popup-box h3 {
+  font-family: Public Sans;
+  font-size: 18px;
+  color: #000000;
+  padding: 20px 32px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--thinkproc-border-color);
+}
+
+.thinkproc-candidate-criteria-Section {
+  padding: 2px 24px 0px;
+}
+
+/* Section Titles */
+.thinkproc-criteria {
+  /* margin-bottom: 22px; */
+  border-bottom: 1px solid var(--thinkproc-border-color);
+  padding: 24px 52px 24px 12px;
+}
+
+.thinkproc-criteria h4 {
+  font-family: Public Sans;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Tags */
+.thinkproc-criteria-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.thinkproc-criteria-tags span {
+  font-family: Public Sans;
+  /* background: #f0f3ff; */
+  /* color: #4753f0; */
+  background: #ECEDFE;
+  color: #000000;
+  padding: 6px 14px;
+  /* padding: 12px; */
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.thinkproc-id-varification-btn {
+  border-top: 1px solid #ddd;
+  padding: 16px 20px 20px;
+}
+
+/* Proceed Button */
+.proceed-btn {
+  display: block;
+  margin-left: auto;
+  background: #2F4DDB;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+/* .proceed-btn:hover {
+  background: #2547e6;
+} */
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.thinkproc-waiting-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(0, 0, 0, 0.6); */
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  /* z-index: 2; */
+  /* background: black; */
+}
+
+.thinkproc-waiting-overlay .waiting-content {
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.waiting-candidate-img {
+  width: 130px !important;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+}
+
+.waiting-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #e8eaed;
+  letter-spacing: 0.5px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.thinkproc-audio-heartbeat {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #3366ff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.thinkproc-audio-heartbeat .bar {
+  width: 2.5px;
+  height: 12px;
+  background: white;
+  border-radius: 2px;
+  transform-origin: bottom center;
+  transition: height 0.1s ease;
+}
+
+.thinkproc-audio-muted {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #0f5f5f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+
+
+/* Thank You Popup CSS */
+.thinkproc-thankyou-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: "Public Sans", sans-serif;
+}
+
+/* Popup box */
+.thinkproc-thankyou-popup-box {
+  background: #fff;
+  border-radius: 12px;
+  text-align: center;
+
+
+  width: 500px;
+  height: auto;
+}
+
+/* Icon container */
+.thinkproc-thankyou-popup-icon {
+  position: relative;
+  /* margin-bottom: 20px; */
+  padding: 80px 190px 10px 190px;
+}
+
+.thinkproc-thankyou-text {
+  margin-bottom: 52px;
+  padding-top: 24px;
+}
+
+/* Text */
+.thinkproc-thankyou-text h2 {
+  /* margin-top: 10px; */
+  font-size: 28px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.thinkproc-thankyou-text p {
+  color: #5F6777;
+  font-size: 16px;
+  font-weight: 400;
+  /* line-height: 1.5; */
+  line-height: 24px;
+  margin: 16px 0 0 0;
+}
+
+.thinkproc-thankyou-btn {
+  margin-bottom: 20px;
+}
+
+/* Button */
+.thinkproc-thankyou-close-btn {
+  background: #2F4DDB;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s ease;
+
+  width: 120px;
+  height: 40px;
+}
+
+.thinkproc-thankyou-close-btn:hover {
+  background: #2F4DDB;
+}
+
+
+
+/* End-Session Popup CSS */
+.thinkproc-end-session-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup Box */
+.thinkproc-end-session-popup {
+  background-color: white;
+  border-radius: 8px;
+  /* width: 80%; */
+  /* max-width: 500px; */
+  /* height: 194px; */
+  width: 400px;
+  height: auto;
+  padding: 24px 20px 24px 20px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.thinkproc-end-session-header h2 {
+  margin: 0;
+  color: var(--thinkproc-text-color);
+  font-family: var(--thinkproc-font-family);
+  font-size: var(--thinkproc-font-size-18);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.thinkproc-end-session-footer {
+  margin-top: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding: 10px 0 0 0;
+}
+
+/* .thinkproc-end-session-cancel-btn, .thinkproc-end-session-confirm-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  outline: none;
+} */
+
+.thinkproc-end-session-cancel-btn,
+.thinkproc-end-session-confirm-btn {
+  width: 88px;
+  height: 40px;
+  background-color: var(--thinkproc-background-color);
+  color: var(--thinkproc-text-color);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: unset;
+}
+
+.thinkproc-end-session-cancel-btn:hover {
+  /* border: 1px solid var(--thinkproc-primary-color); */
+  border: 1px solid var(--thinkproc-error-bg);
+  border-radius: 4px;
+  background-color: var(--thinkproc-error-bg);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc-end-session-confirm-btn {
+  background-color: var(--thinkproc-primary-color);
+  color: var(--thinkproc-text-white);
+}
+
+.thinkproc-end-session-confirm-btn:hover {
+  border: 1px solid var(--thinkproc-primary-color);
+  border-radius: 4px;
+  background-color: var(--thinkproc-primary-color);
+  /* color: var(--thinkproc-black); */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .thinkproc-end-session-popup {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thinkproc-end-session-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .thinkproc-end-session-footer button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* * session Feedback Popup CSS  */
+.thinkproc-feedback-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thinkproc-feedback-popup {
+  background-color: white;
+  /* padding: 30px; */
+  border-radius: 8px;
+  width: 610px;
+  height: 600px;
+  /* Added a fixed height for the popup */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  /* Set to column to align content vertically */
+}
+
+.thinkproc-feedback-popup h2 {
+  font-family: Public Sans;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  line-height: 28px;
+  margin: 0;
+}
+
+.thinkproc-feedback-popup p {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: 14px;
+  color: #5F6777;
+  margin-top: 0px !important;
+}
+
+.thinkproc-feedback-title>p {
+  border-bottom: 1px solid #DEE6EA;
+  padding-top: 0 !important;
+  padding: 18px 24px;
+}
+
+.thinkproc-feedback-title h2 {
+  padding: 24px 24px 4px;
+}
+
+/* .thinkproc-feedback-title p {
+
+} */
+
+.thinkproc-feedback-section {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.thinkproc-feedback-section label {
+  font-family: Public Sans;
+  font-weight: 500;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.thinkproc-feedback-description {
+  font-family: Public Sans;
+  font-weight: 400;
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.thinkproc-feedback-rating {
+  display: flex;
+  /* justify-content: space-evenly;
+    margin-top: 10px; */
+  margin-bottom: 32px;
+
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.thinkproc-feedback-rating span {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  /* background-color: #e0e0e0; */
+  background-color: #fff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #DEE6EA;
+}
+
+.thinkproc-feedback-rating span.active {
+  background-color: #2F4DDB;
+  color: white;
+}
+
+.thinkproc-feedback-rating span:hover {
+  background-color: #b0b0b0;
+}
+
+.thinkproc-feedback-submit-btn {
+  width: 120px;
+  height: 40px;
+  background-color: #2F4DDB;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: end;
+  /* place the button */
+  /* margin-top: auto; Push the button to the bottom */
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+
+.thinkproc-feedback-submit-btn {
+  outline: none;
+}
+
+.thinkproc-feedback-submit-btn:hover {
+  background-color: #0052cc;
+}
+
+.thinkproc-feedback-chart {
+  flex: 1;
+  /* Take remaining space */
+  /* padding: 32px 8px 24px 24px; */
+  padding: 32px 8px 42px 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.addiCamDisconnect {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+
+.addiCamDisconnect img {
+  width: 70px;
+  height: 70px;
+  /* border-radius: 50%; */
+  object-fit: contain;
+  object-position: center;
+  margin-bottom: 6px;
+}
+
+.thinkproc-complete-feedback-section {
+  overflow-y: auto;
+  /* Enables vertical scroll */
+  height: 100%;
+  padding-right: 16px;
+}
+
+/* Scrollbar Styling */
+.thinkproc-feedback-chart::-webkit-scrollbar {
+  width: 4px;
+  /* Thinner scrollbar */
+}
+
+/* Remove the scrollbar button arrows */
+.thinkproc-feedback-chart::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Subtle gray thumb for scrollbar */
+.thinkproc-feedback-chart::-webkit-scrollbar-thumb {
+  /* background: rgba(0, 0, 0, 0.2); Subtle gray thumb */
+  background: #E7E9EC;
+  border-radius: 10px;
+}
+
+/* Light background for the track */
+.thinkproc-feedback-chart::-webkit-scrollbar-track {
+  /* background: rgba(0, 0, 0, 0.1); Lighter track */
+  background: #E7E9EC;
+}
+
+
+/* Overlay */
+/* .thinkproc-id-varification-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-in-out;
+} */
+
+/* Popup box */
+/* .thinkproc-id-varification-popup-box {
+  background: #fff;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  font-family: Public Sans;
+  text-align: left;
+} */
+
+/* .thinkproc-id-varification-popup-subtext h2 {
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 8px;
+  margin-bottom: 12px;
+} */
+
+/* .thinkproc-id-varification-popup-subtext p {
+  font-weight: 400;
+  font-size: 14px;
+  color: #5F6777;
+  margin-bottom: 24px;
+} */
+
+/* .popup-subtext {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+} */
+
+/* Grid for images */
+/* .thinkproc-id-verification-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 32px;
+  margin-bottom: 25px;
+} */
+
+/* .thinkproc-id-verification-section h4 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+} */
+
+/* .thinkproc-id-verification-image-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+} */
+
+/* .thinkproc-id-verification-image-container img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+} */
+
+/* .thinkproc-id-verification-match-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #fff;
+} */
+
+/* .green {
+  background-color: #3ac569;
+}
+
+.orange {
+  background-color: #ff9800;
+} */
+
+/* Buttons */
+/* .thinkproc-id-verification-popup-actions {
+  text-align: right;
+  margin-top: 10px;
+} */
+
+/* .thinkproc-id-verification-popup-actions button {
+  font-size: 14px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+} */
+
+/* .reject-btn {
+  background: #f44336;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.allow-btn {
+  background: #2979ff;
+  color: #fff;
+} */
+
+/* Animation */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+} */
+
+
+/* Scrollbar Styling
+.thinkproc-id-verification-grid::-webkit-scrollbar {
+  width: 6px;
+}
+.thinkproc-id-verification-grid::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+} */
+
+
+
+
+/* Candidate Criteria Popup CSS */
+.thinkproc-candidate-criteria-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Popup Box */
+.thinkproc-candidate-criteria-popup-box {
+  background: #fff;
+  border-radius: 12px;
+  /* padding: 32px 40px; */
+  width: 650px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  text-align: left;
+
+  width: 712px;
+  height: auto;
+}
+
+.thinkproc-candidate-criteria-popup-box h3 {
+  font-family: Public Sans;
+  font-size: 18px;
+  color: #000000;
+  padding: 20px 32px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--thinkproc-border-color);
+}
+
+.thinkproc-candidate-criteria-Section {
+  padding: 2px 24px 0px;
+}
+
+/* Section Titles */
+.thinkproc-criteria {
+  /* margin-bottom: 22px; */
+  border-bottom: 1px solid var(--thinkproc-border-color);
+  padding: 24px 52px 24px 12px;
+}
+
+.thinkproc-criteria h4 {
+  font-family: Public Sans;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Tags */
+/* .thinkproc-criteria-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+} */
+
+/* .thinkproc-criteria-tags span {
+  font-family: Public Sans;
+  background: #ECEDFE;
+  color: #000000;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+} */
+
+/* .thinkproc-id-varification-btn {
+  border-top: 1px solid #ddd;
+  padding: 16px 20px 20px;
+} */
+
+/* Proceed Button */
+/* .proceed-btn {
+  display: block;
+  margin-left: auto;
+  background: #2F4DDB;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+} */
+
+/* .proceed-btn:hover {
+  background: #2547e6;
+} */
+
+/* Fade-in Animation */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+} */
+
+
+
+/* feedback session Overlay */
+.thinkproc-feedback-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup Box */
+.thinkproc-feedback-popup {
+  background: #fff;
+  width: 642px;
+  height: 612px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Header */
+.thinkproc-feedback-popup-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0px;
+}
+
+.thinkproc-feedback-popup-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.thinkproc-feedback-popup-header p {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 13px;
+}
+
+
+/* Scrollable Content */
+.thinkproc-feedback-popup-body {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  /* padding-bottom: 80px; */
+  padding-bottom: 16px;
+}
+
+/* Fixed Behavior Skills section */
+.thinkproc-feedback-behavior-skills {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 24px 24px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  /* border-bottom: 1px solid #e5e5e5; */
+  z-index: 2;
+}
+
+/* 
+.thinkproc-session-behavior-skills input {
+  margin-right: 6px;
+} */
+
+.thinkproc-feedback-behavior-skills span {
+  margin-right: 6px;
+}
+
+/* Skill Cards */
+.thinkproc-feedback-skills-list {
+  padding: 0px 24px 16px;
+  overflow: auto;
+  /* height: 400px; */
+  overflow: auto;
+  max-height: 36vh;
+}
+
+.thinkproc-feedback-skill-card {
+  background: #F9F9F9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+
+  height: 118px;
+  width: 572px;
+}
+
+.thinkproc-feedback-skill-card h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.thinkproc-feedback-skill-card p {
+  font-size: 12px;
+  color: #777;
+  margin: 4px 0 10px;
+}
+
+/* Fixed Footer */
+.thinkproc-feedback-popup-footer {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  /* border-top: 1px solid #e5e5e5; */
+  padding: 14px 24px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.thinkproc-feedback-next-btn {
+  background: #3366ff;
+  color: #fff;
+  border: none;
+  padding: 10px 45px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.thinkproc-feedback-next-btn:hover {
+  background: #2a54d8;
+}
+
+/* Scrollbar Styling */
+.popup-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thinkproc-feedback-skills-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 6px;
+}
+
+.thinkproc-feedback-skills-list::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+
+.thinkproc-feedback-comment-section h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.thinkproc-feedback-comment-section p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.thinkproc-feedback-comment-section textarea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  resize: none;
+  font-family: inherit;
+}
+
+#thinkproc-feedback-popup-tab .thinkproc-feedback-popup {
+  height: auto;
+}
+
+#thinkproc-feedback-popup-tab .thinkproc-session-popup-footer {
+  display: flex;
+  justify-content: end;
+  padding: 16px 20px 20px 20px;
+}
+
+.thinkproc-feedback-next-btn.thinkproc-disable,
+button:disabled {
+  opacity: .8;
+  background-color: var(--thinkproc-btn-d);
+  pointer-events: none;
+  border-color: var(--thinkproc-btn-d);
+  color: var(--thinkproc-text-white);
+}
+
+
+
+
+/* UFM Page CSS */
+.thinkproc-ufm-main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  margin: 20px 20px 0px 20px;
+  height: 85%;
+}
+
+/* Video Section */
+.thinkproc-ufm-video-section {
+  display: flex;
+  flex: 1;
+  background: #000;
+  width: 80%;
+}
+
+.thinkproc-ufm-video-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-right: 2px solid #111;
+}
+
+.thinkproc-ufm-candiae-video {
+  width: 60%;
+}
+
+
+.thinkproc-ufm-video-box img,
+.thinkproc-ufm-video-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.thinkproc-ufm-video-box:last-child {
+  border-right: none;
+  width: 40%;
+}
+
+
+.thinkproc-ufm-video-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 15px;
+  font-size: 600;
+  color: #fff;
+}
+
+
+
+.thinkproc-ufm-side-page {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  width: 18%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  /* right: 20px; */
+  border-radius: 8px;
+  width: 100%;
+  z-index: 1;
+}
+
+/* UFM Panel */
+.thinkproc-ufm-panel {
+  /* width: 20%; */
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #DEE6EA;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.thinkproc-ufm-header {
+  padding: 16px;
+  border-bottom: 1px solid #DEE6EA;
+  margin-bottom: 12px;
+}
+
+.thinkproc-ufm-first h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.thinkproc-ufm-first {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.thinkproc-ufm-header p {
+  font-size: 13px;
+  color: #777;
+  line-height: 20px;
+  margin: 0;
+}
+
+.thinkproc-ufm-list {
+  flex: 1;
+  overflow-y: auto;
+  /* padding: 10px; */
+}
+
+.thinkproc-ufm-item {
+  display: flex;
+  gap: 15px;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #DEE6EA;
+  align-items: flex-start;
+}
+
+.thinkproc-ufm-item img {
+  padding: 0px 0px 15px 0px;
+}
+
+.thinkproc-ufm-item.active {
+  background: #ffeaea;
+  border: none;
+  border-radius: 4px;
+}
+
+
+.thinkproc-now-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thinkproc-now-time h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.thinkproc-ufm-content p {
+  font-size: 12px;
+  color: #666;
+  line-height: 100%;
+  margin: 0px;
+  ;
+}
+
+.thinkproc-now-time span {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  text-align: right;
+}
+
+
+
+
+.thinkproc-profile-matric {
+  overflow-y: auto;
+  /* padding: 10px; */
+  background: #FFFFFF;
+}
+
+.thinkproc-metrics-section {
+  padding: 16px;
+  border-bottom: 1px solid #DEE6EA;
+}
+
+.thinkproc-metrics-section h4 {
+  font-family: Public Sans;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.thinkproc-metric-card {
+  background: #2F4DDB0F;
+  border-radius: 4px;
+  padding: 8px 28px 8px 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  column-gap: 6px;
+}
+
+
+.thinkproc-metric-card p {
+  font-family: Public Sans;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0px;
+
+}
+
+.thinkproc-progress-circle circle#thinkinterview_leavecount {
+  stroke: #007bff;
+  /* Blue color */
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 232;
+  /* (2 * π * r) => 2 * 3.14 * 37 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+
+/* .thinkproc-metric-card:hover {
+  background: #2F4DDB0F;
+} */
+
+
+.think_interview_noUfmList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 155px);
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.think_interview_noUfmList img {
+  max-width: 100%;
+  height: auto;
+}
+
+.think_interview_noUfmList span {
+  font-weight: var(--thinkproc-font-weight-400);
+  font-size: var(--thinkproc-font-size-14);
+  color: rgba(95, 103, 119, 1);
+}
+
+.thinkInterview_blueUFMText {
+  color: rgba(47, 77, 219, 1);
+}
+
+.thinkproc-candidate-video-interview .active {
+  border: 2px solid #2b7cff;
+  box-shadow: 0 0 8px rgba(43, 124, 255, 0.6);
+}
+.think-interview-revoke-camera{
+  font-family: Public Sans;
+    font-weight: 600;
+    font-size: 14px;
+    bottom: 5px;
+    left: 5px;
+    background: #0000004D;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 83px;
+}
+.thinkX_cameraInstructionPopup .thinkproc-external-popup-description-align :is(ul, li) {
+  padding-left: 0;
+}
+
+.thinkX_cameraInstructionPopup .thinkproc-external-popup-description-align ul li::before {
+  display: none;
+}/* Step card */
+.thinkX_step-card {
+  background: var(--thinkproc-gray-bg);
+  border: 0.5px solid var(--thinkproc-border-color);
+  border-radius: 12px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.thinkX_step-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.thinkX_step-content {
+  flex: 1;
+}
+
+.thinkX_step-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--thinkproc-text-color);
+  margin: 0 0 3px;
+}
+
+.thinkX_step-desc {
+  font-size: 13px !important;
+  color: var(--thinkproc-secondary-text-color);
+  margin: 0;
+  line-height: 1.55;
+}

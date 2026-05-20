@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Recorder</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #controls button { margin-right: 10px; padding: 10px 15px; font-size: 16px; }
+        #status { margin-top: 20px; font-weight: bold; }
+        video { margin-top: 20px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Browser Recorder Test</h1>
+
+    <div id="controls">
+        <button id="startButton">Start Recording</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+    </div>
+
+    <div id="status">Status: Not connected</div>
+
+    <h2>Preview</h2>
+    <video id="previewVideo" autoplay muted></video>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const statusDiv = document.getElementById('status');
+        const previewVideo = document.getElementById('previewVideo');
+
+        let ws;
+        let mediaRecorder;
+        let mediaStream;
+        let sessionId = 'test-session-' + Date.now(); // Unique session ID
+
+        // --- Configuration ---
+        // Change this to your server's address.
+        // Use 'wss://' for HTTPS (server-ssl.ts) or 'ws://' for HTTP (server-local.ts)
+        const WEBSOCKET_URL = 'wss://localhost:8443'; // Change to wss://localhost:8443 if using SSL
+        const VIDEO_BITS_PER_SECOND = 2000000; // 2 Mbps
+        const AUDIO_BITS_PER_SECOND = 128000; // 128 kbps
+        function recordMessage(mode, info = {}) {
+            return {      
+            path: sessionId,
+            recordId: sessionId,
+            sessionId: sessionId,
+            data: { mode, info }
+            };  
+        }
+        function sendRecordMessage(mode, info) {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                const message = recordMessage(mode, info);
+                ws.send(JSON.stringify(message));
+                console.log('Status: Record message sent:', message);
+                } else {
+                console.error('WebSocket is not open. Cannot send record message.');
+                }
+            }
+            function arrayBufferToBase64(buffer) {
+                let binary = '';
+                const bytes = new Uint8Array(buffer);
+                const len = bytes.byteLength;
+                for (let i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return window.btoa(binary);
+            }
+        startButton.onclick = async () => {
+            try {
+                // Request camera and microphone access
+                mediaStream = await navigator.mediaDevices.getUserMedia({
+                    video: { width: { ideal: 640 }, height: { ideal: 480 } },
+                    audio: true
+                });
+                previewVideo.srcObject = mediaStream;
+                statusDiv.textContent = 'Status: Media stream acquired.';
+
+                // Initialize WebSocket connection
+                ws = new WebSocket(WEBSOCKET_URL);
+
+                ws.onopen = () => {
+                    statusDiv.textContent = 'Status: Connected to WebSocket server. Sending session ID...';
+                   // ws.send(sessionId); // Send the session ID as the first message
+                   sendRecordMessage('start' );
+                };
+
+                ws.onclose = () => {
+                    statusDiv.textContent = 'Status: Disconnected from WebSocket server.';
+                    startButton.disabled = false;
+                    stopButton.disabled = true;
+                };
+
+                ws.onerror = (error) => {
+                    statusDiv.textContent = 'Status: WebSocket error! Check console for details.';
+                    console.error('WebSocket Error:', error);
+                };
+
+                // MediaRecorder setup
+                mediaRecorder = new MediaRecorder(mediaStream, {
+                    mimeType: 'video/webm; codecs="opus,vp8"', // Use webm for browser compatibility
+                    videoBitsPerSecond: VIDEO_BITS_PER_SECOND,
+                    audioBitsPerSecond: AUDIO_BITS_PER_SECOND
+                });
+
+                mediaRecorder.ondataavailable =  (event) => {
+                    if (event.data.size > 0 && ws && ws.readyState === WebSocket.OPEN) {
+                       // ws.send(event.data); // Send recorded chunks to the server
+                        event.data.arrayBuffer().then(arrayBuffer => {;
+                            const base64Data = arrayBufferToBase64(arrayBuffer);
+
+                            sendRecordMessage('stream', { data: base64Data }); // Convert to base64 string for transmission
+                            // console.log('Sending data chunk:', event.data.size, 'bytes');
+                        });
+                    }
+                };
+
+                mediaRecorder.onstart = () => {
+                    statusDiv.textContent = 'Status: Recording started...';
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+                };
+
+                mediaRecorder.onstop = () => {
+                    statusDiv.textContent = 'Status: Recording stopped.';
+                    mediaStream.getTracks().forEach(track => track.stop()); // Stop all tracks
+                    previewVideo.srcObject = null;
+                    if (ws) {
+                        ws.close(); // Close WebSocket connection
+                    }
+                };
+
+                mediaRecorder.start(2000); // Start recording, collect data every 2 seconds
+                
+            } catch (error) {
+                console.error('Error starting recording:', error);
+                statusDiv.textContent = `Status: Error starting recording: ${error.message}`;
+            }
+        };
+
+        stopButton.onclick = () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+        };
+    </script>
+</body>
+</html>

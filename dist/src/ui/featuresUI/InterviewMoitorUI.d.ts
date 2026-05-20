@@ -1,0 +1,61 @@
+declare class InterviewMoniterUI {
+    interviewerStreamData: {
+        [key: string]: MediaStream;
+    };
+    interviewerVoiceData: {
+        [key: string]: MediaStream;
+    };
+    interviewerLevels: Record<string, number>;
+    lastSpeakerSwitch: number;
+    SPEAKER_THRESHOLD: number;
+    SWITCH_DELAY: number;
+    audioCtx?: AudioContext;
+    activeInterviewer: string;
+    leftSideSwap: boolean;
+    audioAnimationIds: Record<string, number>;
+    audioSources: Map<string, MediaStreamAudioSourceNode>;
+    setAdditionalCameraStream(stream: MediaStream, user_name: string): void;
+    /** ✅ Hide waiting overlay with fade-out */
+    hideWaitingOverlay(cameraType: string): void;
+    showAdditionalWaitingOverlay(imageUrl?: string, message?: string): void;
+    showCandidateWaitingOverlay(imageUrl?: string): void;
+    showCameraDisconnectIcon(cameraName: string | '', userName: string): void;
+    hideCameraDisconnectIcon(cameraName: string): void;
+    hideInterviewerWaitingOverlay(userName: string): void;
+    showLoaderwithText(id: string): void;
+    hideLoaderwithText(): void;
+    singleInterviewerModeUIAdjustments(socketName: string): void;
+    multiInterviewerModeUIAdjustments(): void;
+    createDynamicInterviewer(stream: MediaStream, socketName: string): HTMLVideoElement;
+    createMuteVoiceHtmlElement(socketName: string): HTMLElement;
+    createVideoHtmlElement(stream: MediaStream, socketName: string): HTMLVideoElement;
+    interviewerUiViewHandle(): void;
+    bindInterviewerUiEvents(): void;
+    toggleMuteUI(img: HTMLImageElement, muteIcon: string, unmuteIcon: string): boolean;
+    muteInterviewerVideoStream(userName: string): void;
+    unMuteInterviewerVideoStream(userName?: string): void;
+    muteCandidateVideoStream(): void;
+    unMuteCandidateVideoStream(): void;
+    setInterviewerLeftSideStream(stream: MediaStream, socketName: string): void;
+    showMutedIconLeftSide(userName: string): void;
+    hideMutedIconLeftSide(): void;
+    setInterviewerRightSideStream(stream: MediaStream, socketName: string): void;
+    muteInterviewerAudioStream(socketName?: string): void;
+    unMuteInterviewerAudioStream(socketName?: string): void;
+    muteAudioLeftSideInterviewer(): void;
+    unMuteAudioLeftSideInterviewer(): void;
+    removeDynamicInterviewer(socketName?: string): void;
+    coverHundredPercentForInterviewer(): void;
+    initAudioHeartbeatInterview(stream: MediaStream, socketName: string): void;
+    onInterviewerSpeaking(socketName: string): void;
+    swapToMainInterviewer(userName: string): void;
+    setMainStream(stream: MediaStream): void;
+    hideActiveInterviewerRightSection(): void;
+    initAudioHeartbeat(stream: MediaStream, containerId: string): void;
+    setCandidateImage(url: string | null | undefined, id: string): void;
+    setPercentage(percentage: number | null | undefined, id: string): void;
+    camDisconnectInterviewer(userName: string): void;
+    additionalCameraDisconnectCheck(): void;
+}
+export declare const monitorUi: InterviewMoniterUI;
+export {};

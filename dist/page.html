@@ -1,0 +1,2339 @@
+<!-- Compatibility Box -->
+<div class="thinkproc_compatibility_wrapper d-none" id="thinkX_compatibility_wrapper">
+    <div class="thinkproc-popup" id="thinkproc-main-popup">
+        <div class="thinkproc-popup-header" role="tablist">
+            <div class="thinkproc-popup-header-left">
+                <div class="thinkproc-compatibility-step" id="thinkproc_step_system" role="tab"
+                    aria-controls="{{tabs.system_check}}" aria-selected="true"><span>{{tabs.system_check}}</span></div>
+                <div class="thinkproc-compatibility-step" id="thinkproc_step_photo" role="tab"
+                    aria-controls="{{tabs.photo_verification}}" aria-selected="false">
+                    <span>{{tabs.photo_verification}}</span>
+                </div>
+                <div class="thinkproc-compatibility-step" id="thinkproc_step_id" role="tab"
+                    aria-controls="{{tabs.identity_capture}}" aria-selected="false">
+                    <span>{{tabs.identity_capture}}</span>
+                </div>
+                <div class="thinkproc-compatibility-step" id="thinkproc_step_room" role="tab"
+                    aria-controls="{{tabs.room_sanitization}}" aria-selected="false">
+                    <span>{{tabs.room_sanitization}}</span>
+                </div>
+                <div class="thinkproc-compatibility-step" id="thinkproc_step_camera" role="tab"
+                    aria-controls="{{tabs.camera_setup}}" aria-selected="false"><span>{{tabs.camera_setup}}</span></div>
+            </div>
+            <div class="thinkproc-popup-header-right">
+                <div class="thinkproc-progress-circle">
+                    <div class="thinkproc-percent">
+                        <svg>
+                            <circle cx="30" cy="30" r="27"></circle>
+                            <circle id="thinkproc_currPercentage" cx="30" cy="30" r="27"></circle>
+                        </svg>
+                        <div class="thinkproc-number">
+                            <h3><span id="thinkproc_tabStepCurrent">1</span>/<span id="thinkproc_tabStepAll">3</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thinkproc-popup-body" id="compatibilityStage">
+            <div class="thinkproc-step-body thinkproc_body_system d-none" id="thinkproc_body_system" role="tabpanel"
+                aria-labelledby="thinkproc_step_system">
+                <!-- Sysyem Setting Header -->
+                <div class="thinkproc-systemCheck-header">
+                    <h1>{{status.checking_settings}}</h1>
+                    <!-- System Checking Steps -->
+                    <ul class="thinkproc-step-list">
+                        <li id="thinkX_browser_checked" data-step="browser">
+                            <div class="thinkproc-sys-circle">1</div>
+                            <span>{{steps.browser_check}}</span>
+                        </li>
+                        <li id="thinkX_screenChecked" data-step="screen">
+                            <div class="thinkproc-sys-circle">2</div>
+                            <span>{{steps.screen_check}}</span>
+                        </li>
+                        <li id="thinkX_webCamChecked" data-step="cam">
+                            <div class="thinkproc-sys-circle">3</div>
+                            <span>{{steps.webcam_check}}</span>
+                        </li>
+                        <li id="thinkX_micChecked" data-step="mic">
+                            <div class="thinkproc-sys-circle">4</div>
+                            <span>{{steps.mic_check}}</span>
+                        </li>
+                        <li id="thinkX_networkChecked" data-step="network">
+                            <div class="thinkproc-sys-circle">5</div>
+                            <span>{{steps.network_check}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sysyem Setting Body -->
+                <div class="thinkproc-systemCheck-body">
+                    <!-- Browser Check -->
+                    <div class="thinkproc-browser-check d-none" id="thinkX_browserSuccess" data-step="browser">
+                        <div class="thinkproc-step-image-box" id="thinkX_browser-static">
+                            <img src="{{enviroment_url}}images/browserStatic.svg" alt="{{steps.static}}" />
+                            <!-- <img src="{{enviroment_url}}images/browser_check_error.svg" alt="{{steps.browser_check}}" /> -->
+                        </div>
+                        <div class="thinkproc-step-image-box d-none" id="thinkX_browser-check">
+                            <img src="{{enviroment_url}}images/browser_check.svg" alt="{{steps.browser_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/browser_check_error.svg" alt="{{steps.browser_check}}" /> -->
+                        </div>
+                        <div id="thinkX_browser-Error" class="browser-Error d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/browserError.svg" alt="{{steps.browser_error}}" />
+                            </div>
+                            <p></p>
+                        </div>
+                        <p class="checkingBrowser" id="thinkX_checkingBrowser">{{status.checking_browser}}</p>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_browserError">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.checking_browser_fail}}
+                        </div>
+                    </div>
+                    <!-- Screen Check -->
+                    <div class="thinkproc-external-check d-none" id="thinkX_screenSuccess" data-step="screen">
+                        <div class="thinkproc-step-image-box" id="thinkX_screenStatic">
+                            <img src="{{enviroment_url}}images/screen.svg" alt="{{steps.screen_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/screen_check.svg" alt="{{steps.screen_check}}" /> -->
+                        </div>
+                        <div class="thinkproc-step-image-box d-none" id="thinkX_screenCheck">
+                            <img src="{{enviroment_url}}images/screen_check.svg" alt="{{steps.screen_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/screen_check.svg" alt="{{steps.screen_check}}" /> -->
+                        </div>
+                        <div class="thinkproc-step-image-box d-none" id="thinkX_errorScreen">
+                            <img src="{{enviroment_url}}images/screenError.svg" alt="{{steps.screen_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/screen_check.svg" alt="{{steps.screen_check}}" /> -->
+                        </div>
+                        <p id="thinkX_checkingScreen" class="checkingScreen">{{status.checking_screen}}</p>
+                        <div class="thinkproc-inner-wrap d-none" id="thinkX_screen_resolution">
+                            <div>
+                                <div class="thinkproc_innerText">{{status.screen_resolution}}</div>
+                                <div class="thinkproc_innerText_data" id="thinkX_screenResolution">1920 X 1024</div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_screenError">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.screenSize}}
+                        </div>
+                    </div>
+                    <!-- Webcam Check -->
+                    <div class="thinkproc-webcam-check d-none" id="thinkX_webCamSuccess" data-step="cam">
+                        <div class="thinkproc-webcam-wrap thinkproc-mb-40 d-none" id="thinkX_cameraDropdown">
+                            <div class="thinkproc-webcam-wrap-top">
+                                <div class="thinkproc-error-icon">
+                                    <img src="{{enviroment_url}}images/Camera.svg" alt="{{status.primary_camera}}" />
+                                </div>
+                                {{status.primary_camera}}
+                            </div>
+                            <div class="thinkproc-webcam-wrap-body" id="thinkX_cameraSelect">
+                                <div class="thinkproc-custom-select-wrap thinkproc-d-right"
+                                    id="thinkproc-camera-select"></div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-webcam-check d-none" id="thinkX_cameraChecking">
+                            {{status.cameraChecked}}
+                            <!-- Append Loader here-->
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_webCamError">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.no_camera_found}}
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_webCamPopupEnable">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.webCamEnable}}
+                        </div>
+                        <div class="thinkproc-webcam-check d-none" id="thinkX_cameraChecked">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/cameraSuccess.svg" alt="{{steps.browser_check}}" />
+                                <!-- <img src="{{enviroment_url}}images/browser_check_error.svg" alt="{{steps.browser_check}}" /> -->
+                            </div>
+                            {{status.cameraChecked}}
+                        </div>
+                    </div>
+                    <!-- Microphone Check -->
+                    <div class="thinkproc-microphone-check d-none" id="thinkX_micSuccess" data-step="mic">
+                        <div class="thinkproc-webcam-wrap thinkproc-mb-40 d-none" id="thinkX_audioDiv">
+                            <div class="thinkproc-webcam-wrap-top">
+                                <div class="thinkproc-error-icon">
+                                    <img src="{{enviroment_url}}images/Microphone.svg" alt="{{status.primary_mic}}" />
+                                </div>
+                                {{status.primary_mic}}
+                            </div>
+                            <div class="thinkproc-webcam-wrap-body" id="thinkX_micSelect">
+                                <div class="thinkproc-custom-select-wrap thinkproc-d-right" id="thinkproc-mic-select">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-error-wrap d-none warning w40 d-none" id="thinkX_alertMicBox">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/info-circle.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.headphoneAlert}}
+                        </div>
+                        <div id="thinkX_audioImage" class="audioImage d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/microphone_check.svg" alt="{{steps.checking_mic}}" />
+                                <!-- <img src="{{enviroment_url}}images/microphone_check_error.svg" alt="{{steps.checking_mic}}" /> -->
+                            </div>
+                            {{status.checking_mic}}
+                            <!-- <p id="thinkX_checkingMic">{{status.checking_mic}}</p> -->
+                        </div>
+                        <div id="thinkX_audioStatic" class="audioStatic d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/Mic.svg" alt="{{steps.checking_mic}}" />
+                            </div>
+                            <div>
+                                <canvas id="thinkX_audioCanvas" width="160" height="80"></canvas>
+                            </div>
+
+                            <p id="thinkX_checkingMic">{{status.checking_mic}}</p>
+                        </div>
+                        <div id="thinkX_speakerAvailable" class="speakerAvailable d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/speaker_check.svg" alt="{{steps.checking_mic}}" />
+                            </div>
+                            <p id="thinkX_speakerAvailable-check-text">{{status.speakerCheck}}</p>
+                        </div>
+                        <div id="thinkX_speakerAvailable-Error" class="speakerAvailable-Error d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/speaker_check_error.svg"
+                                    alt="{{steps.checking_mic}}" />
+                            </div>
+                            <p id="speakerAvailable-Error-check-text"></p>
+                        </div>
+                        <div id="thinkX_speakerCheck" class="speakerCheck d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/speaker_check.svg" alt="{{steps.checking_mic}}" />
+                                <!-- <img src="{{enviroment_url}}images/microphone_check_error.svg" alt="{{steps.checking_mic}}" /> -->
+                            </div>
+                            <!-- <canvas id="machineAudio" width="462" height="120"></canvas> -->
+                            <p id="thinkX_speaker-check-text">{{status.speakerCheck}}</p>
+                        </div>
+                        <div id="thinkX_speakerStatic" class="speakerStatic d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/SpeakerStatic.svg" alt="{{steps.checking_mic}}" />
+                                <!-- <img src="{{enviroment_url}}images/microphone_check_error.svg" alt="{{steps.checking_mic}}" /> -->
+                            </div>
+                            <canvas id="thinkX_machineAudio" width="160" height="80"></canvas>
+                            <p id="thinkX_speaker-check-text2">{{status.speakerCheck}}</p>
+                        </div>
+                        <div id="thinkX_speakerCheck-error" class="speakerCheck-error d-none">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/speaker_check_error.svg"
+                                    alt="{{steps.checking_mic}}" />
+                                <!-- <img src="{{enviroment_url}}images/microphone_check_error.svg" alt="{{steps.checking_mic}}" /> -->
+                            </div>
+                            <!-- <canvas id="thinkX_machineAudio" width="160" height="80"></canvas> -->
+                            <p id="thinkX_speakerError-check-text">{{status.speakerCheck}}</p>
+                        </div>
+                        <div class="micErrorIcon d-none" id="thinkX_micErrorIcon">
+                            <div class="thinkproc-step-image-box">
+                                <img src="{{enviroment_url}}images/mic_error.svg" alt="{{status.error}}" />
+                            </div>
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_micError">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.no_microphone_found}}
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_micPopupEnable">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.micEnable}}
+                        </div>
+                    </div>
+                    <!-- Network Check -->
+                    <div class="thinkproc-network-check d-none" id="thinkX_networkSuccess" data-step="network">
+                        <div class="thinkproc-step-image-box d-none" id="thinkX_networkCheck">
+                            <img src="{{enviroment_url}}images/network_check.svg" alt="{{steps.network_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/network_check_error.svg" alt="{{steps.network_check}}" /> -->
+                        </div>
+                        <div class="thinkproc-step-image-box" id="thinkX_networkStatic">
+                            <img src="{{enviroment_url}}images/networkStatic.svg" alt="{{steps.network_check}}" />
+                            <!-- <img src="{{enviroment_url}}images/network_check_error.svg" alt="{{steps.network_check}}" /> -->
+                        </div>
+                        <div class="thinkproc-step-image-box d-none" id="thinkX_networkErrorImg">
+                            <!-- <img src="{{enviroment_url}}images/networkStatic.svg" alt="{{steps.network_check}}" /> -->
+                            <img src="{{enviroment_url}}images/network_check_error.svg" alt="{{steps.network_check}}" />
+                        </div>
+                        <p id="thinkX_networkCheckText">{{status.network_check}}</p>
+                        <div class="thinkproc-inner-wrap d-none" id="thinkX_networkChecking">
+                            <div id="thinkX_showNetwork">
+                                <div class="thinkproc_innerText">{{status.network_check_download}}</div>
+                                <div class="thinkproc_innerText_data" id="thinkX_network-download">00.00 MBPS</div>
+                            </div>
+                            <div id="thinkX_showNetworkUpload">
+                                <div class="thinkproc_innerText">{{status.network_check_upload}}</div>
+                                <div class="thinkproc_innerText_data" id="thinkX_network-upload">00.00 MBPS</div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-error-wrap d-none" id="thinkX_networkError">
+                            <div class="thinkproc-error-icon">
+                                <img src="{{enviroment_url}}images/error.svg" alt="{{status.error}}" />
+                            </div>
+                            {{status.network_error}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-step-body thinkproc_body_id thinkproc_id_photo d-none" id="thinkproc_body_id"
+                role="tabpanel" aria-labelledby="thinkproc_step_id">
+                <div id="thinkX_id-capture">
+                    <div class="thinkproc-wrap-header">
+                        <div class="twhLeft">
+                            <div class="think-wrap-header-main">{{idVerification.id_heading}}</div>
+                            <div class="think-wrap-header-sub">{{idVerification.id_heading_sub}}</div>
+                        </div>
+                        <div class="twhRight d-none" id="thinkX_idAttempt">
+                            <div class="attempWrap">{{status.attempt_no}}: <span
+                                    id="thinkX_attempNumberID">1</span><span id="thinkX_id_attemp_count">/3</span></div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-photo-id-wrap">
+                        <div class="thinkproc-piLeft">
+
+                            <div class="thinkproc-inst-header">{{idVerification.instruction}}</div>
+                            <div class="thinkproc-inst-list">
+                                <ul>
+                                    <li>{{idVerification.ilist1}}</li>
+                                    <li>{{idVerification.ilist2}}</li>
+                                    <li>{{idVerification.ilist3}}</li>
+                                    <li>{{idVerification.ilist4}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thinkproc-piRight">
+                            <div class="thinkproc-piRight-top" id="thinkx_proc_video_wrap_id">
+                                <div class="thinkproc-video-wrap id_wrap id_capture" id="thinkX_id-card-video"></div>
+                            </div>
+                            <!-- <div class="thinkproc-image-msg">
+                            <img src="{{enviroment_url}}images/exclamation_blue.svg" alt="{{idVerification.exclamtion}}">
+                            <span id="id-card-message">{{idVerification.setIdCard}}</span>
+                        </div> -->
+                            <!-- <div class="thinkproc-piRight-bottom"></div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="thinkproc-image-button">
+                    <button role="button" data-target="" id="thinkX_id-card-retry"
+                        class="thinkpro-btn thinkpro-image-retry d-none">{{idVerification.retakeBtn}}</button>
+                    <button role="button" data-target="" id="thinkX_id-card-next"
+                        class="thinkpro-btn thinkpro-image-nextbtn d-none">{{idVerification.nextBtn}}</button>
+                    <button role="button" data-target="" id="thinkX_id-card-capture-id"
+                        class="thinkpro-btn thinkpro-image-capturetn">{{idVerification.capturePhoto}}</button>
+                </div>
+            </div>
+            <div class="thinkproc-step-body thinkproc_body_photo thinkproc_id_photo d-none" id="thinkproc_body_photo"
+                role="tabpanel" aria-labelledby="thinkproc_step_photo">
+                <div id="thinkX_photo-capture">
+                    <div class="thinkproc-wrap-header">
+                        <div class="twhLeft">
+                            <div class="think-wrap-header-main">{{photoVerification.photo_heading}}</div>
+                            <div class="think-wrap-header-sub">{{photoVerification.photo_heading_sub}}</div>
+                        </div>
+                        <div class="twhRight d-none" id="thinkX_photoAttempt">
+                            <div class="attempWrap" id="">{{status.attempt_no}}: <span
+                                    id="thinkX_attempNumber">1</span><span id="thinkX_id_attemp_count_photo">/3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-photo-id-wrap">
+                        <div class="thinkproc-piLeft">
+                            <div class="thinkproc-inst-header">{{photoVerification.instruction}}</div>
+                            <div class="thinkproc-inst-list">
+                                <ul>
+                                    <li>{{photoVerification.ilist1}}</li>
+                                    <li>{{photoVerification.ilist2}}</li>
+                                    <li>{{photoVerification.ilist3}}</li>
+                                    <li>{{photoVerification.ilist4}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="thinkproc-piRight">
+                            <div class="thinkproc-piRight-top" id="thinkx_proc_video_wrap_photo">
+                                <div class="thinkproc-video-wrap id_wrap" id="thinkX_photo-card-video">
+                                </div>
+                            </div>
+                            <!-- <div class="thinkproc-image-msg">
+                            <img src="{{enviroment_url}}images/exclamation_blue.svg" alt="{{idVerification.exclamtion}}">
+                            <span id="photo-card-message">{{idVerification.photo_info}}</span>
+                        </div> -->
+                            <div class="thinkproc-piRight-bottom">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thinkproc-image-button">
+                    <button role="button" data-target="" id="thinkX_photo-card-retry"
+                        class="thinkpro-btn thinkpro-image-retry d-none">{{photoVerification.retakeBtn}}</button>
+                    <button role="button" data-target="" id="thinkX_photo-card-next"
+                        class="thinkpro-btn thinkpro-image-nextbtn d-none">{{photoVerification.nextBtn}}</button>
+                    <button role="button" data-target="" id="thinkX_photo-card-capture"
+                        class="thinkpro-btn thinkpro-image-capturetn disabled">{{photoVerification.capturePhoto}}</button>
+                </div>
+            </div>
+            <div class="thinkproc-step-body thinkproc_body_compare d-none" id="thinkproc_body_compare" role="tabpanel"
+                aria-labelledby="thinkproc_step_id">
+                <div id="compareWrap" class="compareWrap">
+                    <div>
+                        <div class="verifyWrap d-none mb-4rem" id="thinkX_verifyWrap">
+                            <div class="thinkproc_loaderWrap d-none" id="thinkX_loaderWrap">
+                                <img src="{{enviroment_url}}images/loader.gif" alt="fail icon" id="thinkX_loaderCompare"
+                                    class="d-none" />
+                                <img src="{{enviroment_url}}images/Default.svg" alt="fail icon" id="thinkX_failCompare"
+                                    class="d-none" />
+                                <img src="{{enviroment_url}}images/succes.svg" alt="success icon"
+                                    id="thinkX_successCompare" class="d-none" />
+                            </div>
+                            <div class="varificationMsgWrap" id="thinkX_verificationMsg">
+                                <span id="thinkX_rejectReason" class="thinkX_rejectReason d-none"></span>
+                                <span id="thinkX_loaderWrapText">{{status.idInprogress}}</span>
+                            </div>
+                        </div>
+                        <div class="d-none" id="thinkX_idVerifyWarning">
+                            <div class="thinkproc-warrning-wrap">
+                                <div class="thinkproc-error-icon">
+                                    <img src="{{enviroment_url}}images/warning.svg" alt="{{status.error}}" />
+                                </div>
+                                <span id="thinkX_attemptVerify">{{status.idNotVerify}}</span>
+                            </div>
+
+                        </div>
+                        <div class="imageContainer" id="thinkX_profileContainer">
+                            <div>
+                                <div class="icHeader" id="thinkX_capturePhoto">{{status.capturedPhoto}}</div>
+                                <div class="icBox">
+                                    <img id="thinkX_candidateImgContainer"
+                                        src="https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+                                        alt="Candidate photo" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="imageList">
+                            <div class="imageContainer" id="thinkX_imgContainer">
+                                <div id="thinkX_verify_capturePhoto" class="d-none">
+                                    <div class="icHeader" id="thinkX_capturePhoto">{{status.capturePhoto}}</div>
+                                    <div class="icBox">
+                                        <img id="thinkX_verify_capturePhoto_id"
+                                            src="https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+                                            alt="Candidate photo" />
+                                    </div>
+                                    <div class="verifyStatus d-none">
+                                        <div class="icon">
+                                            <img id="thinkX_verify_capturePhoto_success"
+                                                src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                            <img id="thinkX_verify_capturePhoto_error" class="d-none"
+                                                src="{{enviroment_url}}images/failed.svg" alt="failed icon" />
+                                        </div>
+                                        <span id="thinkX_verify_capturePhoto_status">{{status.FM}}</span>
+                                    </div>
+                                </div>
+                                <div id="thinkX_verify_registerPhoto" class="d-none">
+                                    <div class="icHeader" id="thinkX_rigesterPhoto">{{status.registerPhoto}}</div>
+                                    <div class="icBox">
+                                        <img id="thinkX_verify_registerPhoto_photo"
+                                            src="https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+                                            alt="Candidate photo" />
+                                    </div>
+                                    <div class="verifyStatus">
+                                        <div class="icon">
+                                            <img id="thinkX_verify_registerPhoto_success" class="d-none"
+                                                src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                            <img id="thinkX_verify_registerPhoto_error" class="d-none"
+                                                src="{{enviroment_url}}images/failed.svg" alt="failed icon" />
+                                        </div>
+                                        <span id="thinkX_verify_registerPhoto_status">{{status.matched}}</span>
+                                    </div>
+                                </div>
+                                <div id="thinkX_verify_registerID" class="d-none">
+                                    <div class="icHeader" id="thinkX_rigesterID">{{status.registeredID}}</div>
+                                    <div class="icBox">
+                                        <img id="thinkX_verify_registerPhoto_ID" class="d-none"
+                                            src="https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+                                            alt="Candidate photo" />
+                                    </div>
+                                    <div class="verifyStatus">
+                                        <div class="icon">
+                                            <img id="thinkX_verify_registerID_success"
+                                                src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                            <img id="thinkX_verify_registerID_error" class="d-none"
+                                                src="{{enviroment_url}}images/failed.svg" alt="failed icon" />
+                                        </div>
+                                        <span id="thinkX_verify_registerID_status">{{status.matched}}</span>
+                                    </div>
+                                </div>
+                                <div id="thinkX_verify_captureID" class="d-none">
+                                    <div class="icHeader" id="thinkX_captureID">{{status.captureId}}</div>
+                                    <div class="icBox">
+                                        <img id="thinkX_verify_captureID_id"
+                                            src="https://lowcars.net/wp-content/uploads/2017/02/userpic.png"
+                                            alt="Candidate photo" />
+                                    </div>
+                                    <div class="verifyStatus">
+                                        <div class="icon">
+                                            <img id="thinkX_verify_captureID_success"
+                                                src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                            <img id="thinkX_verify_captureID_error" class="d-none"
+                                                src="{{enviroment_url}}images/failed.svg" alt="failed icon" />
+                                        </div>
+                                        <span id="thinkX_verify_captureID_status">{{status.FM}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="buttonWrap d-flex flex-end mt-20" id="thinkX_rescanBtn">
+                        <button role="button" id="thinkX_rescan" class="thinkpro-btn">{{status.rescan}}</button>
+                    </div>
+                    <div class="buttonWrap d-flex flex-end mt-20 d-none" id="thinkX_nextBtn">
+                        <button role="button" id="thinkX_next" class="thinkpro-btn">{{idVerification.nextBtn}}</button>
+                    </div>
+                    <div class="buttonWrap d-none flex-end mt-20" id="thinkX_closeBtn">
+                        <button role="button" id="thinkX_close" data-attr="close-application"
+                            class="thinkpro-btn outline">{{status.closeBrowser}}</button>
+                    </div>
+                </div>
+                <div id="thinkX_revokeWrap" class="d-none">
+                    <div class="revokeWrap">
+                        <span>{{status.usedAllAttempt}}</span>
+                        <div class="iconWrap">
+                            <img src="{{enviroment_url}}images/failed.svg" alt="fail icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-step-body thinkproc_body_room  d-none" id="thinkproc_body_room" role="tabpanel"
+                aria-labelledby="thinkproc_step_room">
+                <div class="thinkproc-instruction-start d-none" id="thinkX_instruction_start">
+                    <div class="thinkproc-inst-top">
+                        <div class="thinkproc-inst-header">
+                            <div class="thinkproc-inst-title">{{status.instructionStart}}</div>
+                            <div class="thinkproc-inst-subtitle">{{status.insrucionSubitle}}</div>
+                        </div>
+                        <div class="thinkpro-inst-list">
+                            {{status.instructionStep}}
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end">
+                        <button class="thinkpro-btn" id="thinkX_proceedNow">{{status.proceedNow}}</button>
+                    </div>
+                </div>
+                <div class="thinkproc-containerQR d-none" id="thinkX_QR_dropdown">
+                    <div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_qrCode">
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.roomStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_roomCameraSelect">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-roomCamereSelectWrap">
+                                    <select id="thinkX_roomCameraSelect" class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_secondaryCamRetryIcon">
+                                    <img id="thinkX_reloadIconSecCam" src="{{enviroment_url}}images/retry.svg" alt=""
+                                        alt="retry icon"> <!-- Add "iconRotate" class when it click -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end">
+                        <button id="thinkX_roomCameraAllowBtn"
+                            class="thinkpro-btn">{{roomSanitization.secCamBtn}}</button>
+                    </div>
+                </div>
+                <div id="thinkX_threeSixtyRoomScan" class="thinkproc-roomScan d-none">
+                    <div class="thinkproc-roomScanHeader" id="thinkX_roomScanHeader">
+                        <div class="thinkproc-roomHeadLeft">
+                            <div class="thinkproc-roomTitle" id="thinkX-roomTitle">{{roomSanitization.roomtitle}}</div>
+                            <div class="thinkproc-roomSubTitle" id="thinkX-roomSubTitle">
+                                {{roomSanitization.roomSubTitle}}</div>
+                        </div>
+                        <div class="thinkproc-roomHeadRight">
+                            <div class="thinkproc-roomRight-attemp d-none" id="thinkX_roomRight">
+                                <div class="attempWrap">{{status.attempt_no}}: <span
+                                        id="thinkX_roomAttempt">1</span><span id="thinkX_maxRoomAttempt">/3</span></div>
+                            </div>
+                            <div class="thinkproc-roomRight-step">
+                                <div class="thinkproc-roomStepTop">
+                                    <span class="thinkproc_inprogress" id="thinkX_threeSixtyStart"></span>
+                                    <span class="thinkproc_deskScan" id="thinkX_DeskScan"></span>
+                                    <span class="thinkproc_completed" id="thinkX_BodyScan"></span>
+                                </div>
+                                <div class="thinkproc-roomStepBottom">{{roomSanitization.step}}: <span
+                                        id="thinkX_roomStep">1</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="thinkX_room-card-video">
+                            <div class="video-overlay-message" id="thinkX_videoOverlayMsg"></div>
+                            <!-- 360 Room Sacn -->
+                            <div class="thinkproc_roomSacnPerWrap d-none" id="thinkX_percentageBox">
+                                <div class="thinkproc_percentageBox">
+                                    <div class="thinkproc_percentageCircle">
+                                        <span class="thinkproc_start"></span>
+                                        <span class="thinkproc_end"></span>
+                                    </div>
+                                    <div class="thinkproc_percentageText" id="thinkproc_percentValue">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Room verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none" id="thinkX_roomSuccess">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span id="thinkX_roomScanFinish">{{status.roomScanFinish}}</span>
+                                <span class="thinkproc-rsNext" id="thinkX_proceeding">{{status.proceedingTo}}</span>
+                            </div>
+                        </div>
+                        <div class="thinkproc-room-scan-data d-none" id="thinkproc-room-scan-data">
+                            <div id="thinkX_roomfail" class="d-none">
+                                <div class="verifyWrap mb-4rem" id="">
+                                    <div class="thinkproc_loaderWrap" id="">
+                                        <img id="thinkX_roomErrorFail" src="{{enviroment_url}}images/Default.svg"
+                                            alt="fail icon" id="" class="d-none" />
+                                        <img id="thinkX_loadingEscalted" src="{{enviroment_url}}images/loader.gif"
+                                            alt="loading icon" id="" class="d-none" />
+                                        <img src="{{enviroment_url}}images/warning_triangle.svg" alt="Waiting icon"
+                                            id="thinkX_wait" class="d-none" />
+                                    </div>
+                                    <div class="varificationMsgWrap" id="">
+                                        <span id="thinkX_verification">{{status.firstStepRoomFail}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="thinkproc-ufm-wrap id_wrap d-none" id="thinkX_threeSixtyUfm">
+                                <div class="thinkproc-roomUFMList" id="thinkX_roomUFMList">
+                                    <div class="thinkpro-issueFound">
+                                        <div class="icon">
+                                            <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                                        </div>
+                                        <span id="thinkX_issueFound">{{status.issueFound}}</span>
+                                    </div>
+                                    <div class="ufmContainer d-none" id="thinkX_ufmContainer"></div>
+                                </div>
+                                <div class="thinkproc-roomUFMBtn d-flex flex-end">
+                                    <button class="thinkpro-btn d-none"
+                                        id="thinkX_threeSixtyRescanBtn">{{status.rescan}}</button>
+                                    <button class="thinkpro-btn outline d-none"
+                                        id="thinkX_threeSixtyCloseBtn">{{status.closeBrowser}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="thinkX_roomDeskScan" class="thinkproc-roomScan d-none">
+                    <div class="thinkproc-roomScanHeader">
+                        <div class="thinkproc-roomHeadLeft">
+                            <div class="thinkproc-roomTitle">{{desk.desktitle}}</div>
+                            <div class="thinkproc-roomSubTitle">{{desk.deskSubTitle}}</div>
+                        </div>
+                        <div class="thinkproc-roomHeadRight">
+                            <div class="thinkproc-roomRight-attemp">
+                                <div class="attempWrap">{{status.attempt_no}}: <span id="">1</span><span id="">/3</span>
+                                </div>
+                            </div>
+                            <div class="thinkproc-roomRight-step">
+                                <div class="thinkproc-roomStepTop">
+                                    <span class="thinkproc_inprogress"></span>
+                                    <span class="thinkproc_completed"></span>
+                                    <span></span>
+                                </div>
+                                <div class="thinkproc-roomStepBottom">{{desk.step}}: <span>1</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="">
+                            <div class="video-overlay-message" id="">{{desk.deskCameraMsg}}</div>
+                        </div>
+                        <!-- Desk verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span>{{status.deskScanFinish}}</span>
+                                <span class="thinkproc-rsNext">{{status.bodyScanproceedingTo}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thinkproc_roomDeskCompare d-none" id="">
+                    <div id="compareWrap" class="compareWrap">
+                        <div class="verifyWrap mb-4rem" id="">
+                            <div class="thinkproc_loaderWrap" id="">
+                                <img src="{{enviroment_url}}images/loader.gif" alt="loading icon" id=""
+                                    class="d-none" />
+                                <img src="{{enviroment_url}}images/Default.svg" alt="fail icon" id="" class="d-none" />
+                                <img src="{{enviroment_url}}images/succes.svg" alt="success icon" id=""
+                                    class="d-none" />
+                                <img src="{{enviroment_url}}images/warning_triangle.svg" alt="Waiting icon" id=""
+                                    class="" />
+                            </div>
+                            <div class="varificationMsgWrap" id="">
+                                <span id="">{{desk.deskWait}}</span>
+                            </div>
+                        </div>
+                        <div class="thinkproc-ufm-wrap id_wrap d-none" id="">
+                            <div class="thinkproc-roomUFMList">
+                                <div class="thinkpro-issueFound">
+                                    <div class="icon">
+                                        <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                                    </div>
+                                    <span id="thinkX_issueFound">{{status.issueFound}}</span>
+                                </div>
+                                <div class="ufmContainer d-none" id=""></div>
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <div class="buttonWrap d-flex flex-center d-none mt-20" id="">
+                            <button role="button" id="" data-attr="close-application"
+                                class="thinkpro-btn outline">{{status.closeBrowser}}</button>
+                        </div>
+                    </div>
+                    <div id="" class="d-none">
+                        <div class="revokeWrap">
+                            <span>{{status.usedAllAttempt}}</span>
+                            <div class="iconWrap">
+                                <img src="{{enviroment_url}}images/failed.svg" alt="fail icon" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Camera set up html section start -->
+            <div class="thinkproc-step-body thinkproc_body_room d-none" id="thinkproc_body_camera" role="tabpanel"
+                aria-labelledby="thinkproc_step_camera">
+                <!--  1 instruction -->
+                <div class="thinkproc-instruction-start d-none" id="thinkX_cameraSetup_Instruction">
+                    <div class="thinkproc-inst-top">
+                        <div class="thinkproc-inst-header">
+                            <div class="thinkproc-inst-title">{{cameraSetup.instructionTitle}}</div>
+                            <div class="thinkproc-inst-subtitle">{{cameraSetup.instructionSubTitle}}</div>
+                        </div>
+                        <div class="thinkpro-inst-list" id="thinkX_cameraSetup_instruction_step">
+                            {{cameraSetup.instructionStep}}
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end">
+                        <button class="thinkpro-btn" id="thinkX_CameraSetup_ProceedNow">{{status.proceedNow}}</button>
+                    </div>
+                </div>
+                <!-- QR -->
+                <div class="thinkproc-instruction-start d-none" id="thinkX_cameraInstructionPopup">
+                    <div class="thinkproc-inst-top">
+                        <div class="thinkproc-inst-header">
+                            <div class="thinkproc-inst-title">{{cameraSetup.instructionTitle}}</div>
+                            <div class="thinkproc-inst-subtitle">{{cameraSetup.instructionSubTitle}}</div>
+                        </div>
+                        <div class="thinkpro-inst-list">
+                            <div class="thinkX_step-card">
+                                <div class="thinkX_step-icon" style="background:#fde8e8;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="9" stroke="#c0362a" stroke-width="1.8" />
+                                        <line x1="8" y1="8" x2="16" y2="16" stroke="#c0362a" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                        <line x1="16" y1="8" x2="8" y2="16" stroke="#c0362a" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="thinkX_step-content">
+                                    <p class="thinkX_step-title">{{cameraSetup.mobileModeTitle}}</p>
+                                    <p class="thinkX_step-desc">{{cameraSetup.mobileModeDesc}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Battery -->
+                            <div class="thinkX_step-card">
+                                <div class="thinkX_step-icon" style="background:#e6f4ea;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                        <rect x="2" y="7" width="18" height="11" rx="2" stroke="#2e7d32" stroke-width="1.8"/>
+                                        <path d="M20 10h2v5h-2" stroke="#2e7d32" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 11v2M11 10v4" stroke="#2e7d32" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="thinkX_step-content">
+                                    <p class="thinkX_step-title">{{cameraSetup.batteryModeTitle}}</p>
+                                    <p class="thinkX_step-desc">{{cameraSetup.batteryModeDesc}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Screen Active -->
+                            <div class="thinkX_step-card">
+                                <div class="thinkX_step-icon" style="background:#e8edf7;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                        <rect x="7" y="2" width="10" height="18" rx="2" stroke="#1a3c5e"
+                                            stroke-width="1.8" />
+                                        <circle cx="12" cy="18" r="1" fill="#1a3c5e" />
+                                    </svg>
+                                </div>
+                                <div class="thinkX_step-content">
+                                    <p class="thinkX_step-title">{{cameraSetup.screenModeTitle}}</p>
+                                    <p class="thinkX_step-desc">{{cameraSetup.screenModeDesc}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Internet -->
+                            <div class="thinkX_step-card">
+                                <div class="thinkX_step-icon" style="background:#fff8e1;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                        <path d="M5 12.5a7 7 0 1 1 14 0 7 7 0 0 1-14 0z" stroke="#c17f00"
+                                            stroke-width="1.8" />
+                                        <path d="M9 12.5h6M12 9.5v6" stroke="#c17f00" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="thinkX_step-content">
+                                    <p class="thinkX_step-title">{{cameraSetup.internetModeTitle}}</p>
+                                    <p class="thinkX_step-desc">{{cameraSetup.internetModeDesc}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end">
+                        <button class="thinkpro-btn"
+                            id="thinkX_cameraInstructionPopup_next">{{cameraSetup.nextBtn}}</button>
+                    </div>
+                </div>
+                <!-- 2 QR code and camera selection -->
+                <div class="thinkproc-containerQR d-none" id="thinkX_QR_camSetup">
+                    <div>
+                        <div>
+                            <h6 id="thinkX-additionalCamName">{{cameraSetup.side_camera}}</h6>
+                        </div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_qrCode_camSetup">
+                                <!-- QR image bind here.. -->
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.cameraSetupStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_CameraSetupSelect">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-setUpCameraSelectWrap">
+                                    <select id="thinkX_CameraSetupSelect" class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_SetUpCameraRetryIcon">
+                                    <img id="thinkX_reloadIconCamSetup" src="{{enviroment_url}}images/retry.svg" alt=""
+                                        alt="retry icon"> <!-- Add "iconRotate" class when it click -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end">
+                        <button id="thinkX_CameraSetupAllowBtn"
+                            class="thinkpro-btn">{{cameraSetup.setUpCamBtn}}</button>
+                    </div>
+                </div>
+                <!-- 3 Side, back & Front camera view -->
+                <div id="thinkX_cameraSetup_box" class="thinkproc-roomScan d-none">
+                    <div class="thinkproc-roomScanHeader" id="thinkX_roomScanHeader">
+                        <div class="thinkproc-roomHeadLeft" id="thinkX_additional_cam_heading">
+                            <div class="thinkproc-roomTitle" id="thinkX-cameraSetup-title">{{cameraSetup.side_camera}}
+                            </div>
+                            <div class="thinkproc-roomSubTitle" id="thinkX-additionalCamera-subTitle">
+                                {{cameraSetup.SubTitle}}</div>
+                        </div>
+                        <div class="thinkproc-roomHeadRight">
+                            <div class="thinkproc-roomRight-attemp d-none" id="thinkX_roomRight1">
+                                <div class="attempWrap">{{status.attempt_no}}: <span
+                                        id="thinkX_roomAttempt">1</span><span id="thinkX_maxRoomAttempt">/3</span></div>
+                            </div>
+                            <div class="thinkproc-roomRight-step">
+                                <div class="thinkproc-roomStepTop">
+                                    <span class="thinkproc_inprogress" id="thinkX_sideCameraSetup_Start"></span>
+                                    <span class="thinkproc_deskScan" id="thinkX_backCameraSetup_Start"></span>
+                                    <span class="thinkproc_completed" id="thinkX_frontCameraSetup_Start"></span>
+                                </div>
+                                <div class="thinkproc-roomStepBottom" id="thinkX_step_count_area">
+                                    {{roomSanitization.step}}: <span id="thinkX_cameraStepupCount">1</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="thinkX_cameraSetup-card-video">
+                            <div class="video-overlay-message" id="thinkX_videoOverlayMsg_cameraSetup"></div>
+                            <!-- Add camera video element -->
+                            <div class="addCameraWrap">
+                                <div class="addIconWrap">
+                                    <img class="d-none" id="sideCamIcon" src="{{enviroment_url}}images/side_camera.svg"
+                                        alt="side Camera Icon" />
+                                    <img class="d-none" id="backCamIcon" src="{{enviroment_url}}images/back_camera.svg"
+                                        alt="back Camera Icon" />
+                                    <img class="d-none" id="frontCamIcon"
+                                        src="{{enviroment_url}}images/front_camera.svg" alt="front Camera Icon" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- additional camera stream video element -->
+                        <div class="thinkproc-photo-id-wrap d-none" id="thinkX_additional_camera_box">
+                            <div class="thinkproc-piLeft">
+                                <div class="thinkproc-inst-header">{{additional.instruction}}</div>
+                                <div class="thinkproc-inst-list" id="thinkX_customCam_instruition">
+                                    <ul>
+                                        <li>{{additional.ilist1}}</li>
+                                        <li>{{additional.ilist2}}</li>
+                                        <li>{{additional.ilist3}}</li>
+                                        <li>{{additional.ilist4}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="thinkproc-piRight">
+                                <div class="thinkproc-piRight-top">
+                                    <div class="thinkproc-video-wrap id_wrap id_capture"
+                                        id="thinkX_additional-cameraSetup-card-video"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-inst-bottom d-flex flex-specebetween align-center d-none"
+                            id="thinkX_cameraSetup_btn">
+                            <div class="think-custom-checkbox">
+                                <input type="checkbox" id="thinkX_additional_camera_checkbox">
+                                <label for="thinkX_additional_camera_checkbox">{{additional.checkboxNote}}</label>
+                            </div>
+                            <button disabled id="thinkX_additionalCamera_AllowBtn"
+                                class="thinkpro-btn">{{cameraSetup.nextBtn}}</button>
+                        </div>
+
+                        <!-- camera setup verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none" id="thinkX_camera_setup_success">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span id="thinkX_cameraSetupFinish">{{status.side_cameraSetupFinish}}</span>
+                                <span class="thinkproc-rsNext" id="thinkX_cameraSetup_proceeding"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Camera set html section end -->
+        </div>
+    </div>
+</div>
+<!-- Screen Share Popups -->
+<!-- <div class="thinkproc-external-popup-overlay d-none" id="thinkX_screenSharePopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div ">
+                <span>{{popup_text.screenShare}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <p>{{popup_text.screenShareProceedText}}</p>
+            </div>
+            <p id="thinkX_screenShareError"></p>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn" id="thinkX_btnScreen">{{popup_buttons.shareScreen}}</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Camera Issue Popups -->
+<div class="thinkproc-external-popup-overlay w600 d-none" id="thinkX_cameraPopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <div class="icon">
+                    <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                </div>
+                <span>{{status.camera_Issue}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description thinkproc-external-popup-description-align">
+                {{status.cameraPopupText}}
+                <div class="thinkproc-external-popup-select">
+                    <div class="thinkproc-external-popup-subhdng-div">
+                        <span>{{status.cameraSelect}}</span>
+                    </div>
+                    <div class="selectWrap">
+                        <div class="thinkproc-custom-select-wrap" id="thinkX_selectCamera">
+                            <!-- <select name="" id="avilableCameras">
+                                <option value="">No camera found</option>
+                            </select> -->
+                        </div>
+                        <div class="retryIcon" id="thinkX_retryIcon">
+                            <img id="thinkX_reloadIconCam" src="{{enviroment_url}}images/retry.svg" alt=""
+                                alt="retry icon"> <!-- Add "iconRotate" class when it click -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn outline" data-attr="close-application"
+                    id="thinkX_cameraRetry_closeApplication">{{status.closeApplication}} </button>
+                <button class="thinkpro-btn" id="thinkX_cameraRetry">{{popup_buttons.retry}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- microphone Issue Popups -->
+<div class="thinkproc-external-popup-overlay w600 d-none" id="thinkX_micPopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <div class="icon">
+                    <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                </div>
+                <span>{{status.mic_Issue}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description thinkproc-external-popup-description-align">
+                {{status.micPopupText}}
+                <div class="thinkproc-external-popup-select">
+                    <div class="thinkproc-external-popup-subhdng-div">
+                        <span>{{status.selectMicrophone}}</span>
+                    </div>
+                    <div class="selectWrap">
+                        <div class="thinkproc-custom-select-wrap" id="thinkX_selectMic">
+                            <!-- <select name="" id="avilableMicrophones">
+                                <option value="">No microphone found</option>
+                            </select> -->
+                        </div>
+                        <div class="retryIcon" id="thinkX_micRetryIcon">
+                            <img id="thinkX_reloadIconMic" src="{{enviroment_url}}images/retry.svg" alt=""
+                                alt="retry icon"> <!-- Add "iconRotate" class when it click -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn outline" data-attr="close-application"
+                    id="thinkX_micRetry_closeApplication">{{status.closeApplication}}</button>
+                <button class="thinkpro-btn" id="thinkX_micRetry">{{popup_buttons.retry}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- screen share Issue Popups -->
+<div class="thinkproc-external-popup-overlay w600 d-none" id="thinkX_screenShareErrorPopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <div class="icon">
+                    <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                </div>
+                <span>{{status.screenIssue}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                {{status.screenIssueText}}
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn outline" data-attr="close-application"
+                    id="thinkX_ScreenShareRetry_closeApplication">{{status.closeApplication}}</button>
+                <button class="thinkpro-btn" id="thinkX_ScreenShareRetry">{{popup_buttons.shareScreen}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Network Issue Popup -->
+<div class="thinkproc-external-popup-overlay w600 thinkX_Popup d-none" id="thinkX_network_popup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-description">
+                <div class="think_popupIconWrap">
+                    <div class="icon">
+                        <img src="{{enviroment_url}}images/danger_triangle.svg" alt="">
+                    </div>
+                    <span id="dialog-header">{{status.internetInterrupt}}</span>
+                </div>
+                <div class="loading_gifdiv mt-20" id="thinkX_main_network_loader">
+                    <div class="thinkproc_loader" id="thinkX_network_loader"></div>
+
+                </div>
+                <span id="thinkX_network_reconnecting">{{status.attemptReconnect}}</span>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkX_network_close thinkpro-btn"
+                    id="thinkX_network_close">{{status.closeApplication}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Desk Issue Popups -->
+<div class="thinkproc-external-popup-overlay thinkX_deskPopup d-none" id="thinkX_deskPopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <div class="icon">
+                    <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                </div>
+                <span>{{desk.deskpopupTitle}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <div class="thinkproc-external-popup-subhdng-div">{{desk.deskpopupSubTitle}}:</div>
+                <p>{{desk.deskpopupText}}</p>
+                <div class="thinlproc-desk-issueList">
+                    <div class="thinlproc-desk-issueListItem">
+                        <input type="radio" name="deskIssue" id="thinkX_deskInssue1">
+                        <label for="thinkX_deskInssue1"><span></span></label>
+                    </div>
+                    <div class="thinlproc-desk-issueListItem">
+                        <input type="radio" name="deskIssue" id="thinkX_deskInssue2">
+                        <label for="thinkX_deskInssue2"><span></span></label>
+                    </div>
+                    <div class="thinlproc-desk-issueListItem">
+                        <input type="radio" name="deskIssue" id="thinkX_deskInssue3">
+                        <label for="thinkX_deskInssue3"><span></span></label>
+                    </div>
+                </div>
+                <div class="deskIssueDesc">
+                    <textarea name="deskDesc" id="thinkX_deskDesc" placeholder="{{desk.deskpopupTextDesc}}"></textarea>
+                    <div class="thinkproc_textCountWrap">
+                        <span id="thinkproc_textCount" id="thinkX_textCount">0</span>
+                        <span>/</span>
+                        <span id="thinkproc_textTotalCount">200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn" id="thinkX_micRetryDesk">{{desk.deskpopupBtn}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Exam Side Camera Setup -->
+<div class="thinkproc-external-popup-overlay w800 largePopup sideCameraPopup d-none"
+    id="thinkX_exam_side_camera_setup_popup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <span>{{cameraSetup.side_camera_setup}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <div class="thinkproc-containerQR" id="thinkX_side_qr_popup_dropdown">
+                    <div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_side_popup_qrCode">
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.roomStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_side_cameraSetupSelect_exam">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-side_cameraSetupWrap">
+                                    <select id="thinkX_side_cameraSetupSelect_exam"
+                                        class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_side_secondaryCamRetryIcon_exam">
+                                    <img id="thinkX_side_reloadIconSecCam" src="{{enviroment_url}}images/retry.svg"
+                                        alt="" alt="retry icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end w100">
+                        <button id="thinkX_side_CameraAllowBtn"
+                            class="thinkpro-btn">{{cameraSetup.setUpCamBtn}}</button>
+                    </div>
+                </div>
+                <!-- Exam Side Camera View -->
+                <div class="thinkproc_side_camera_view d-none" id="thinkX_side_cameraSetup_box">
+                    <div class="thinkproc_side_camera_view_top">
+                        <div class="thinkproc_side_camera_view_title">{{cameraSetup.side_camera}}</div>
+                        <div class="thinkproc_side_camera_view_subtitle">{{cameraSetup.SubTitle}}</div>
+                    </div>
+                    <div class="thinkproc_side_camera_view_bottom thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="thinkX_side-cameraSetup-card-video">
+                            <!-- Add camera video element -->
+                            <div class="addCameraWrap">
+                                <div class="addIconWrap">
+                                    <img src="{{enviroment_url}}images/side_camera.svg" alt="side Camera Icon" />
+                                </div>
+                            </div>
+                            <div class="thinkproc_side_camera_view_message">
+                                <span id="thinkX_side_videoOverlayMsg_cameraSetup">
+                                    {{status.cameraSetup_instuction}}</span>
+                            </div>
+                        </div>
+                        <!-- camera setup verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none" id="thinkX_side_camera_setup_success">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span>{{status.side_cameraSetupFinish}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Exam Back Camera Setup -->
+<div class="thinkproc-external-popup-overlay w800 largePopup sideCameraPopup d-none"
+    id="thinkX_exam_back_camera_setup_popup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <span>{{cameraSetup.back_camera_setup}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <div class="thinkproc-containerQR" id="thinkX_back_qr_popup_dropdown">
+                    <div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_back_popup_qrCode">
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.roomStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_back_cameraSetupSelect_exam">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-back_cameraSetupWrap">
+                                    <select id="thinkX_back_cameraSetupSelect_exam"
+                                        class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_back_secondaryCamRetryIcon_exam">
+                                    <img id="thinkX_back_reloadIconSecCam" src="{{enviroment_url}}images/retry.svg"
+                                        alt="" alt="retry icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end w100">
+                        <button id="thinkX_back_CameraAllowBtn"
+                            class="thinkpro-btn">{{cameraSetup.setUpCamBtn}}</button>
+                    </div>
+                </div>
+                <!-- Exam Back Camera View -->
+                <div class="thinkproc_side_camera_view d-none" id="thinkX_back_cameraSetup_box">
+                    <div class="thinkproc_side_camera_view_top">
+                        <div class="thinkproc_side_camera_view_title">{{cameraSetup.back_camera}}</div>
+                        <div class="thinkproc_side_camera_view_subtitle">{{cameraSetup.SubTitle}}</div>
+                    </div>
+                    <div class="thinkproc_side_camera_view_bottom thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="thinkX_back-cameraSetup-card-video">
+                            <!-- Add camera video element -->
+                            <div class="addCameraWrap">
+                                <div class="addIconWrap">
+                                    <img src="{{enviroment_url}}images/back_camera.svg" alt="back Camera Icon" />
+                                </div>
+                            </div>
+                            <div class="thinkproc_side_camera_view_message">
+                                <span id="thinkX_back_videoOverlayMsg_cameraSetup">
+                                    {{status.cameraSetup_instuction}}</span>
+                            </div>
+                        </div>
+                        <!-- camera setup verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none" id="thinkX_back_camera_setup_success">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span>{{status.back_cameraSetupFinish}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Exam Front Camera Setup -->
+<div class="thinkproc-external-popup-overlay w800 largePopup sideCameraPopup d-none"
+    id="thinkX_exam_front_camera_setup_popup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <span>{{cameraSetup.front_camera_setup}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <div class="thinkproc-containerQR" id="thinkX_front_qr_popup_dropdown">
+                    <div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_front_popup_qrCode">
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.roomStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_front_cameraSetupSelect_exam">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-front_cameraSetupWrap">
+                                    <select id="thinkX_front_cameraSetupSelect_exam"
+                                        class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_front_secondaryCamRetryIcon_exam">
+                                    <img id="thinkX_front_reloadIconSecCam" src="{{enviroment_url}}images/retry.svg"
+                                        alt="" alt="retry icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end w100">
+                        <button id="thinkX_front_CameraAllowBtn"
+                            class="thinkpro-btn">{{cameraSetup.setUpCamBtn}}</button>
+                    </div>
+                </div>
+                <!-- Exam front Camera View -->
+                <div class="thinkproc_side_camera_view d-none" id="thinkX_front_cameraSetup_box">
+                    <div class="thinkproc_side_camera_view_top">
+                        <div class="thinkproc_side_camera_view_title">{{cameraSetup.front_camera}}</div>
+                        <div class="thinkproc_side_camera_view_subtitle">{{cameraSetup.SubTitle}}</div>
+                    </div>
+                    <div class="thinkproc_side_camera_view_bottom thinkproc-roomScanBody">
+                        <div class="thinkproc-video-wrap id_wrap" id="thinkX_front-cameraSetup-card-video">
+                            <!-- Add camera video element -->
+                            <div class="addCameraWrap">
+                                <div class="addIconWrap">
+                                    <img src="{{enviroment_url}}images/front_camera.svg" alt="front Camera Icon" />
+                                </div>
+                            </div>
+                            <div class="thinkproc_side_camera_view_message">
+                                <span id="thinkX_front_videoOverlayMsg_cameraSetup">
+                                    {{status.cameraSetup_instuction}}</span>
+                            </div>
+                        </div>
+                        <!-- camera setup verify successfully -->
+                        <div class="thinkproc-roomSuccess d-none" id="thinkX_front_camera_setup_success">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span>{{status.front_cameraSetupFinish}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Exam Additional Camera Setup -->
+<div class="thinkproc-external-popup-overlay w800 largePopup sideCameraPopup d-none"
+    id="thinkX_exam_additional_camera_setup_popup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-hdng-div">
+                <span>{{cameraSetup.custom_camera}}</span>
+            </div>
+            <div class="thinkproc-external-popup-description">
+                <div class="thinkproc-containerQR" id="thinkX_additional_qr_popup_dropdown">
+                    <div>
+                        <div class="thinkproc-qrwrap">
+                            <div class="thinkproc-qrCode" id="thinkX_additional_popup_qrCode">
+                            </div>
+                            <div class="thinkproc-qr-text">{{status.scanQR}}</div>
+                            <div class="thinkproc-qr-subtext">{{status.roomStart}}</div>
+                        </div>
+                        <div class="thinkproc-divider"><span>{{status.or}}</span></div>
+                        <div class="selectWrap">
+                            <label for="thinkX_additional_cameraSetupSelect_exam">{{status.selectCamera}}</label>
+                            <div class="thinkproc_SelectWrap">
+                                <div class="thinkproc-custom-select-wrap" id="thinkproc-additional_cameraSetupWrap">
+                                    <select id="thinkX_additional_cameraSetupSelect_exam"
+                                        class="thinkproc-custom-select-default">
+                                        <option>HP 325 FHD Webc</option>
+                                    </select>
+                                </div>
+                                <div class="retryIcon d-none" id="thinkX_additional_secondaryCamRetryIcon_exam">
+                                    <img id="thinkX_additional_reloadIconSecCam"
+                                        src="{{enviroment_url}}images/retry.svg" alt="" alt="retry icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thinkproc-inst-bottom d-flex flex-end w100">
+                        <button id="thinkX_additional_CameraAllowBtn"
+                            class="thinkpro-btn">{{cameraSetup.setUpCamBtn}}</button>
+                    </div>
+                </div>
+                <!-- Exam Additional Camera View -->
+                <div class="thinkproc_side_camera_view d-none" id="thinkX_additional_cameraSetup_box">
+                    <div class="thinkproc_side_camera_view_top">
+                        <div class="thinkproc_side_camera_view_title">{{cameraSetup.additional_camera}}</div>
+                        <div class="thinkproc_side_camera_view_subtitle">{{cameraSetup.additional_camera_subtitle}}
+                        </div>
+                    </div>
+                    <div class="thinkproc_side_camera_view_bottom thinkproc-roomScanBody">
+                        <div class="thinkproc-photo-id-wrap">
+                            <div class="thinkproc-piLeft">
+                                <div class="thinkproc-inst-header">{{additional.instruction}}</div>
+                                <div class="thinkproc-inst-list" id="thinkX_popup_customCam_instruition">
+                                    <ul>
+                                        <li>{{additional.ilist1}}</li>
+                                        <li>{{additional.ilist2}}</li>
+                                        <li>{{additional.ilist3}}</li>
+                                        <li>{{additional.ilist4}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="thinkproc-piRight">
+                                <div class="thinkproc-piRight-top">
+                                    <div class="thinkproc-video-wrap id_wrap id_capture"
+                                        id="thinkX_popup-additional-cameraSetup-card-video"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="thinkproc-inst-bottom d-flex flex-specebetween align-center"
+                            id="thinkX_pop_cameraSetup_btn">
+                            <div class="think-custom-checkbox">
+                                <input type="checkbox" id="thinkX_popup_additional_camera_checkbox">
+                                <label for="thinkX_popup_additional_camera_checkbox">{{additional.checkboxNote}}</label>
+                            </div>
+                            <button disabled id="thinkX_retry_additionalCamera_AllowBtn"
+                                class="thinkpro-btn">{{cameraSetup.nextBtn}}</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- camera setup verify successfully -->
+                <div class="thinkproc_side_camera_view d-none" id="thinkX_additional_camera_setup_success">
+                    <div class="thinkproc_side_camera_view_bottom thinkproc-roomScanBody">
+                        <div class="thinkproc-roomSuccess">
+                            <div>
+                                <div class="thinkproc-rsIcon">
+                                    <img src="{{enviroment_url}}images/succes.svg" alt="success icon" />
+                                </div>
+                                <span id="thinkX_popup_cameraSetupFinish">{{status.additional_cameraSetupFinish}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- suspend popup -->
+<div class="thinkproc-external-popup-overlay thinkX_Popup suspendPopup d-none" id="thinkX_suspendPopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-description">
+                <div class="think_popupIconWrap">
+                    <div class="icon">
+                        <img src="{{enviroment_url}}images/danger_triangle.svg" alt="{{popup_imgs.dangerTriangle}}">
+                    </div>
+                    <span id="dialog-header">{{suspendPopup.suspendTitle}}</span>
+                </div>
+                <p id="dialog-msg">{{suspendPopup.suspendSubTitle}}</p>
+                <div class="thinkproc-progress-circle">
+                    <div class="thinkproc-percent">
+                        <svg>
+                            <circle cx="40" cy="40" r="37"></circle>
+                            <circle id="thinkproc_suspend_count" cx="40" cy="40" r="37"
+                                style="--thinkproc_suspend_count:100"></circle>
+                        </svg>
+                        <div class="thinkproc-number">
+                            <span id="thinkX_suspendMin">00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn" id="thinkX_suspend_resume">{{suspendPopup.suspendBtn}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- terminate popup -->
+<div class="thinkproc-external-popup-overlay thinkX_Popup terminatePopup d-none" id="thinkX_terminatePopup">
+    <div class="thinkproc-external-popup-innerbody">
+        <div class="thinkproc-external-popup-box">
+            <div class="thinkproc-external-popup-description">
+                <div class="think_popupIconWrap">
+                    <div class="icon">
+                        <img src="{{enviroment_url}}images/Danger_Triangle.svg" alt="{{popup_imgs.dangerTriangle}}">
+                    </div>
+                    <span id="dialog-header">{{terminatePopup.terminateTitle}}</span>
+                </div>
+                <p id="dialog-msg">{{terminatePopup.terminateSubTitle}}</p>
+            </div>
+            <div class="thinkproc-external-popup-btn-div">
+                <button class="thinkpro-btn" id="thinkX_terminate_exit">{{terminatePopup.terminateBtn}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Lobby Draggable Box -->
+<div class="thinkproc_exam">
+    <div id="thinkpro_draggableBox" class="d-none">
+        <div class="thinkpro_draggableBox">
+            <img class="d-none" id="thinkX_cameraDisconnect" src="{{enviroment_url}}images/cameraDisconnectSDK.svg"
+                alt="">
+            <video id="thinkX_cameraVideo"></video>
+        </div>
+        <div class="thinkproc_chatIcon" id="thinkX_chatIcon">
+            <img src="{{enviroment_url}}images/chat.svg" alt="">
+        </div>
+    </div>
+    <!-- additional camera mobile view -->
+    <div id="thinkpro_MobileViewBox" class="d-none">
+        <div class="thinkpro_MobileViewBox">
+            <video id="thinkX_mobileCameraVideo"></video>
+        </div>
+    </div>
+    <!-- Chat -->
+    <div class="thinkproc_chat d-none" id="thinkproc_chat">
+        <div class="thinkproc_chat_header">
+            <div class="thinkproc_chat_header_left">
+                <div class="thinkproc_chat_proctor_img">
+                    <div class="thinkproc_chat_head_imgWrap" id="thinkX_candiate_picture">
+                        <img src="{{enviroment_url}}images/user.jpg" alt="">
+                    </div>
+                    <span class="thinkproc_chat_proc_active"></span>
+                </div>
+                <div class="thinkproc_chat_proc_name" id="thinkX_Candidate_Name">Lorem Ipsum</div>
+            </div>
+            <div class="thinkproc_chat_header_right">
+                <a href="#" title="Minimize" class="thinkpro_minimize_chat" id="thinkX_minimize_chat"></a>
+                <a href="#" title="Close" class="thinkpro_close_chat d-none"></a>
+            </div>
+        </div>
+        <div class="thinkprocChatMainBody" id="thinkprocChatMainBody">
+            <div class="thinkproc_chat_body" id="thinkX_chat_body">
+                <div class="thinkproc_chat_proc_call d-none" id="thinkX_chat_proc_call">
+                    <div class="thinkproc_chatpc_left">Call From Proctor</div>
+                    <div class="thinkproc_chatpc_right">
+                        <div class="thinkproc_call_action_btn" id="thinkX_call_action_btn">
+                            <button class="thinkproc_endCall">
+                                <img src="{{enviroment_url}}images/call.svg" alt="">
+                            </button>
+                            <button class="thinkproc_startCall">
+                                <img src="{{enviroment_url}}images/call.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="thinkproc_call_timer d-none" id="thinkX_call_timer">
+                            <div class="thinkproc_call_icon">
+                                <img src="{{enviroment_url}}images/call.svg" alt="">
+                            </div>
+                            <span id="thinkX_call_timer_start">00:00</span>
+                            <audio id="thinkX_call_audio" src=""></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="thinkproc_chat_histroy" id="thinkproc_chat_histroy">
+                    <!-- Example Incoming Message -->
+                    <!-- <div class="thinkproc_chat_message-bubble thinkproc_chat_message-incoming">
+                        <div class="thinkproc-message-wrap">
+                            <div class="thinkproc_chat_message_top">
+                                <div class="thinkproc_chat_proctor_img">
+                                    <img src="{{enviroment_url}}images/user.jpg" alt="">
+                                </div>
+                                <div class="thinkproc_chat_proc_name" id="thinkX_proctorName">Proctor</div>
+                            </div>
+                            <div class="thinkproc_chat_message_bottom">
+                                <span class="thinkproc_chat_message_text" id="proctorMessage">Hi there! How can I assist you today?</span>
+                                <span class="thinkproc_chat_time-stamp" id="procMsgTime">10:00 AM</span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Example Outgoing Message -->
+                    <!-- <div class="thinkproc_chat_message-bubble thinkproc_chat_message-outgoing">
+                        <div class="thinkproc-message-wrap">
+                            <div class="thinkproc_chat_message_top">
+                                <div class="thinkproc_chat_proctor_img">
+                                    <img src="{{enviroment_url}}images/user.jpg" alt="">
+                                </div>
+                                <div class="thinkproc_chat_proc_name">Lorem Ipsum</div>
+                            </div>
+                            <div class="thinkproc_chat_message_bottom">
+                                <span class="thinkproc_chat_message_text">Hi there! How can I assist you today?</span>
+                                <span class="thinkproc_chat_time-stamp">10:00 AM</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="thinkproc_chat_footer">
+                <div class="thinkproc_message_input_wrap">
+                    <input type="text" placeholder="Type your message...">
+                    <button type="submit" title="Send Message" id="thinkX_sendChat">
+                        <img src="{{enviroment_url}}images/send.svg" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Retake Image -->
+    <div class="thinkproc_retakeImage d-none">
+        <div class="thinkproc_retakeWrap" id="thinkproc_retakeWrap">
+            <div class="thinkproc_retake_top">
+                <video></video>
+                <div class="thinkproc_retake_msg">
+                    <span>Lorem Ipsum</span>
+                </div>
+            </div>
+            <div class="thinkproc_retake_bottom">
+                <div class="thinkproc_retake_bottom_left">
+                    <div class="thinkproc-progress-circle">
+                        <div class="thinkproc-percent">
+                            <svg>
+                                <circle cx="21" cy="21" r="18"></circle>
+                                <circle id="thinkproc_curr_Percentage" cx="21" cy="21" r="18"
+                                    style="--thinkproc_retake_percent:10"></circle>
+                            </svg>
+                            <div class="thinkproc-number">
+                                <span id="">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thinkproc_retake_bottom_right">
+                    <button class="thinkpro-btn" type="button">{{idVerification.capturePhoto}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Candidate Video -->
+    <div class="thinkproc-thinkinterview-lobby d-none" id="think_interview_lobby">
+
+        <header class="thinkproc-main-header">
+            <div class="thinkproc-logo-container">
+                <img src="{{enviroment_url}}images/logo_img.png" alt="App Logo" class="thinkproc-logo" />
+                <span class="thinkproc-divider"></span>
+                <span class="thinkproc-title">{{interviewLobby.thinkInterview}}</span>
+            </div>
+        </header>
+
+        <div class="thinkproc-container">
+            <!-- video area -->
+            <div class="thinkproc-video-block">
+
+                <!-- Name Tag -->
+                <div class="thinkproc-name-tag" id="thinkInterview_candidateName"></div>
+
+
+                <!-- <img src="{{enviroment_url}}images/dummy_img.png" alt="Video preview" /> -->
+                <video id="thinkInterview_candidateVideo" autoplay muted></video>
+                <div class="thinkproc-waiting-overlay d-none" id="thinkproc-candidate-video-muted-lobby"></div>
+
+
+                <!-- Controls -->
+                <div class="thinkproc-controls">
+                    <button class="thinkproc-control-btn d-none" title="Camera" id="thinkinterview_camera">
+                        <img src="{{enviroment_url}}images/video_icon.svg" alt="Video preview" />
+                    </button>
+                    <button class="thinkproc-control-btn d-none" title="Microphone" id="thinkinterview_microphone">
+                        <img src="{{enviroment_url}}images/microphone_icon.svg" alt="Video preview" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="thinkproc-join-section">
+                <!-- Join Button -->
+                <button class="thinkproc-join-btn" id="thinkInterview_join">{{interviewLobby.joinNow}}</button>
+                <button class="thinkproc-join-btn-waiting d-none"
+                    id="thinkInterview_waiting">{{status.waitingForCandidate}}</button>
+
+                <p class="thinkproc-consent">
+                    {{interviewLobby.joinAgree}}
+                    <a target="_blank" id="think_interview_termsLink" href="#">{{interviewLobby.termOf}} <br>
+                        {{interviewLobby.service}}</a> {{interviewLobby.and}}
+                    <a target="_blank" id="think_interview_privacyLink"
+                        href="#">{{interviewLobby.privacyStatement}}</a>.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Popup -->
+    <div class="popup-overlay d-none" id="thinkInterview_Proceed">
+        <div class="popup-box">
+            <div class="popup-header">
+                <img src="{{enviroment_url}}images/direction_img.svg" alt="Direction Icon" class="popup-icon" />
+                <h3>{{interviewLobby.proceedHeading}}</h3>
+            </div>
+
+            <p>
+                {{interviewLobby.proceedSubHeading}}
+            </p>
+
+            <div class="popup-img">
+                <img src="{{enviroment_url}}images/system_img.svg" alt="System Icon" />
+            </div>
+
+            <div class="popup-actions">
+                <button class="proceed-btn" id="thinkInterviewFinalProceed">{{interviewLobby.Proceed}}</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Interview Page -->
+    <div class="thinkproc-interview-lobby d-none" id="thinkproc_interview_lobby">
+
+        <!-- Header -->
+        <header class="thinkproc-main-header">
+            <div class="thinkproc-logo-container">
+                <img src="{{enviroment_url}}images/logo_img.png" alt="App Logo" class="thinkproc-logo" />
+                <span class="thinkproc-divider"></span>
+                <span class="thinkproc-title">{{interviewLobby.thinkInterview}}</span>
+            </div>
+            <div class="thinkproc-candidate-designation" id="think_interview_designation"></div>
+        </header>
+
+        <div class="thinkproc-main-card">
+
+            <!-- Main Video Section -->
+            <div class="thinkproc-interview-container">
+                <main class="thinkproc-interview-video-section">
+                    <div class="thinkproc-interview-video-section-inner" id="think_interview_video_section_inner">
+                        <!-- Interviewer (Main Video) -->
+                        <div class="thinkproc-interviewer-video" id="think_interview_candidateSession">
+                            <video class="thinkproc_interviewerVideo" id="thinkInterview_candidateVideoSession" autoplay
+                                muted></video>
+                            <div class="thinkproc-waiting-overlay d-none" id="thinkproc-candidate-video-muted"></div>
+                            <span class="thinkproc-interview-video-label"
+                                id="thinkproc-interview-video-label-name-candidate"></span>
+                            <audio id="thinkproc-stream-sound" src="{{enviroment_url}}images/joining.mp3"
+                                preload="auto"></audio>
+                            <div id="think_interview_userAudioHeartbeat_candidate"
+                                class="thinkproc-audio-heartbeat d-none">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="thinkproc-interviewer-video" id="thinkproc-interviewer-common-video-section">
+                            <!-- <img src="{{enviroment_url}}images/interviewer_dummy.png" alt="Interviewer Screen"/> -->
+                            <div class="thinkproc-waiting-overlay d-none" id="thinkproc-waiting-overlay">
+                                <div class="waiting-content">
+                                    <img src="{{enviroment_url}}images/candidate_dummy.png" alt="Candidate"
+                                        class="waiting-candidate-img" id="waitingCandidateImg">
+                                    <p class="waiting-text" id="think_interview_waitingCandidate">
+                                        {{interviewLobby.waitingCandidate}}</p>
+                                </div>
+                            </div>
+
+                            <div class="addiCamDisconnect d-none" id="thinkproc_primary_cam_revoke">
+                                <img src="{{enviroment_url}}images/cameraDisconnectSDK.svg"
+                                    title="Primary camera disconnected" /><br>
+                                <span class="think-interview-revoke-camera">{{interviewLobby.cameraDisableSetting}}</span>
+                            </div>
+                             <div class="addiCamDisconnect d-none" id="thinkproc_screen_share_revoke">
+                                <img src="{{enviroment_url}}images/screenShareStop.svg"
+                                    title="Screen share disconnected" /><br>
+                                <span class="think-interview-revoke-camera">{{interviewLobby.screenShareDisableSetting}}</span>
+                            </div>
+
+                            <video class="thinkproc_interviewerVideo" id="thinkInterview_mainVideo" autoplay
+                                muted></video>
+
+                            <div class="thinkproc-waiting-overlay interviewer-waiting-section"
+                                id="thinkproc-interviewer-video-muted"></div>
+
+                            <div class="thinkproc-audio-muted interviewer-mute-section"
+                                id="think_interview_left_audio_muted">
+                                <img src="{{enviroment_url}}images/mute_mic.svg" title="Audio Muted">
+                            </div>
+
+                            <span class="thinkproc-interview-video-label"
+                                id="thinkproc-interview-video-label-name"></span>
+                            <audio id="thinkproc-stream-sound" src="{{enviroment_url}}images/joining.mp3"
+                                preload="auto"></audio>
+                            <div id="think_interview_userAudioHeartbeat" class="thinkproc-audio-heartbeat d-none">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="thinkproc-interviewer-video d-none" id="thinkproc-additional-cam-section">
+                            <div class="thinkproc-waiting-overlay d-none" id="thinkproc-waiting-overlay-additional-cam">
+                                <div class="waiting-content">
+                                    <img src="{{enviroment_url}}images/cam_loader.gif" alt="Candidate"
+                                        class="waiting-candidate-img" id="waitingCameraLoadingImg">
+                                    <p class="waiting-text">{{interviewLobby.additional_cam_reconnect}}</p>
+                                </div>
+                            </div>
+                            <div class="addiCamDisconnect d-none" id="thinkproc_additional_cam_revoke">
+                                <img src="{{enviroment_url}}images/cameraDisconnectSDK.svg"
+                                    title="Additional camera disconnected" /><br>
+                                <span class="think-interview-revoke-camera">{{popup_text.additionalCameraDisconnect}}</span>
+                            </div>
+                            <video class="thinkproc_interviewerVideo" id="thinkInterview_mainVideo_additional_cam"
+                                autoplay muted></video>
+                            <span class="thinkproc-interview-video-label"
+                                id="thinkproc-interviewCustom-video-label-name"></span>
+                        </div>
+                    </div>
+
+                    <div class="thinkproc-candidate-video-rightdiv" id="think_interview_video_rightdiv">
+                        <!-- Candidate (Small Video) -->
+                        <div class="thinkproc-candidate-video thinkproc-candidate-video-interview"
+                            id="thinkproc-candidate-video-interview">
+                            <video class="thinkproc_interviewerVideo" id="thinkInterview_interviewerVideo" autoplay
+                                muted></video>
+                            <div class="thinkproc-candidate-label">
+                                <span id="thinkinterviewUser"></span>
+                            </div>
+                            <div id="think_interview_audioHeartbeat" class="thinkproc-audio-heartbeat">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <div id="think_interview_audio_muted" class="thinkproc-audio-muted d-none">
+                                <img src="{{enviroment_url}}images/mute_mic.svg" title="Audio Muted" />
+                            </div>
+                        </div>
+                        <div class="videoContainer" id="videoContainer"></div>
+                        <!-- UFM Sidebar -->
+                        <div class="thinkproc-ufm-side-page d-none" id="think_interview_ufmList">
+                            <aside class="thinkproc-ufm-panel">
+                                <div class="thinkproc-ufm-header">
+                                    <div class="thinkproc-ufm-first">
+
+                                        <h3>{{interviewLobby.ufms}}</h3>
+                                        <button class="thinkproc-chat-popup-close-btn" id="think_interview_ufm_close">
+                                            <img src="{{enviroment_url}}images/cancel_icon.svg" alt="Cancel Button" />
+                                        </button>
+                                    </div>
+
+                                    <p>{{interviewLobby.ufmHeader}}.</p>
+                                </div>
+                                <div class="thinkproc-ufm-list" id="thinkproc-ufm-list">
+                                </div>
+                                <div class="think_interview_noUfmList d-none" id="think_interview_no_ufmList">
+                                    <img src="{{enviroment_url}}images/ufm_noDataFound.svg" />
+                                    <span>{{interviewLobby.noUfmFound}}</span>
+                                </div>
+                            </aside>
+                        </div>
+                        <!-- UFM Matric Sidebar -->
+                        <div class="thinkproc-ufm-side-page d-none">
+                            <aside class="thinkproc-ufm-panel">
+
+                                <div class="thinkproc-ufm-header">
+                                    <div class="thinkproc-ufm-first">
+
+                                        <h3>{{interviewLobby.ProfileMetrics}}</h3>
+                                        <button class="thinkproc-chat-popup-close-btn">
+                                            <img src="{{enviroment_url}}images/cancel_icon.svg" alt="Cancel Button" />
+                                        </button>
+                                    </div>
+
+                                    <p>{{interviewLobby.profileMetrixHeader}}</p>
+                                </div>
+
+                                <div class="thinkproc-profile-matric">
+                                    <div class="thinkproc-metrics-section">
+                                        <h4>{{interviewLobby.Metrics}}</h4>
+                                        <div class="thinkproc-metric-card">
+                                            <img src="{{enviroment_url}}images/analylical_icon.svg" alt="Analytic" />
+                                            <p>
+                                                Cognitive & Analytical Ability
+                                            </p>
+                                        </div>
+
+                                        <div class="thinkproc-metric-card">
+                                            <img src="{{enviroment_url}}images/communication_icon.svg"
+                                                alt="Communication" />
+                                            <p>
+                                                Communication Skills
+                                            </p>
+                                        </div>
+
+                                        <div class="thinkproc-metric-card">
+                                            <img src="{{enviroment_url}}images/angular_bracket.svg" alt="Bracket" />
+                                            <p>
+                                                Technical Competence
+                                            </p>
+                                        </div>
+
+                                        <div class="thinkproc-metric-card">
+                                            <img src="{{enviroment_url}}images/star_icon.svg" alt="Star" />
+                                            <p>
+                                                Confidence & Behavior traits
+                                            </p>
+                                        </div>
+
+                                        <div class="thinkproc-metric-card">
+                                            <img src="{{enviroment_url}}images/multiplae_users.svg" alt="Users" />
+                                            <p>
+                                                Cultural & Interpersonal Alignment
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+
+                    </div>
+                    <!-- Chat Popup -->
+                    <div class="thinkproc-chat-popup d-none" id="thinkproc_chat_popup">
+                        <div class="thinkproc-chat-header">
+                            <span>{{interviewLobby.Messages}}</span>
+                            <button class="thinkproc-chat-popup-close-btn" id="thinkInterview_closeBtn">
+                                <img src="{{enviroment_url}}images/cancel_icon.svg" alt="Cancel Button" />
+                            </button>
+                        </div>
+
+                        <div class="thinkproc-chat-body" id="thinkInterview_chatMsgBody">
+                            <div class="thinkproc-message-noDataFound d-none" id="thinkInterview_noDataFound">
+                                <img src="{{enviroment_url}}images/message_noDataFound.svg" alt="No-Data-Fount Image" />
+                                <span>{{interviewLobby.noMessagesFound}}</span>
+                            </div>
+                        </div>
+
+                        <div class="thinkproc-chat-footer">
+                            <input type="text" placeholder="{{interviewLobby.write_your_message}}" />
+                            <button id="thinkinterview_sendChat">
+                                <img src="{{enviroment_url}}images/send.svg" alt="Send Button" />
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Controls Section -->
+            <footer class="thinkproc-video-control-bar">
+                <div class="thinkproc-recording">
+                    <span class="thinkproc-rec-dot d-none" id="think_interview_rec_dot"></span>
+                    <span class="thinkproc-interview-lobby-recording d-none" id="think_interview_rec">Rec</span>
+                    <span class="thinkproc-interview-lobby-timer d-none">00:00</span>
+                </div>
+
+                <div class="thinkproc-video-controls">
+                    <button class="thinkproc-video-control-btn d-none" title="Raise Hand">
+                        <img src="{{enviroment_url}}images/raise_hand.svg" alt="Raise Hand" />
+                        <span>{{interviewLobby.raiseHand}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" title="Share Screen">
+                        <img src="{{enviroment_url}}images/share_screen.svg" alt="Share Screen" />
+                        <span>{{interviewLobby.shareScreen}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" id="thinkproc-camera-open" title="Camera">
+                        <img src="{{enviroment_url}}images/video_call.svg" alt="Video Call" />
+                        <span>{{interviewLobby.Camera}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" id="thinkproc-mic-open" title="Mic">
+                        <img src="{{enviroment_url}}images/mic_icon.svg" alt="Mic" />
+                        <span>{{interviewLobby.mic}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn end-call" title="End Call" id="thinkproc-end-call-btn">
+                        <img src="{{enviroment_url}}images/end_call.svg" alt="End Call" />
+                        <span>{{interviewLobby.EndCall}}</span>
+                    </button>
+
+                </div>
+
+                <div class="thinkproc-chat-controls">
+                    <button class="thinkproc-video-control-btn" title="Message" id="thinkinterview_chat">
+                        <img src="{{enviroment_url}}images/message_box.svg" alt="Message" id="thinkInterview_StaticMsg"
+                            class="thinkInterview_StaticMsg" />
+                        <img src="{{enviroment_url}}images/blueMsg.svg" alt="Message" id="thinkInterview_blueMsg"
+                            class="thinkInterview_blueMsg d-none" />
+                        <span class="thinkInterviewMsgText" id="thinkInterviewMsgText">{{interviewLobby.Message}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" title="UFM" id="thinkinterview_UFM">
+                        <img src="{{enviroment_url}}images/ufmIcon.svg" alt="UFM Button"
+                            id="thinkInterview_StaticUFMIcon" class="thinkInterview_StaticUFMIcon" />
+                        <img src="{{enviroment_url}}images/blueUFM.svg" alt="UFM Button" id="thinkInterview_blueUFMIcon"
+                            class="thinkInterview_blueUFMIcon d-none" />
+                        <span class="thinkInterview_blueUFMText"
+                            id="thinkInterview_blueUFMText">{{interviewLobby.ufm}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" title="More" id="thinkinterview_more">
+                        <img src="{{enviroment_url}}images/more_icon.svg" alt="More Button" />
+                        <span>{{interviewLobby.More}}</span>
+                    </button>
+
+                    <button class="thinkproc-video-control-btn d-none" title="Setting" id="thinkinterview_setting">
+                        <img src="{{enviroment_url}}images/settingIcon.svg" alt="Setting Button" />
+                        <span>{{interviewLobby.Settings}}</span>
+                    </button>
+
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Screen Sharing Popup -->
+
+    <div class="thinkproc-external-popup-overlay w600 d-none" id="thinkX_screenSharePopup">
+        <div class="thinkproc-external-popup-innerbody">
+            <div class="thinkproc-external-popup-box">
+                <div class="thinkproc-external-popup-hdng-div">
+                    <div class="icon">
+                        <img src="{{enviroment_url}}images/shield_blue.svg" alt="">
+                    </div>
+                    <span>{{interviewLobby.screenSharing_privacyNotice}}</span>
+                </div>
+                <div class="thinkproc-external-popup-innerbodydiv">
+                    <div class="thinkproc-external-popup-innerbody-section">
+                        <div class="thinkproc-external-popup-descrip">
+                            {{interviewLobby.infoPrivacy_impText}}
+                        </div>
+                        <div class="thinkproc-external-popup-sub-descrip">
+                            {{interviewLobby.screenCamera_recordMsg}}
+                        </div>
+                    </div>
+                    <div class="thinkproc-external-popup-sharing-imgdiv">
+                        <img src="{{enviroment_url}}images/screen_share_popup.svg" alt="">
+                    </div>
+                    <div class="thinkproc-external-popup-innerbody-section">
+                        <div class="thinkproc-external-popup-descrip">
+                            {{interviewLobby.whatWeCollect}}
+                        </div>
+                        <div class="thinkproc-external-popup-sub-descrip2">
+                            <ul>
+                                <li>{{interviewLobby.screenActivity}}</li>
+                                <li>{{interviewLobby.cameraFeed}}</li>
+                                <li>{{interviewLobby.autioForInterview}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p id="thinkX_screenShareError"></p>
+                <div class="thinkproc-external-popup-btn-div">
+                    <button class="thinkpro-btn" id="thinkX_btnScreen">{{popup_buttons.shareScreen}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Candidate Criteria Popup -->
+    <div class="thinkproc-candidate-criteria-popup-overlay d-none" id="think_interview_criteria_popup">
+        <div class="thinkproc-candidate-criteria-popup-box">
+            <h3>{{interviewLobby.pleaseEvaluate}}</h3>
+
+            <div class="thinkproc-candidate-criteria-Section">
+                <div class="thinkproc-criteria">
+                    <h4>{{interviewLobby.FunctionalSkills}}</h4>
+                    <div class="thinkproc-criteria-tags" id="functionalSkills"></div>
+                </div>
+
+                <div class="thinkproc-criteria">
+                    <h4>{{interviewLobby.BehavioralSkills}}</h4>
+                    <div class="thinkproc-criteria-tags" id="behavioralSkills"></div>
+                </div>
+
+            </div>
+
+            <div class="thinkproc-id-varification-btn">
+                <button class="proceed-btn" id="think_interview_proceed">{{interviewLobby.Proceed}}</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Id Varification Popup -->
+    <div class="thinkproc-id-varification-popup-overlay d-none" id="thinkproc-id-varification-popup">
+        <div class="thinkproc-id-varification-popup-box">
+
+            <div class="thinkproc-id-varification-popup-subtext">
+                <h2>{{interviewLobby.CandidateIDVerification}}</h2>
+                <p>
+                    {{interviewLobby.idVerificationHeader}}
+                </p>
+            </div>
+
+            <div class="thinkproc-id-verification-grid">
+                <div class="thinkproc-id-verification-gridWrrper">
+                    <!-- Captured Section -->
+                    <div class="thinkproc-id-verification-section d-none" id="thinkproc-capturePhoto">
+                        <h4>{{interviewLobby.capturedPhoto}}</h4>
+                        <div class="thinkproc-id-verification-image-container">
+                            <img id="thinkInterview_captured_photo" src="{{enviroment_url}}images/interviewer_dummy.png"
+                                alt="Interviewer Screen" />
+                        </div>
+                    </div>
+
+                    <div class="thinkproc-id-verification-section d-none" id="thinkproc-captureID">
+                        <div class="thinkproc-id-varification-title">
+                            <h4>{{interviewLobby.captureId}}</h4>
+                            <div class="thinkproc-id-varification-ai-match" id="thinkInterview_captured_id_percentage">
+                                <span class="thinkproc-green-dot"></span> 65% AI Match
+                            </div>
+                        </div>
+                        <!-- <span class="thinkproc-id-verification-match-tag green">65% AI Match</span> -->
+                        <div class="thinkproc-id-verification-image-container">
+                            <img id="thinkInterview_captured_id" src="{{enviroment_url}}images/dummy_img.png"
+                                alt="Video preview" />
+                        </div>
+                    </div>
+
+                    <!-- Registered Section -->
+                    <div class="thinkproc-id-verification-section d-none" id="thinkproc-registerPhoto">
+                        <div class="thinkproc-id-varification-title">
+                            <h4>{{interviewLobby.registerPhoto}}</h4>
+                            <div class="thinkproc-id-varification-ai-match"
+                                id="thinkInterview_register_photo_percentage">
+                                <span class="thinkproc-green-dot"></span> 65% AI Match
+                            </div>
+                        </div>
+
+                        <!-- <h4>Registered Photo</h4> -->
+                        <div class="thinkproc-id-verification-image-container">
+                            <img id="thinkInterview_register_photo" src="{{enviroment_url}}images/interviewer_dummy.png"
+                                alt="Interviewer Screen" />
+
+                        </div>
+                    </div>
+
+                    <div class="thinkproc-id-verification-section d-none" id="thinkproc-registerID">
+                        <div class="thinkproc-id-varification-title">
+                            <h4>{{interviewLobby.registeredID}}</h4>
+                            <div class="thinkproc-id-varification-ai-match-orange"
+                                id="thinkInterview_register_id_percentage">
+                                <span class="thinkproc-orange-dot"></span> 65% AI Match
+                            </div>
+                        </div>
+
+                        <!-- <h4>Registered ID</h4> -->
+                        <div class="thinkproc-id-verification-image-container">
+                            <img id="thinkInterview_register_id" src="{{enviroment_url}}images/dummy_img.png"
+                                alt="Video preview" />
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="thinkproc-id-verification-popup-actions">
+                <button class="thinkproc-reject-btn"
+                    id="thinkInterview_reject_verification">{{interviewLobby.Reject}}</button>
+                <button class="thinkproc-allow-btn"
+                    id="thinkInterview_allow_verification">{{interviewLobby.Allow}}</button>
+                <div class="thinkproc-allow-note-box d-none" id="thinkinterview_allowNoteBackdrop">
+                    <div class="thinkprocRejectHeder">
+                        <p class="thinkproc-allow-note-question">{{idVerification.reasonHeader}}</p>
+                        <button type="button" class="thinkproc-note-close" id="thinkproc_noteCloseBtn">
+                            ✕
+                        </button>
+                    </div>
+                    <div class="alert alert-danger mb-2 p-2 text-center d-none" id="thinkproc-allowErrorMessage"></div>
+                    <textarea class="thinkproc-note-textarea" id="noteText"
+                        placeholder="Type Reason here..."></textarea>
+
+                    <small id="thinkproc-allowCharCount">0 / 100</small>
+
+                    <button class="thinkproc-btn-allow-confirm"
+                        id="thinkInterview_allowBtnID">{{interviewLobby.Reject}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Session Feedback Popup -->
+    <div class="thinkproc-feedback-popup-overlay d-none" id="thinkproc-feedback-popup-tab">
+        <div class="thinkproc-feedback-popup">
+
+            <div class="thinkproc-feedback-popup-header">
+                <h3>{{interviewLobby.SessionFeedback}}</h3>
+                <p>{{interviewLobby.pleaseEvaluate}}</p>
+            </div>
+            <!-- Functional Skills popup -->
+            <div id="thinkproc-feedback-functional-section">
+                <div class="thinkproc-session-popup-body">
+                    <div class="thinkproc-feedback-behavior-skills">
+                        <img src="{{enviroment_url}}images/behaviour_icon.svg" alt="Functional Icon" />
+                        <span>{{interviewLobby.FunctionalSkills}}</span>
+                    </div>
+
+                    <div class="thinkproc-feedback-skills-list" id="thinkproc-feedback-functional-list-container">
+                        <!-- <div class="thinkproc-feedback-skill-card">
+                            <h4>Php</h4>
+                            <p>Description</p>
+                            <div class="thinkproc-feedback-rating">
+                                <span data-value="1">1</span>
+                                <span data-value="2">2</span>
+                                <span data-value="3" class="active">3</span>
+                            </div>
+                        </div>                     -->
+                    </div>
+                </div>
+                <div class="thinkproc-session-popup-footer">
+                    <button class="thinkproc-feedback-next-btn thinkproc-disable"
+                        id="thinkproc-feedback-next-btn">{{interviewLobby.nextBtn}}</button>
+                </div>
+            </div>
+
+            <!-- Behavoural Skills popup -->
+            <div class="d-none" id="thinkproc-feedback-behavoural-section">
+                <div class="thinkproc-session-popup-body">
+                    <div class="thinkproc-feedback-behavior-skills">
+                        <img src="{{enviroment_url}}images/behaviour_icon.svg" alt="Behaviour Icon" />
+                        <span>{{interviewLobby.BehaviorSkills}}</span>
+                    </div>
+                    <div class="thinkproc-feedback-skills-list" id="thinkproc-feedback-behavoural-list-container">
+                        <!-- <div class="thinkproc-feedback-skill-card">
+                            <h4>Communication Skills</h4>
+                            <p>Description</p>
+                            <div class="thinkproc-feedback-rating">
+                                <span data-value="1">1</span>
+                                <span data-value="2">2</span>
+                                <span data-value="3" class="active">3</span>
+                            </div>
+                        </div>                     -->
+                        <!-- <div class="thinkproc-feedback-comment-section">
+                            <h3>Write overall session comment</h3>
+                            <p>Give feedback to the candidate you interviewed</p>
+                            <div>
+                                <textarea placeholder="|Type Here"></textarea>
+                            </div>
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="thinkproc-session-popup-footer">
+                    <button class="thinkproc-feedback-next-btn thinkproc-disable"
+                        id="thinkproc-feedback-submit-btn">{{interviewLobby.Submit}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Thank You Popup -->
+    <div class="thinkproc-thankyou-popup-overlay d-none" id="thinkproc-thank-you-popup">
+        <div class="thinkproc-thankyou-popup-box">
+            <div class="thinkproc-thankyou-popup-icon">
+                <img src="{{enviroment_url}}images/clap_img.svg" alt="Thank You Image" />
+            </div>
+            <div class="thinkproc-thankyou-text">
+                <h2>{{popup_text.thankYou}}</h2>
+                <p>{{popup_text.thankYouDescription1}}</p>
+                <p>{{popup_text.thankYouDescription2}}</p>
+            </div>
+            <div class="thinkproc-thankyou-btn">
+                <button class="thinkproc-thankyou-close-btn"
+                    id="thinkpro-thank-you-close-btn">{{popup_buttons.close}}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End-Session confirmation Popup -->
+    <div class="thinkproc-end-session-container d-none" id="thinkproc-end-call-confirmation-popup">
+        <div class="thinkproc-end-session-popup">
+            <div class="thinkproc-end-session-header">
+                <h2>{{popup_text.endCallSure}}</h2>
+            </div>
+            <div class="thinkproc-end-session-footer">
+                <button class="thinkproc-end-session-cancel-btn"
+                    id="thinkproc-endcall-cancel-btn">{{popup_buttons.cancel}}</button>
+                <button class="thinkproc-end-session-confirm-btn"
+                    id="thinkproc-endcall-yes-btn">{{popup_buttons.yes}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="thinkproc-end-session-container d-none" id="think_interview_leave_popup">
+        <div class="thinkproc-end-session-popup">
+            <div class="thinkproc-end-session-header">
+                <h2>{{popup_text.interviewerLeft}}</h2>
+            </div>
+            <div class="thinkproc-progress-circle">
+                <div class="thinkproc-percent">
+                    <svg>
+                        <circle cx="30" cy="30" r="27"></circle>
+                        <circle id="thinkinterview_leavecount" cx="30" cy="30" r="27"
+                            style="--thinkproc_leave_count:100"></circle>
+                    </svg>
+                    <div class="thinkproc-number">
+                        <span id="thinkX_leaveMin">00:10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="thinkproc-external-popup-overlay d-none" id="think_interviewDeviceChange">
+        <div class="thinkproc-external-popup-innerbody">
+            <div class="thinkproc-external-popup-box">
+
+                <div class="thinkproc-external-popup-hdng-div">
+                    <div class="icon">
+                        <img src="{{enviroment_url}}images/errorWarning.svg" alt="">
+                    </div>
+                    <span class="thinkproc-popup-title">
+                        {{interviewLobby.device_support}}
+                    </span>
+                </div>
+
+                <div class="thinkproc-external-popup-description">
+                    <p class="thinkproc-popup-main-msg">
+                        {{interviewLobby.joinPhone}}
+                    </p>
+                    <p class="thinkproc-popup-subtext">
+                        {{interviewLobby.deviceInfo}}
+                    </p>
+                </div>
+
+
+                <div class="thinkproc-external-popup-btn-div">
+                    <button class="thinkpro-btn" id="think_interview_exitBtn">
+                        {{interviewLobby.exit}}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</div>

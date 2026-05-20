@@ -1,0 +1,24 @@
+<svg width="86" height="76" viewBox="0 0 86 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Screen share stop icon</title>
+  <desc>A monitor with a slash through it indicating screen sharing has stopped</desc>
+
+  <!-- Centered group: red disc + white monitor + white slash.
+       Original was 140px diameter on a 200px canvas; scaled ~0.5 to fit 86x76.
+       Center placed at (43, 38). -->
+  <g transform="translate(43, 38)">
+    <!-- Red disc -->
+    <circle cx="0" cy="0" r="36" fill="#C0392B"/>
+
+    <!-- Monitor frame (rounded rect, stroke only) -->
+    <rect x="-15" y="-12" width="30" height="19" rx="2.2" fill="none" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Monitor stand neck -->
+    <rect x="-3.2" y="7.5" width="6.4" height="3.2" rx="0.8" fill="#ffffff"/>
+
+    <!-- Monitor stand base -->
+    <rect x="-7.5" y="10.7" width="15" height="1.6" rx="0.8" fill="#ffffff"/>
+
+    <!-- Diagonal slash -->
+    <line x1="-18" y1="-15" x2="18" y2="15" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+</svg>

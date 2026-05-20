@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCV.js WebRTC Blur Sender (Local Display)</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+        video { border: 1px solid #ccc; margin: 10px; width: 640px; height: 480px; background-color: #eee; } /* Increased size for better view */
+        button { margin: 5px; padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #status { margin-top: 10px; color: green; }
+        #log { margin-top: 20px; width: 80%; max-height: 200px; overflow-y: scroll; border: 1px solid #eee; padding: 10px; background-color: #f9f9f9; font-family: monospace; font-size: 0.9em; }
+        /* Debug canvases: Now visible by default */
+        #debugCanvas1, #debugCanvas2 {
+            border: 1px solid red; /* Make it visible */
+            margin: 5px;
+            width: 320px; /* Reduced size to fit better, feel free to adjust */
+            height: 240px;
+            display: block; /* <-- CHANGED: Now visible by default */
+        }
+    </style>
+</head>
+<body>
+    <h1>WebRTC Sender with OpenCV.js Blurring (Local Preview)</h1>
+
+    <div>
+        <button id="startLocalVideo">Start Local Video (Blurred)</button>
+    </div>
+
+    <div>
+        <h2>Local Stream (Blurred)</h2>
+        <video id="localVideo" autoplay muted playsinline></video>
+    </div>
+
+    <p>Debug Canvases (Input to OpenCV / Output from OpenCV):</p>
+    <div style="display: flex;">
+        <canvas id="debugCanvas1"></canvas>
+        <canvas id="debugCanvas2"></canvas>
+    </div>
+
+    <div style="display: none;">
+        <h2>Remote Offer/Answer (Hidden)</h2>
+        <textarea id="offerSdp" rows="5" cols="60" placeholder="Paste remote offer here"></textarea>
+        <textarea id="answerSdp" rows="5" cols="60" placeholder="Paste remote answer here"></textarea>
+        <button id="setOffer">Set Offer</button>
+        <button id="createOffer">Create Offer</button>
+        <button id="answerReceived">Set Remote Answer</button>
+    </div>
+
+    <p id="status"></p>
+    <div id="log"></div>
+
+    <script async src="https://docs.opencv.org/4.x/opencv.js" onload="onOpenCvReady()"></script>
+    <script src="sender.js"></script>
+</body>
+</html>
